@@ -21,15 +21,16 @@ mysqlConnection.connect((err)=>{
 app.listen(3000, ()=> console.log("Listening on port 3000..."));
 
 app.get('/', (req,res) =>{
-    res.send("Api works");
+    res.send("VIDEO WEBSITE API");
 });
 
 app.get('/api/movies',(req,res)=>{
-    let sql = `CALL GetAllMovies()`
-    mysqlConnection.query(sql, (err,res,fields) =>{
+
+    let GetAllMovies = `CALL GetAllMovies()`
+    mysqlConnection.query(GetAllMovies, (err,data,fields) =>{
         if(err){
             return console.err(err.message);
         }
-        console.log(res);
+        res.send(data);
     });
 });
