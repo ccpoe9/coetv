@@ -9,6 +9,11 @@ import { MoviesComponent } from './sub_components/movies/movies.component';
 import { TvComponent } from './sub_components/tv/tv.component';
 import { LiveComponent } from './sub_components/live/live.component';
 import { SettingsComponent } from './sub_components/settings/settings.component';
+import { AngularFireModule } from '@angular/fire/compat'
+import { environment } from 'src/environments/environment';
+import { LoginComponent } from './sub_components/login/login.component';
+import { RegisterComponent } from './sub_components/register/register.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,12 +23,16 @@ import { SettingsComponent } from './sub_components/settings/settings.component'
     MoviesComponent,
     TvComponent,
     LiveComponent,
-    SettingsComponent
+    SettingsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
