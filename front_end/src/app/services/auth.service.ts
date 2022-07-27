@@ -41,6 +41,7 @@ export class AuthService {
 
   logout(){
     this.fireauth.signOut().then(()=>{
+      this.authStatusSource.next(false);
         this.router.navigate(['login']);
     }, err =>{
        alert(err.message);

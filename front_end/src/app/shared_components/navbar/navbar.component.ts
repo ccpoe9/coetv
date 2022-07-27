@@ -23,4 +23,8 @@ export class NavbarComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
+  signOut(){
+    this.authService.logout();
+  }
+
 }
