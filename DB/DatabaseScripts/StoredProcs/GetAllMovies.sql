@@ -1,4 +1,4 @@
-USE `video-website-db`
+USE `mediatime-db`
 
 DELIMITER //
 CREATE PROCEDURE GetAllMovies ()
