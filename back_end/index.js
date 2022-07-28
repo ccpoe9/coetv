@@ -1,14 +1,15 @@
 const mysql = require('mysql');
 const express = require('express');
 var cors = require('cors')
-let config = require('./config');
+let dbconfig = require('./config');
+let uiconfig = require('./config');
 const bodyparser = require('body-parser');
 var app = express();
 
 app.use(bodyparser.json());
-app.use(cors())
+app.use(cors({origin: uiconfig}))
 
-var mysqlConnection = mysql.createConnection(config);
+var mysqlConnection = mysql.createConnection(dbconfig);
 
 mysqlConnection.connect((err)=>{
     if(!err){
