@@ -12,3 +12,9 @@
     background-size: cover;
 }
 
+.card:hover{
+    transform:scale(1.05);
+}
+.card{
+    transition:.3s;
+  }

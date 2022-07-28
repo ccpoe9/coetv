@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { LoginComponent } from './sub_components/login/login.component';
 import { RegisterComponent } from './sub_components/register/register.component';
 import { FormsModule } from '@angular/forms';
+import { ForgotPasswordComponent } from './sub_components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     LiveComponent,
     SettingsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

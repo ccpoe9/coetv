@@ -10,17 +10,19 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent implements OnInit {
 
   isAuthenticated : boolean;
-  subscription: Subscription;
-
+  authSubscription: Subscription;
+  currentUser : string;
+  userSubscription : Subscription;
   constructor(private authService : AuthService) { }
 
 
   ngOnInit(): void {
-    this.subscription = this.authService.authStatus.subscribe(status => this.isAuthenticated = status);
+    this.authSubscription = this.authService.authStatus.subscribe(status => this.isAuthenticated = status);
+    this.userSubscription = this.authService.currentUser.subscribe( user => this.currentUser = user);
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    this.authSubscription.unsubscribe();
   }
 
   signOut(){

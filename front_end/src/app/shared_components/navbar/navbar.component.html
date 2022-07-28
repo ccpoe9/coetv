@@ -43,6 +43,8 @@
                 </svg>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item">{{currentUser}}</a>
+              <li><hr class="dropdown-divider"></li>
               <a class="dropdown-item" (click)="signOut()">Sign Out</a>
             </div>
           </li>
