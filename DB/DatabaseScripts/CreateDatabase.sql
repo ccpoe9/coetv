@@ -15,3 +15,9 @@ INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`FileRef`,`Desc`)
 VALUES('Amazing Grace', 'Spiritual','/Video Files/amazinggrace.mp4','I play amazing grace');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`FileRef`,`Desc`) 
 VALUES('Arpeggios', 'World','/Video Files/ARPEGGIOS.mp4','I play arpeggios');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`FileRef`,`Desc`) 
+VALUES('Uncharted', 'Action','/Video Files/ARPEGGIOS.mp4','Uncharted Desc');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`FileRef`,`Desc`) 
+VALUES('Moonlight', 'Drama','/Video Files/ARPEGGIOS.mp4','Moonlight Desc');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`FileRef`,`Desc`) 
+VALUES('Rise of the Guardians', 'Animation','/Video Files/ARPEGGIOS.mp4','Rise of the Guardians Desc');

@@ -11,6 +11,7 @@ export class MoviesService {
   constructor(private http : HttpClient) { }
 
   getAllMovies() : Observable<Movie[]>{
-    return this.http.get<Movie[]>(config.APIROOT+config.APIURLS.MOVIES);
+
+    return this.http.get<Movie[]>(config.APIROOT+config.APIURLS.MOVIES, {responseType: "json" });  
   }
 }

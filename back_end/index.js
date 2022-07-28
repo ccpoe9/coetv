@@ -1,11 +1,12 @@
 const mysql = require('mysql');
 const express = require('express');
+var cors = require('cors')
 let config = require('./config');
-
-var app = express();
 const bodyparser = require('body-parser');
+var app = express();
 
 app.use(bodyparser.json());
+app.use(cors())
 
 var mysqlConnection = mysql.createConnection(config);
 
@@ -33,6 +34,6 @@ app.get('/api/movies',(req,res)=>{
         if(err){
             return console.err(err.message);
         }
-        res.send(data);
+        res.send(data[0]);
     });
 });
