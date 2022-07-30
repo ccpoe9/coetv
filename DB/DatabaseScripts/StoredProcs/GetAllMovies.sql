@@ -1,9 +1,0 @@
-USE `mediatime-db`
-
-DELIMITER //
-CREATE PROCEDURE GetAllMovies ()
-BEGIN
-	SELECT * FROM Movies;
-END //
-DELIMITER ;
-
