@@ -14,17 +14,17 @@ export class MoviesComponent implements OnInit {
 
   movies : Movie[];
 
-  currentPage : number;
-  size : number;
-  search : string;
-  orderBy : string;
-  orderDir : string
+  currentPage : number = 2;
+  size : number = 20;
+  search : string = '';
+  orderBy : string = 'id';
+  orderDir : string = 'DESC'
   httpParams : HttpParams;
   
 
 
   ngOnInit(): void {
-    this.constructParams(1,20,'','id','DESC');
+    this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     this.getAllMovies();
 
   }
@@ -47,7 +47,12 @@ export class MoviesComponent implements OnInit {
       this.moviesService.getAllMovies(this.httpParams).subscribe(data =>{
         this.movies = data;
     });
-    
   }
+
+  getNextMovies(nextPage : number){
+    this.httpParams.set('currentPage', nextPage);
+    this.getAllMovies();
+  }
+
 
 }
