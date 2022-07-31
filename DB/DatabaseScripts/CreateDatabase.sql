@@ -14,8 +14,23 @@ CREATE TABLE `mediatime-db`.`Movies` (
 USE `mediatime-db`;
 
 DELIMITER //
-CREATE PROCEDURE GetAllMovies ()
+
+CREATE PROCEDURE GetMoviesByPage(
+	IN currentPage INT,
+    IN size INT,
+    IN search VARCHAR(100),
+	IN orderBy VARCHAR(15),
+	IN orderDir VARCHAR(4)
+)
 BEGIN
-	SELECT * FROM Movies;
+	DECLARE offsetval INT DEFAULT 0;
+	SET offsetval = (currentpage - 1) * size;
+	SELECT * FROM `mediatime-db`.`Movies`
+    ORDER BY id DESC LIMIT size OFFSET offsetval;
 END //
-DELIMITER ;
+
+DELIMITER ;  
+
+CALL GetMoviesByPage(1,18,'','Name','')
+
+
