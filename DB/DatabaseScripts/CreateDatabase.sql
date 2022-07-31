@@ -8,10 +8,14 @@ CREATE TABLE `mediatime-db`.`Movies` (
   `Thumbnail` VARCHAR(45) NULL,
   `Video` VARCHAR(45) NULL,
   `Desc` VARCHAR(100) NULL,
-  `Rating` VARCHAR(4) NULL,
+  `Rating` DECIMAL(4,1),
   PRIMARY KEY (`id`));
+  
+
 
 USE `mediatime-db`;
+
+DROP PROCEDURE IF EXISTS GetMoviesByPage;
 
 DELIMITER //
 
@@ -26,11 +30,19 @@ BEGIN
 	DECLARE offsetval INT DEFAULT 0;
 	SET offsetval = (currentpage - 1) * size;
 	SELECT * FROM `mediatime-db`.`Movies`
-    ORDER BY id DESC LIMIT size OFFSET offsetval;
+    WHERE `Name` LIKE CONCAT('%',search,'%')
+    ORDER BY
+		(CASE WHEN orderBy= 'id' AND orderDir='ASC' THEN `id` END) ASC,
+        (CASE WHEN orderBy= 'id' AND orderDir= 'DESC' THEN `id` END) DESC,
+        (CASE WHEN orderBy='Name' AND orderDir='ASC' THEN `Name` END) ASC,
+        (CASE WHEN orderBy='Name' AND orderDir='DESC' THEN `Name` END) DESC,
+        (CASE WHEN orderBy='Rating' AND orderDir='ASC' THEN `Rating` END) ASC,
+        (CASE WHEN orderBy='Rating' AND orderDir='DESC' THEN `Rating` END) DESC
+        LIMIT size OFFSET offsetval;
 END //
 
 DELIMITER ;  
 
-CALL GetMoviesByPage(1,18,'','Name','')
+CALL GetMoviesByPage(1,18,'b','name','DESC')
 
 
