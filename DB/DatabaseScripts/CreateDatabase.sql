@@ -43,6 +43,4 @@ END //
 
 DELIMITER ;  
 
-CALL GetMoviesByPage(1,18,'b','name','DESC')
-
 

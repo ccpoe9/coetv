@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConnectionConfig as config } from 'src/config/config';
@@ -10,8 +10,11 @@ export class MoviesService {
 
   constructor(private http : HttpClient) { }
 
-  getAllMovies() : Observable<Movie[]>{
-
-    return this.http.get<Movie[]>(config.APIROOT+config.APIURLS.MOVIES, {responseType: "json" });  
+  getAllMovies(httpParams : HttpParams) : Observable<Movie[]>{
+    return this.http.get<Movie[]>(config.APIROOT+config.APIURLS.MOVIES, 
+      {
+        params : httpParams
+      });  
   }
+
 }

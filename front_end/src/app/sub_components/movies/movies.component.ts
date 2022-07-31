@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -13,12 +14,37 @@ export class MoviesComponent implements OnInit {
 
   movies : Movie[];
 
+  currentPage : number;
+  size : number;
+  search : string;
+  orderBy : string;
+  orderDir : string
+  httpParams : HttpParams;
+  
+
+
   ngOnInit(): void {
+    this.constructParams(1,20,'','id','DESC');
     this.getAllMovies();
+
+  }
+
+  constructParams(currentPage : number,
+    size : number,
+    search : string,
+    orderBy : string,
+    orderDir : string){
+    
+      this.httpParams = new HttpParams()
+      .set('currentPage', currentPage)
+      .set('size', size)
+      .set('search', search)
+      .set('orderBy', orderBy)
+      .set('orderDir', orderDir);
   }
 
   getAllMovies(){
-      this.moviesService.getAllMovies().subscribe(data =>{
+      this.moviesService.getAllMovies(this.httpParams).subscribe(data =>{
         this.movies = data;
     });
     
