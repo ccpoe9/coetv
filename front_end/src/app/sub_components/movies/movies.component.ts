@@ -14,7 +14,7 @@ export class MoviesComponent implements OnInit {
 
   movies : Movie[];
 
-  currentPage : number = 2;
+  currentPage : number = 1;
   size : number = 20;
   search : string = '';
   orderBy : string = 'id';
