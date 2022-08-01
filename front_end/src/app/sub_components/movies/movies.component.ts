@@ -21,11 +21,14 @@ export class MoviesComponent implements OnInit {
   orderDir : string = 'DESC'
   httpParams : HttpParams;
   
+  totalRecords : number;
+  totalPages : number;
 
 
   ngOnInit(): void {
     this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     this.getAllMovies();
+    this.getAllRecords();
 
   }
 
@@ -44,14 +47,23 @@ export class MoviesComponent implements OnInit {
   }
 
   getAllMovies(){
-      this.moviesService.getAllMovies(this.httpParams).subscribe(data =>{
+      this.moviesService.getAllMovies(this.httpParams).subscribe(data => {
         this.movies = data;
     });
   }
 
-  getNextMovies(nextPage : number){
-    this.httpParams.set('currentPage', nextPage);
+  getAllRecords(){
+    this.moviesService.getAllRecords().subscribe(data => {
+        this.totalPages = data.totalPages;
+        this.totalRecords = data.totalRecords;
+    })
+  }
+
+  getNextPage(nextPage : number){
+    this.currentPage = nextPage;
+    this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     this.getAllMovies();
+    this.getAllRecords();
   }
 
 

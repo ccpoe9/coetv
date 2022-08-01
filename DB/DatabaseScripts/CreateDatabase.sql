@@ -24,7 +24,9 @@ CREATE PROCEDURE GetMoviesByPage(
     IN size INT,
     IN search VARCHAR(100),
 	IN orderBy VARCHAR(15),
-	IN orderDir VARCHAR(4)
+	IN orderDir VARCHAR(4),
+    OUT totalRecords INT,
+    OUT totalPages INT
 )
 BEGIN
 	DECLARE offsetval INT DEFAULT 0;
@@ -39,8 +41,13 @@ BEGIN
         (CASE WHEN orderBy='Rating' AND orderDir='ASC' THEN `Rating` END) ASC,
         (CASE WHEN orderBy='Rating' AND orderDir='DESC' THEN `Rating` END) DESC
         LIMIT size OFFSET offsetval;
+	
+    SELECT COUNT(*) FROM `mediatime-db`.`Movies` INTO totalRecords;
+    SET totalPages = CEIL(totalRecords/size);
+    
 END //
 
 DELIMITER ;  
+
 
 

@@ -5,7 +5,8 @@ let dbconfig = {
     host : 'localhost',
     user : 'root',
     password : 'Paulezeh123',
-    database : 'mediatime-db'
+    database : 'mediatime-db',
+    multipleStatements: true
 }
 
 var pool = mysql.createPool(dbconfig);
