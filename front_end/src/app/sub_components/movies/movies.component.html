@@ -33,7 +33,7 @@
             {{sortBySelected}}
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item">{{sortByUnselected}}</a>
+            <a class="dropdown-item" (click)="changeSortBy(sortByUnselected)">{{sortByUnselected}}</a>
           </div>
         </div>
       </div>
@@ -43,6 +43,7 @@
                     <img class="card-img-top" src="https://i.pinimg.com/474x/4c/5a/4d/4c5a4dddbe33d4b3974f87ef90489a90.jpg" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-dark">{{movie.Name}}</h5>
+                        <p class="card-text">{{movie.Rating}}</p>
                     </div>
                 </div>
             </div>

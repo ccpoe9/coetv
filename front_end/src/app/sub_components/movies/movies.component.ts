@@ -92,7 +92,19 @@ export class MoviesComponent implements OnInit {
       startPage++;
       i++;
     }
+  }
 
+  changeSortBy(sortByUnselected : string){
+    this.sortByUnselected = this.sortBySelected;
+    this.sortBySelected = sortByUnselected;
+
+    if(this.sortBySelected = 'SORT BY POPULAR'){
+      this.constructParams(this.currentPage, this.size, this.search, 'Rating','DESC');
+    }
+    else{
+      this.constructParams(this.currentPage, this.size, this.search, 'id','DESC');
+    }
+    this.getAllMovies();
   }
 
 
