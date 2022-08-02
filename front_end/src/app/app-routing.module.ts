@@ -15,11 +15,11 @@ const routes: Routes = [
                         {path : 'login', component : LoginComponent},
                         {path : 'register', component : RegisterComponent},
                         {path : 'forgot-password', component : ForgotPasswordComponent},
-                        {path : 'landing', component : LandingComponent, /*canActivate : [AuthGuard]*/},
-                        {path : 'movies', component : MoviesComponent, /*canActivate : [AuthGuard]*/},
-                        {path : 'tv', component : TvComponent, /*canActivate : [AuthGuard]*/},
-                        {path : 'live', component : LiveComponent, /*canActivate : [AuthGuard]*/},
-                        {path : 'settings', component : SettingsComponent, /*canActivate : [AuthGuard]*/}];
+                        {path : 'landing', component : LandingComponent, canActivate : [AuthGuard]},
+                        {path : 'movies', component : MoviesComponent, canActivate : [AuthGuard]},
+                        {path : 'tv', component : TvComponent, canActivate : [AuthGuard]},
+                        {path : 'live', component : LiveComponent, canActivate : [AuthGuard]},
+                        {path : 'settings', component : SettingsComponent, canActivate : [AuthGuard]}];
 
 
 @NgModule({
