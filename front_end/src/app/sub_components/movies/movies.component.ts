@@ -21,19 +21,20 @@ export class MoviesComponent implements OnInit {
   orderDir : string = 'DESC';
   httpParams : HttpParams;
 
-
   sortBySelected : string = 'SORT BY LATEST';
   sortByUnselected : string = 'SORT BY POPULAR';
 
   totalRecords : number;
   totalPages : number;
 
+  startPage : number = 1;
+  endPage : number = 6;
+  pageNumbers : number[] = [0,0,0,0,0,0];
 
   ngOnInit(): void {
     this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     this.getAllMovies();
-    
-
+    console.log(this.pageNumbers);
   }
 
   constructParams(currentPage : number,
@@ -56,11 +57,12 @@ export class MoviesComponent implements OnInit {
         this.getAllRecords();
     });
   }
-
+//8 - total pages
   getAllRecords(){
     this.moviesService.getAllRecords().subscribe(data => {
         this.totalPages = data.totalPages;
         this.totalRecords = data.totalRecords;
+        this.setPages();
     })
   }
 
@@ -68,6 +70,29 @@ export class MoviesComponent implements OnInit {
     this.currentPage = nextPage;
     this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     this.getAllMovies();
+  }
+
+  setPages(){
+    this.endPage = Math.min(this.totalPages,this.endPage);
+
+    while(this.currentPage - this.startPage < 3 && this.startPage > 1){
+      this.endPage--;
+      this.startPage--;
+    }
+    while(this.endPage - this.currentPage < 3 && this.endPage < this.totalPages){
+      this.endPage++;
+      this.startPage++;
+    }
+
+    let i = 0;
+    let startPage = this.startPage;
+    let endPage = this.endPage;
+    while(startPage <= endPage){
+      this.pageNumbers[i] = startPage;
+      startPage++;
+      i++;
+    }
+
   }
 
 

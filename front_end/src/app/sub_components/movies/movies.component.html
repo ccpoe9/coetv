@@ -57,7 +57,9 @@
               <span class="sr-only">Previous</span>
             </a>
           </li> 
-          <li class="page-item"><a class="page-link active">{{currentPage}}</a></li>
+          <div *ngFor="let number of pageNumbers">
+            <li class="page-item" *ngIf="number!=0"><a class="page-link" [ngClass]="{'active' : number == currentPage}" (click)="getNextPage(number)">{{number}}</a></li>
+          </div>
           <li class="page-item" [ngClass]="{'disabled': (currentPage+1)>totalPages}">
             <a class="page-link" (click)="getNextPage(currentPage+1)" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
