@@ -1,4 +1,5 @@
 import { HttpParams } from '@angular/common/http';
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -34,7 +35,6 @@ export class MoviesComponent implements OnInit {
   ngOnInit(): void {
     this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     this.getAllMovies();
-    console.log(this.pageNumbers);
   }
 
   constructParams(currentPage : number,
@@ -95,14 +95,19 @@ export class MoviesComponent implements OnInit {
   }
 
   changeSortBy(sortByUnselected : string){
-    this.sortByUnselected = this.sortBySelected;
+    let temp = this.sortBySelected;
     this.sortBySelected = sortByUnselected;
+    this.sortByUnselected = temp;
 
-    if(this.sortBySelected = 'SORT BY POPULAR'){
-      this.constructParams(this.currentPage, this.size, this.search, 'Rating','DESC');
+    if(this.sortBySelected == 'SORT BY POPULAR'){
+      this.currentPage = 1;
+      this.orderBy = 'Rating';
+      this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     }
     else{
-      this.constructParams(this.currentPage, this.size, this.search, 'id','DESC');
+      this.currentPage = 1;
+      this.orderBy = 'id';
+      this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     }
     this.getAllMovies();
   }
