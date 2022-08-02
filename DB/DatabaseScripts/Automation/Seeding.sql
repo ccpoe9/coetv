@@ -1,13 +1,51 @@
 #Movies
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
-VALUES('Star Wars','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1');
+VALUES('1','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
-VALUES('Star Wars 2','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.0');
+VALUES('2','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.0');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
-VALUES('Star Wars 3','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '10');
+VALUES('3','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '10.0');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
-VALUES('Star Wars 4','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '6.0');
+VALUES('4','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '6.0');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
-VALUES('Star Wars 5','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '8.8');
+VALUES('5','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '8.8');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
-VALUES('Star Wars 6','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '2.9');
+VALUES('6','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '2.9');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('7','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.2');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('8','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.3');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('9','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.9');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('10','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '6.5');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('11','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '8.7');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('12','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '2.5');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('13','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.4');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('14','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.5');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('15','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.6');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('16','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '6.1');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('17','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '8.1');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('18','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '2.4');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('19','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.8');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('20','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.7');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('21','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '1.0');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('22','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '6.2');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('23','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '8.3');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`) 
+VALUES('24','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '2.7');
+
+
