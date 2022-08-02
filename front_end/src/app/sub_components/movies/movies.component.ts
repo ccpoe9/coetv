@@ -20,7 +20,8 @@ export class MoviesComponent implements OnInit {
   orderBy : string = 'id';
   orderDir : string = 'DESC';
   httpParams : HttpParams;
-  
+
+
   sortBySelected : string = 'SORT BY LATEST';
   sortByUnselected : string = 'SORT BY POPULAR';
 
