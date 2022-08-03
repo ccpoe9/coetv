@@ -8,16 +8,16 @@
           </div>
       </div>
       <!--*ngIf="isAuthenticated"-->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="user$ | async as user">
         
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <li class="nav-item" (click)="setCurrentPage('movies')">
             <a class="nav-link active text-white" aria-current="page" routerLink="/movies">MOVIES</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" (click)="setCurrentPage('tv')">
             <a class="nav-link active text-white" aria-current="page" routerLink="/tv">TV</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" (click)="setCurrentPage('live')">
             <a class="nav-link active text-white" aria-current="page" routerLink="/live">LIVE</a>
           </li>
           <li class="nav-item">
@@ -25,8 +25,8 @@
           </li>
         </ul>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-secondary" type="submit">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="search">
+          <button class="btn btn-outline-secondary" type="submit" (click)="searchPage()">
             <div class='d-flex justify-content-center'>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -44,7 +44,7 @@
                 </svg>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item">{{currentUser}}</a>
+              <a class="dropdown-item">{{user.email}}</a>
               <li><hr class="dropdown-divider"></li>
               <a class="dropdown-item" (click)="signOut()">Sign Out</a>
             </div>

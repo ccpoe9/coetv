@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { MoviesService } from 'src/app/services/movies.service';
+import { MoviesComponent } from 'src/app/sub_components/movies/movies.component';
 
 @Component({
   selector: 'app-navbar',
@@ -10,21 +12,28 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  currentUser : string;
-  userSubscription : Subscription;
-
-  constructor(private authService : AuthService, private fireAuth : AngularFireAuth) { }
+  user$ = this.fireAuth.user;
+  currentPage : string = 'landing';
+  search : string;
+  isSearched : boolean;
+  constructor(private authService : AuthService, private readonly fireAuth : AngularFireAuth, 
+    private movieService : MoviesService) { }
 
   ngOnInit(): void {
-    this.userSubscription = this.authService.currentUser.subscribe( user => this.currentUser = user);
-  }
 
-  ngOnDestroy(){
-    this.userSubscription.unsubscribe();
   }
 
   signOut(){
     this.authService.logout();
   }
 
+  setCurrentPage( currentPage : string){
+    this.currentPage = currentPage;
+  }
+
+  searchPage(){
+    if(this.currentPage == 'movies'){
+      this.movieService.setSearch(this.search);
+    }
+  }
 }

@@ -9,13 +9,10 @@ export class AuthService {
 
   constructor(private fireauth : AngularFireAuth, private router : Router) { }
 
-  private currentUserSource = new BehaviorSubject('');
-  currentUser = this.currentUserSource.asObservable();
 
   //login method
   login(email : string, password : string){
     this.fireauth.signInWithEmailAndPassword(email,password).then(()=>{
-      this.currentUserSource.next(email);
       this.fireauth.setPersistence('local');
       this.router.navigate(['/landing']);
     }, err=> {
@@ -28,7 +25,6 @@ export class AuthService {
   register(email : string, password : string){
     this.fireauth.createUserWithEmailAndPassword(email,password).then( res =>{
       alert('Registration Successful');
-      this.currentUserSource.next(email);
       this.fireauth.setPersistence('local');
       this.router.navigate(['/landing']);
       //this.sendEmailForVerification(res.user);
@@ -41,7 +37,7 @@ export class AuthService {
     user.sendEmailForVerification().then((res : any) =>{
       alert('Email Sent');
     }, (err : any) =>{
-      alert('Something went wrong');
+      alert('Email Not Sent!');
     })
   }
 

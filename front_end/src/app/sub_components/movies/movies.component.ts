@@ -35,6 +35,7 @@ export class MoviesComponent implements OnInit {
   ngOnInit(): void {
     this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     this.getAllMovies();
+    this.moviesService.search.subscribe(search => this.searchMovies(search))
   }
 
   constructParams(currentPage : number,
@@ -112,6 +113,10 @@ export class MoviesComponent implements OnInit {
     this.getAllMovies();
   }
 
+  searchMovies(search :string){
+    this.search = search;
+    console.log(search);
+  }
 
 
 }
