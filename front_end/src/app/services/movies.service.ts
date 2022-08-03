@@ -12,7 +12,6 @@ export class MoviesService {
 
   private searchSource = new BehaviorSubject('');
   search = this.searchSource.asObservable();
-
   constructor(private http : HttpClient) { }
 
   getAllMovies(httpParams : HttpParams) : Observable<Movie[]>{
