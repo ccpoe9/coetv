@@ -39,6 +39,7 @@ export class NavbarComponent implements OnInit {
   searchPage(){
     if(this.currentPage == '/movies' && Object.keys(this.search).length !== 0 ){
       this.movieService.setSearch(this.search);
+      this.search = '';
     }
   }
 }

@@ -61,8 +61,8 @@ export class MoviesComponent implements OnInit {
 
   getAllMovies(){
       this.moviesService.getAllMovies(this.httpParams).subscribe(data => {
-        this.movies = data;
         this.getAllRecords();
+        this.movies = data;
     });
   }
 
