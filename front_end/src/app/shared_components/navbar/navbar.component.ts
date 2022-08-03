@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,20 +10,17 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  isAuthenticated : boolean;
-  authSubscription: Subscription;
   currentUser : string;
   userSubscription : Subscription;
-  constructor(private authService : AuthService) { }
 
+  constructor(private authService : AuthService, private fireAuth : AngularFireAuth) { }
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.authStatus.subscribe(status => this.isAuthenticated = status);
     this.userSubscription = this.authService.currentUser.subscribe( user => this.currentUser = user);
   }
 
   ngOnDestroy(){
-    this.authSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 
   signOut(){

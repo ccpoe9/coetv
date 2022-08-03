@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { map, Observable, Subscription, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -8,22 +9,19 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuard implements CanActivate {
 
-  private subscription: Subscription;
-  private isAuthenticated: boolean;
-  constructor(private authService : AuthService, private router : Router) { }
+
+  constructor(private authService : AuthService, private router : Router, private fireAuth : AngularFireAuth) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      this.subscription = this.authService.authStatus.subscribe( status => this.isAuthenticated = status);
-      if(!this.isAuthenticated){
-        this.router.navigate(['login']);
-      }
-    return this.isAuthenticated;
+      return this.fireAuth.user.pipe(
+        tap(user => {
+          if (!user) {
+            this.router.navigate([ 'login' ]);
+          }
+        }),
+        map(user => !!user )
+      );
   }
-
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
-  }
-  
 }

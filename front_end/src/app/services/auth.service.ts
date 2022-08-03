@@ -7,18 +7,16 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class AuthService {
 
-  private authStatusSource = new BehaviorSubject(false);
-  authStatus = this.authStatusSource.asObservable();
+  constructor(private fireauth : AngularFireAuth, private router : Router) { }
+
   private currentUserSource = new BehaviorSubject('');
   currentUser = this.currentUserSource.asObservable();
-  constructor(private fireauth : AngularFireAuth, private router : Router) { }
 
   //login method
   login(email : string, password : string){
     this.fireauth.signInWithEmailAndPassword(email,password).then(()=>{
-      //localStorage.setItem('token', 'true');
-      this.authStatusSource.next(true);
       this.currentUserSource.next(email);
+      this.fireauth.setPersistence('local');
       this.router.navigate(['/landing']);
     }, err=> {
       alert(err.message);
@@ -30,10 +28,10 @@ export class AuthService {
   register(email : string, password : string){
     this.fireauth.createUserWithEmailAndPassword(email,password).then( res =>{
       alert('Registration Successful');
-      this.authStatusSource.next(true);
       this.currentUserSource.next(email);
+      this.fireauth.setPersistence('local');
       this.router.navigate(['/landing']);
-      this.sendEmailForVerification(res.user);
+      //this.sendEmailForVerification(res.user);
     }, err=> {
       alert(err.message);
       this.router.navigate(['/register']);
@@ -52,20 +50,13 @@ export class AuthService {
 
   logout(){
     this.fireauth.signOut().then(()=>{
-      this.authStatusSource.next(false);
-      this.currentUserSource.next('');
+      localStorage.removeItem('user');
         this.router.navigate(['login']);
-
     }, err =>{
        alert(err.message);
     })
   }
 
-  // set auth status
-
-  setAuthStatus(newAuthStatus : boolean){
-    this.authStatusSource.next(newAuthStatus);
-  }
 
   //forgot password
 
