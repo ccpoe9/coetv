@@ -1,32 +1,34 @@
 <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid">
-      <div class="navbar-brand" id="brand-logo" routerLink="/landing" >
+      <div class="navbar-brand" id="brand-logo">
         <div class='d-flex justify-content-center'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-film" viewBox="0 0 16 16">
-            <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm4 0v6h8V1H4zm8 8H4v6h8V9zM1 1v2h2V1H1zm2 3H1v2h2V4zM1 7v2h2V7H1zm2 3H1v2h2v-2zm-2 3v2h2v-2H1zM15 1h-2v2h2V1zm-2 3v2h2V4h-2zm2 3h-2v2h2V7zm-2 3v2h2v-2h-2zm2 3h-2v2h2v-2z"/>
-          </svg>
+          <a href="/landing">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-film" viewBox="0 0 16 16">
+              <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm4 0v6h8V1H4zm8 8H4v6h8V9zM1 1v2h2V1H1zm2 3H1v2h2V4zM1 7v2h2V7H1zm2 3H1v2h2v-2zm-2 3v2h2v-2H1zM15 1h-2v2h2V1zm-2 3v2h2V4h-2zm2 3h-2v2h2V7zm-2 3v2h2v-2h-2zm2 3h-2v2h2v-2z"/>
+            </svg>
+          </a>
           </div>
       </div>
       <!--*ngIf="isAuthenticated"-->
       <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="user$ | async as user">
         
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item" (click)="setCurrentPage('movies')">
-            <a class="nav-link active text-white" aria-current="page" routerLink="/movies">MOVIES</a>
-          </li>
-          <li class="nav-item" (click)="setCurrentPage('tv')">
-            <a class="nav-link active text-white" aria-current="page" routerLink="/tv">TV</a>
-          </li>
-          <li class="nav-item" (click)="setCurrentPage('live')">
-            <a class="nav-link active text-white" aria-current="page" routerLink="/live">LIVE</a>
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="/movies">MOVIES</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" routerLink="/settings">SETTINGS</a>
+            <a class="nav-link active text-white" aria-current="page" href="/tv">TV</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="/live">LIVE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="/settings">SETTINGS</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="search">
-          <button class="btn btn-outline-secondary" type="submit" (click)="searchPage()">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchVal" [(ngModel)]="searchVal">
+          <button class="btn btn-outline-secondary" type="submit"(click)="searchAction()">
             <div class='d-flex justify-content-center'>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>

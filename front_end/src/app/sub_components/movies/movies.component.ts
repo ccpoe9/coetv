@@ -35,7 +35,11 @@ export class MoviesComponent implements OnInit {
   ngOnInit(): void {
     this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     this.getAllMovies();
-    this.moviesService.search.subscribe(search => this.searchMovies(search))
+    this.moviesService.search.subscribe( val => {
+        this.searchAction(val);
+        this.constructParams(this.currentPage,this.size,this.search,this.orderBy,this.orderDir);
+        this.getAllMovies();
+    });
   }
 
   constructParams(currentPage : number,
@@ -54,8 +58,8 @@ export class MoviesComponent implements OnInit {
 
   getAllMovies(){
       this.moviesService.getAllMovies(this.httpParams).subscribe(data => {
-        this.movies = data;
         this.getAllRecords();
+        this.movies = data;
     });
   }
 //8 - total pages
@@ -63,6 +67,7 @@ export class MoviesComponent implements OnInit {
     this.moviesService.getAllRecords().subscribe(data => {
         this.totalPages = data.totalPages;
         this.totalRecords = data.totalRecords;
+        console.log(this.totalPages);
         this.setPages();
     })
   }
@@ -102,21 +107,29 @@ export class MoviesComponent implements OnInit {
 
     if(this.sortBySelected == 'SORT BY POPULAR'){
       this.currentPage = 1;
+      this.startPage = 1;
+      this.endPage = 6;
       this.orderBy = 'Rating';
       this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     }
     else{
       this.currentPage = 1;
+      this.startPage = 1;
+      this.endPage = 6;
       this.orderBy = 'id';
       this.constructParams(this.currentPage, this.size, this.search, this.orderBy, this.orderDir);
     }
     this.getAllMovies();
   }
 
-  searchMovies(search :string){
-    this.search = search;
-    console.log(search);
+  searchAction(val : string){
+    this.search = val;
+    this.currentPage = 1;
+    this.startPage = 1;
+    this.endPage = 6;
+    this.orderBy = 'id';
+    this.sortBySelected = 'SORT BY LATEST';
+    this.sortByUnselected = 'SORT BY POPULAR';
   }
-
 
 }

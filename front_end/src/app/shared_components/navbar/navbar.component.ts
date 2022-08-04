@@ -13,9 +13,7 @@ import { MoviesComponent } from 'src/app/sub_components/movies/movies.component'
 export class NavbarComponent implements OnInit {
 
   user$ = this.fireAuth.user;
-  currentPage : string = 'landing';
-  search : string;
-  isSearched : boolean;
+  searchVal : string = '';
   constructor(private authService : AuthService, private readonly fireAuth : AngularFireAuth, 
     private movieService : MoviesService) { }
 
@@ -27,13 +25,8 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
   }
 
-  setCurrentPage( currentPage : string){
-    this.currentPage = currentPage;
+  searchAction(){
+    this.movieService.searchAllRecords(this.searchVal);
   }
 
-  searchPage(){
-    if(this.currentPage == 'movies'){
-      this.movieService.setSearch(this.search);
-    }
-  }
 }

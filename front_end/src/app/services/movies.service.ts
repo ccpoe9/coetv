@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
 import { ConnectionConfig as config } from 'src/config/config';
 import { Movie } from '../models/movie.model';
 import { Records } from '../models/records.model';
@@ -9,11 +9,10 @@ import { Records } from '../models/records.model';
 })
 export class MoviesService {
 
-
-  private searchSource = new BehaviorSubject('');
+  searchSource : Subject<string> = new ReplaySubject<string>(1);
   search = this.searchSource.asObservable();
 
-  constructor(private http : HttpClient) { }
+    constructor(private http : HttpClient) { }
 
   getAllMovies(httpParams : HttpParams) : Observable<Movie[]>{
     return this.http.get<Movie[]>(config.APIROOT+config.APIURLS.Movies, 
@@ -26,8 +25,9 @@ export class MoviesService {
     return this.http.get<Records>(config.APIROOT+config.APIURLS.MoviesRecords);
   }
 
-  setSearch(newSearch : string){
-    this.searchSource.next(newSearch);
+  searchAllRecords(searchVal : string){
+    this.searchSource.next(searchVal);
   }
+
 
 }
