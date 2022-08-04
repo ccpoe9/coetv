@@ -42,7 +42,11 @@ BEGIN
         (CASE WHEN orderBy='Rating' AND orderDir='DESC' THEN `Rating` END) DESC
         LIMIT size OFFSET offsetval;
 	
-    SELECT COUNT(*) FROM `mediatime-db`.`Movies` INTO totalRecords;
+	
+    SELECT COUNT(*) INTO totalRecords FROM(
+    SELECT * FROM `mediatime-db`.`Movies`
+    WHERE `Name` LIKE CONCAT('%',search,'%')
+    ) AS rescount;
     SET totalPages = CEIL(totalRecords/size);
     
 END //

@@ -3,7 +3,7 @@ var db = require('../config/db.config');
 exports.GetAllMovies = (req,res) => {
 
     let GetMoviesByPage = 
-    `CALL GetMoviesByPage(${req.query.currentPage || 1},${req.query.size || 20},'${req.query.search || ''}','${req.query.orderBy || 'id'}','${req.query.orderDir || 'DESC'}', @totalRecords, @totalPages);`;
+    `CALL GetMoviesByPage(${req.query.currentPage},${req.query.size},'${req.query.search}','${req.query.orderBy}','${req.query.orderDir}', @totalRecords, @totalPages);`;
     console.log(GetMoviesByPage);
 
     db.query(GetMoviesByPage, (err,data,fields) =>{

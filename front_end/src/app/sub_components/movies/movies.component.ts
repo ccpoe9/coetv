@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
 
@@ -13,6 +14,7 @@ export class MoviesComponent implements OnInit {
 
   constructor(private moviesService : MoviesService) { }
 
+  searchSubscription : Subscription;
   movies : Movie[];
 
   currentPage : number = 1;
@@ -62,7 +64,7 @@ export class MoviesComponent implements OnInit {
         this.movies = data;
     });
   }
-//8 - total pages
+
   getAllRecords(){
     this.moviesService.getAllRecords().subscribe(data => {
         this.totalPages = data.totalPages;
@@ -98,6 +100,7 @@ export class MoviesComponent implements OnInit {
       startPage++;
       i++;
     }
+    console.log(this.pageNumbers);
   }
 
   changeSortBy(sortByUnselected : string){
