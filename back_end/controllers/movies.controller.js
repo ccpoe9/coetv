@@ -25,3 +25,16 @@ exports.GetRecords = (req,res) => {
         res.send(data[0]);
     });
 }
+
+exports.GetMovie = (req,res) => {
+
+    let GetMovie = 
+    `CALL GetMovieByUrl('${req.query.v}');`;
+    db.query(GetMovie, (err,data,fields) => {
+        if(err){
+            return console.err(err.message);
+        }
+        res.send(data[0]);
+    });
+
+}

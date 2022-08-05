@@ -1,6 +1,8 @@
 import { HttpParams } from '@angular/common/http';
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -12,7 +14,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 })
 export class MoviesComponent implements OnInit {
 
-  constructor(private moviesService : MoviesService) { }
+  constructor(private moviesService : MoviesService, private router : Router) { }
 
   searchSubscription : Subscription;
   movies : Movie[];
@@ -133,6 +135,12 @@ export class MoviesComponent implements OnInit {
     this.orderBy = 'id';
     this.sortBySelected = 'SORT BY LATEST';
     this.sortByUnselected = 'SORT BY POPULAR';
+  }
+
+  GetMovie( movie : Movie){
+
+    this.router.navigate(['video'], { queryParams : { v : movie.URL}});
+    
   }
 
 }

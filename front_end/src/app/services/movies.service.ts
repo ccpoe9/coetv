@@ -29,5 +29,9 @@ export class MoviesService {
     this.searchSource.next(searchVal);
   }
 
+  getMovie(url : string){
+    return this.http.get<Movie[]>(config.APIROOT+config.APIURLS.Movies+decodeURIComponent(url));
+  }
+
 
 }

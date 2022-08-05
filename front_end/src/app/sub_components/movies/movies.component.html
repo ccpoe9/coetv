@@ -39,7 +39,7 @@
       </div>
         <div class="row mt-3" style="margin-left: 5.5rem;">
             <div class="card-deck">
-                <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngFor="let movie of movies">
+                <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngFor="let movie of movies" (click)="GetMovie(movie)">
                     <img class="card-img-top" src="https://i.pinimg.com/474x/4c/5a/4d/4c5a4dddbe33d4b3974f87ef90489a90.jpg" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-dark">{{movie.Name}}</h5>
@@ -59,7 +59,7 @@
             </a>
           </li> 
           <div *ngFor="let number of pageNumbers">
-            <li class="page-item" *ngIf="number>=1 && number <= totalPages"><a class="page-link" [ngClass]="{'active' : number == currentPage}" (click)="getNextPage(number)">{{number}}</a></li>
+          <li class="page-item" *ngIf="number>=1 && number <= totalPages"><a class="page-link" [ngClass]="{'active' : number == currentPage}" (click)="getNextPage(number)">{{number}}</a></li>
           </div>
           <li class="page-item" [ngClass]="{'disabled': (currentPage+1)>totalPages}">
             <a class="page-link" (click)="getNextPage(currentPage+1)" aria-label="Next">

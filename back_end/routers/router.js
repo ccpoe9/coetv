@@ -8,5 +8,5 @@ router.get('/api', (req,res) =>{
 
 router.get('/api/movies',moviescontroller.GetAllMovies);
 router.get('/api/movies/records', moviescontroller.GetRecords);
-
+router.get('/api/movies/video', moviescontroller.GetMovie);
 module.exports = router;

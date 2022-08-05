@@ -15,6 +15,8 @@ import { LoginComponent } from './sub_components/login/login.component';
 import { RegisterComponent } from './sub_components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './sub_components/forgot-password/forgot-password.component';
+import { VideoComponent } from './sub_components/video/video.component';
+import { RouterService } from './services/router.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { ForgotPasswordComponent } from './sub_components/forgot-password/forgot
     SettingsComponent,
     LoginComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,
@@ -39,4 +42,6 @@ import { ForgotPasswordComponent } from './sub_components/forgot-password/forgot
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private routerService: RouterService){}
+ }
