@@ -9,6 +9,7 @@ CREATE TABLE `mediatime-db`.`Movies` (
   `Video` VARCHAR(45) NULL,
   `Desc` VARCHAR(100) NULL,
   `Rating` DECIMAL(4,1),
+  `URL` VARCHAR(20),
   PRIMARY KEY (`id`));
   
 
@@ -52,6 +53,19 @@ BEGIN
 END //
 
 DELIMITER ;  
+
+DROP PROCEDURE IF EXISTS GetMovieByUrl;
+
+DELIMITER //
+CREATE PROCEDURE GetMovieByUrl(
+	IN in_url VARCHAR(45)
+)
+BEGIN
+	SELECT * FROM `mediatime-db`.`Movies` m
+    WHERE m.`URL` = in_url;
+END //
+
+DELIMITER ; 
 
 
 
