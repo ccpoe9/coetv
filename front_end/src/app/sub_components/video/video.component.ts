@@ -25,10 +25,12 @@ export class VideoComponent implements OnInit {
     }
     
     if(this.previousUrl == '/movies'){
-      this.movieService.getMovie(this.router.url).subscribe( data => {
-        this.movie = data;
-      })
+      
     }
+
+    this.movieService.getMovie(this.router.url).subscribe( data => {
+      this.movie = data;
+    })
   }
 
 }

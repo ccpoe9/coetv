@@ -1,4 +1,5 @@
-<div class="video-player-wrapper d-flex justify-content-center" style="background-color:black;">
-  </div>
+<div>
+  <app-videojs [options]="{ fluid : true, aspectRatio : '16:9' , autoplay: true, controls: true , sources: [{ src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', type: 'video/mp4' }]}"></app-videojs>
+</div>
   <p class="text-white">{{movie[0].Name}}</p>
   <p class="text-white">video works!</p>
