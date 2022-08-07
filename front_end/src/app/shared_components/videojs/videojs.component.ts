@@ -33,7 +33,7 @@ import { Component, ElementRef, Input, OnDestroy,
     ngOnInit() {
       // instantiate Video.js
       this.player = videojs(this.target.nativeElement, 
-  this.options, function onPlayerReady() {
+      this.options, function onPlayerReady() {
         console.log('onPlayerReady', this);
       });
     }

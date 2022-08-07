@@ -1,5 +1,16 @@
-<div>
-  <app-videojs [options]="{ fluid : true, aspectRatio : '16:9' , autoplay: true, controls: true , sources: [{ src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', type: 'video/mp4' }]}"></app-videojs>
+<div class="player-container d-flex justify-content-center" style="background-color: black;">
+  <div class="player-div w-50 h-50">
+    <app-videojs [options]="{ fluid : true, aspectRatio : '16:9' , autoplay: false, controls: true , sources: [{ src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', type: 'video/mp4' }]}"></app-videojs>
+  </div>
 </div>
-  <p class="text-white">{{movie[0].Name}}</p>
-  <p class="text-white">video works!</p>
+<div class="player-info mt-3">
+  <h1 class="text-white ml-6" style="margin-left: 25%;">Big Buck Bunny</h1>
+  <h6 class="ml-6 w-50 h-25" style="margin-left: 25%; color: rgb(97, 147, 168);"><i>Big Buck Bunny (code-named Project Peach) is a 2008 short computer-animated comedy film featuring animals of the forest, made by the Blender Institute, part of the Blender Foundation.[5][6] Like the foundation's previous film, Elephants Dream, the film was made using Blender, a free and open-source software application for 3D computer modeling and animation developed by the same foundation. Unlike that earlier project, the tone and visuals departed from a cryptic story and dark visuals to one of comedy, cartoons, and light-heartedness.</i></h6>
+  <h6 class="text-white ml-6" style="margin-left: 25%;">Genre : {{movie[0].Genre}}</h6>
+</div>
+<div class="more-like mt-3">
+
+</div>
+
+
+  
