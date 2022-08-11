@@ -1,4 +1,4 @@
-#Movies
+#MOVIES
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
 VALUES('1','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','NDk2MA==');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
@@ -19,6 +19,14 @@ INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rat
 VALUES('9','Genre3','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','NTA3MA==');
 
 
+#GENRES
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Genre1');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Genre2');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Genre3');
 
+ 
 
 

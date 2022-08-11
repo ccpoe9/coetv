@@ -68,7 +68,18 @@ END //
 
 DELIMITER ; 
 
+CREATE TABLE `mediatime-db`.`Genres` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+  
+DELIMITER //
+CREATE PROCEDURE GetAllGenres()
+BEGIN
+	SELECT * FROM `mediatime-db`.`Genres` g;
+END //
 
-CALL GetMoviesByPage(1,20,'','','id','DESC', @totalRecords, @totalPages);
+DELIMITER ; 
+
 
 
