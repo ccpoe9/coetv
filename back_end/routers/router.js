@@ -6,7 +6,8 @@ router.get('/api', (req,res) =>{
     res.send("VIDEO WEBSITE API");
 });
 
-router.get('/api/movies',moviescontroller.GetAllMovies);
+router.get('/api/movies',moviescontroller.GetMoviesByPage);
 router.get('/api/movies/records', moviescontroller.GetRecords);
-router.get('/api/movies/video', moviescontroller.GetMovie);
+router.get('/api/movies/video', moviescontroller.GetMovieByUrl);
+router.get('/api/genres', moviescontroller.GetAllGenres);
 module.exports = router;

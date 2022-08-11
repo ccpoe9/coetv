@@ -24,7 +24,8 @@ CREATE PROCEDURE GetMoviesByPage(
 	IN currentPage INT,
     IN size INT,
     IN search VARCHAR(100),
-	IN orderBy VARCHAR(15),
+    IN in_genre VARCHAR(25),
+	IN orderBy VARCHAR(10),
 	IN orderDir VARCHAR(4),
     OUT totalRecords INT,
     OUT totalPages INT
@@ -33,7 +34,7 @@ BEGIN
 	DECLARE offsetval INT DEFAULT 0;
 	SET offsetval = (currentpage - 1) * size;
 	SELECT * FROM `mediatime-db`.`Movies`
-    WHERE `Name` LIKE CONCAT('%',search,'%')
+    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT(in_genre,'%')
     ORDER BY
 		(CASE WHEN orderBy= 'id' AND orderDir='ASC' THEN `id` END) ASC,
         (CASE WHEN orderBy= 'id' AND orderDir= 'DESC' THEN `id` END) DESC,
@@ -67,5 +68,7 @@ END //
 
 DELIMITER ; 
 
+
+CALL GetMoviesByPage(1,20,'','','id','DESC', @totalRecords, @totalPages);
 
 

@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { filter, pairwise, take } from 'rxjs';
@@ -14,6 +15,8 @@ export class VideoComponent implements OnInit {
 
   previousUrl : string;
   movie : Movie[];
+  recommendedMovies : Movie[];
+  httpParams : HttpParams;
   constructor(private router : Router, private routerService : RouterService, private movieService : MoviesService) { 
   
   }
@@ -30,6 +33,23 @@ export class VideoComponent implements OnInit {
 
     this.movieService.getMovie(this.router.url).subscribe( data => {
       this.movie = data;
+    })
+    //this.getMoviesLikeThis(this.movie[0].Genre);
+    console.log(this.movie[0].Genre);
+  }
+
+  getMoviesLikeThis(genre : string){
+    this.httpParams = new HttpParams()
+      .set('currentPage', 1)
+      .set('size', 6)
+      .set('search', '')
+      .set('genre', genre)
+      .set('orderBy', 'Rating')
+      .set('orderDir', 'DESC');
+
+    this.movieService.getAllMovies(this.httpParams).subscribe( data => {
+      this.recommendedMovies = data;
+      //console.log(this.recommendedMovies);
     })
   }
 

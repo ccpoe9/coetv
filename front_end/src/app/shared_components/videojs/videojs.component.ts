@@ -36,6 +36,7 @@ import { Component, ElementRef, Input, OnDestroy,
       this.options, function onPlayerReady() {
         console.log('onPlayerReady', this);
       });
+      this.player.controlBar.addChild('QualitySelector');
     }
   
     ngOnDestroy() {
