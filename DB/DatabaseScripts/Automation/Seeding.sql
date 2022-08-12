@@ -17,6 +17,39 @@ INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rat
 VALUES('8','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','ODg3MA==');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
 VALUES('9','Genre3','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','NTA3MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('10','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','MTk2MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('11','Genre3','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','OTkwNg==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('12','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','ODg3MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('13','Genre3','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','NTA3MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('14','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','MTk2MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('15','Genre3','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','OTkwNg==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('16','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','ODg3MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('17','Genre3','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','NTA3MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('18','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','MTk2MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('19','Genre3','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','OTkwNg==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('20','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','ODg3MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('21','Genre3','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','NTA3MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('22','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','MTk2MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('23','Genre3','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','OTkwNg==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('24','Genre1','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','ODg3MA==');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('25','Genre3','thumbnail.png','video.mp4','Movie1 Desc..', '9.1','NTA3MA==');
+
 
 
 #GENRES

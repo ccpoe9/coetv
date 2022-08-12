@@ -146,15 +146,12 @@ export class MoviesComponent implements OnInit {
   }
 
   GetMovie( movie : Movie){
-
     this.router.navigate(['video'], { queryParams : { v : movie.URL}});
-    
   }
 
   getAllGenres(){
     this.moviesService.getGenres().subscribe( data => {
       this.genres = data;
-      console.log(this.genres);
     })
   }
 

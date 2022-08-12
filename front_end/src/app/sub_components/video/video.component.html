@@ -12,13 +12,17 @@
   <h2 class="text-white" style="margin-left: 12.5%;">More Like This : </h2>
   <div class="row mt-3" style="margin-left: 12.5%;">
     <div class="card-deck">
-        <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngFor="let movie of recommendedMovies">
-            <img class="card-img-top" src="https://i.pinimg.com/474x/4c/5a/4d/4c5a4dddbe33d4b3974f87ef90489a90.jpg" alt="...">
-            <div class="card-body">
-                <h5 class="card-title text-dark">{{movie.Name}}</h5>
-                <p class="card-text">{{movie.Rating}}</p>
-                <p class="card-text">{{movie.Genre}}</p>
-            </div>
+        <div *ngFor="let recommendedMovie of recommendedMovies">
+          <a href="/video?v={{recommendedMovie.URL}}">
+            <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngIf="recommendedMovie.Name != movie[0].Name">
+              <img class="card-img-top" src="https://i.pinimg.com/474x/4c/5a/4d/4c5a4dddbe33d4b3974f87ef90489a90.jpg" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title text-dark">{{recommendedMovie.Name}}</h5>
+                  <p class="card-text">{{recommendedMovie.Rating}}</p>
+                  <p class="card-text">{{recommendedMovie.Genre}}</p>
+              </div>
+          </div>
+          </a>
         </div>
     </div>
 </div>
