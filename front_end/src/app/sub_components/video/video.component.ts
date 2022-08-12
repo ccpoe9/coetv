@@ -33,9 +33,8 @@ export class VideoComponent implements OnInit {
 
     this.movieService.getMovie(this.router.url).subscribe( data => {
       this.movie = data;
+      this.getMoviesLikeThis(this.movie[0].Genre);
     })
-    //this.getMoviesLikeThis(this.movie[0].Genre);
-    console.log(this.movie[0].Genre);
   }
 
   getMoviesLikeThis(genre : string){
@@ -49,7 +48,6 @@ export class VideoComponent implements OnInit {
 
     this.movieService.getAllMovies(this.httpParams).subscribe( data => {
       this.recommendedMovies = data;
-      //console.log(this.recommendedMovies);
     })
   }
 

@@ -1,1 +1,9 @@
 @import 'video.js/dist/video-js.css';
+
+.card:hover{
+    transform:scale(1.05);
+    cursor: pointer;
+}
+.card{
+    transition:.3s;
+}
