@@ -11,8 +11,9 @@ CREATE TABLE `mediatime-db`.`Movies` (
   `Rating` DECIMAL(4,1),
   `URL` VARCHAR(20),
   PRIMARY KEY (`id`));
-  
 
+ALTER TABLE `mediatime-db`.`Movies` 
+ADD UNIQUE INDEX `URL_UNIQUE` (`URL` ASC) VISIBLE;
 
 USE `mediatime-db`;
 
@@ -47,7 +48,7 @@ BEGIN
 	
     SELECT COUNT(*) INTO totalRecords FROM(
     SELECT * FROM `mediatime-db`.`Movies`
-    WHERE `Name` LIKE CONCAT('%',search,'%')
+    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT(in_genre,'%')
     ) AS rescount;
     SET totalPages = CEIL(totalRecords/size);
     

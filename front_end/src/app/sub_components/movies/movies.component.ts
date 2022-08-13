@@ -69,17 +69,11 @@ export class MoviesComponent implements OnInit {
 
   getAllMovies(){
       this.moviesService.getAllMovies(this.httpParams).subscribe(data => {
-        this.getAllRecords();
-        this.movies = data;
-    });
-  }
-
-  getAllRecords(){
-    this.moviesService.getAllRecords().subscribe(data => {
-        this.totalPages = data.totalPages;
-        this.totalRecords = data.totalRecords;
+        this.movies = data[0];
+        this.totalPages = data[2][0].totalPages;
+        this.totalRecords = data[2][0].totalRecords;
         this.setPages();
-    })
+    });
   }
 
   getNextPage(nextPage : number){
@@ -108,7 +102,6 @@ export class MoviesComponent implements OnInit {
       startPage++;
       i++;
     }
-    console.log(this.pageNumbers);
   }
 
   changeSortBy(sortByUnselected : string){

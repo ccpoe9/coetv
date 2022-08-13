@@ -15,15 +15,11 @@ export class MoviesService {
 
     constructor(private http : HttpClient) { }
 
-  getAllMovies(httpParams : HttpParams) : Observable<Movie[]>{
-    return this.http.get<Movie[]>(config.APIROOT+config.APIURLS.MOVIES, 
+  getAllMovies(httpParams : HttpParams) : Observable<any>{
+    return this.http.get<any>(config.APIROOT+config.APIURLS.MOVIES, 
       {
         params : httpParams
       });  
-  }
-
-  getAllRecords(){
-    return this.http.get<Records>(config.APIROOT+config.APIURLS.MOVIESRECORDS);
   }
 
   searchAllRecords(searchVal : string){

@@ -47,7 +47,7 @@ export class VideoComponent implements OnInit {
       .set('orderDir', 'DESC');
 
     this.movieService.getAllMovies(this.httpParams).subscribe( data => {
-      this.recommendedMovies = data;
+      this.recommendedMovies = data[0];
     })
   }
 
