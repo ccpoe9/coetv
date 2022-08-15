@@ -5,6 +5,7 @@ export class ConnectionConfig{
 
     static readonly APIURLS = {
         MOVIES : "/movies",
-        GENRES : "/genres"
+        GENRES : "/genres",
+        SHOWS : "/shows"
     }
 }

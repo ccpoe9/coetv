@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
 import { ConnectionConfig as config } from 'src/config/config';
 import { Genre } from '../models/genre.model';
 import { Movie } from '../models/movie.model';
-import { Records } from '../models/records.model';
 @Injectable({
   providedIn: 'root'
 })

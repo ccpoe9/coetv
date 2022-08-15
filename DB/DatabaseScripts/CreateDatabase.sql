@@ -80,7 +80,58 @@ BEGIN
 	SELECT * FROM `mediatime-db`.`Genres` g;
 END //
 
-DELIMITER ; 
+DELIMITER ;
 
+CREATE TABLE `mediatime-db`.`Shows` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(45) NULL,
+  `Genre` VARCHAR(45) NULL,
+  `Thumbnail` VARCHAR(45) NULL,
+  `Desc` VARCHAR(100) NULL,
+  `Rating` DECIMAL(4,1),
+  `URL` VARCHAR(20),
+  PRIMARY KEY (`id`));
+  
+DROP PROCEDURE IF EXISTS GetShowsByPage;
+
+DELIMITER //
+
+CREATE PROCEDURE GetShowsByPage(
+	IN currentPage INT,
+    IN size INT,
+    IN search VARCHAR(100),
+    IN in_genre VARCHAR(25),
+	IN orderBy VARCHAR(10),
+	IN orderDir VARCHAR(4),
+    OUT totalRecords INT,
+    OUT totalPages INT
+)
+BEGIN
+	DECLARE offsetval INT DEFAULT 0;
+	SET offsetval = (currentpage - 1) * size;
+	SELECT * FROM `mediatime-db`.`Shows`
+    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT(in_genre,'%')
+    ORDER BY
+		(CASE WHEN orderBy= 'id' AND orderDir='ASC' THEN `id` END) ASC,
+        (CASE WHEN orderBy= 'id' AND orderDir= 'DESC' THEN `id` END) DESC,
+        (CASE WHEN orderBy='Name' AND orderDir='ASC' THEN `Name` END) ASC,
+        (CASE WHEN orderBy='Name' AND orderDir='DESC' THEN `Name` END) DESC,
+        (CASE WHEN orderBy='Rating' AND orderDir='ASC' THEN `Rating` END) ASC,
+        (CASE WHEN orderBy='Rating' AND orderDir='DESC' THEN `Rating` END) DESC
+        LIMIT size OFFSET offsetval;
+	
+	
+    SELECT COUNT(*) INTO totalRecords FROM(
+    SELECT * FROM `mediatime-db`.`Shows`
+    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT(in_genre,'%')
+    ) AS rescount;
+    SET totalPages = CEIL(totalRecords/size);
+    
+END //
+
+DELIMITER ;  
+  
+
+CALL GetShowsByPage(1,20,'1','','id','DESC', @totalRecords, @totalPages);
 
 
