@@ -1,1 +1,85 @@
-<p class="text-white">tv works!</p>
+<div class="container-bg">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" style="background-image: url(https://assets-prd.ignimgs.com/2022/01/13/uncharted-poster-full-1642086040683.jpg);">
+            <img src="https://assets-prd.ignimgs.com/2022/01/13/uncharted-poster-full-1642086040683.jpg" class="carousel-thumbnail d-block w-100"  alt="...">
+          </div>
+          <div class="carousel-item" style="background-image: url(https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217);">
+            <img src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" class="carousel-thumbnail d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" style="background-image: url(https://i.pinimg.com/474x/4c/5a/4d/4c5a4dddbe33d4b3974f87ef90489a90.jpg)">
+            <img src="https://i.pinimg.com/474x/4c/5a/4d/4c5a4dddbe33d4b3974f87ef90489a90.jpg" class="carousel-thumbnail d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="container mt-3">
+      <div class="header-category">
+        <div class="btn-group">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{sortBySelected}}
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="changeSortBy(sortByUnselected)">{{sortByUnselected}}</a>
+          </div>
+        </div>
+        <div class="btn-group ml-3">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            GENRE : {{sortByGenre}}
+          </button>
+          <div class="dropdown-menu">
+              <a class="dropdown-item" *ngIf="sortByGenre != 'All'" (click)="changeGenre('All')">All</a>
+            <div *ngFor="let genre of genres">
+              <a class="dropdown-item" *ngIf="sortByGenre != genre.Name" (click)="changeGenre(genre.Name)">{{genre.Name}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="row mt-5" style="margin-left: 5.5rem;">
+            <div class="card-deck">
+                <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngFor="let show of shows">
+                    <img class="card-img-top" src="https://i.pinimg.com/474x/4c/5a/4d/4c5a4dddbe33d4b3974f87ef90489a90.jpg" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">{{show.Name}}</h5>
+                        <p class="card-text">{{show.Rating}}</p>
+                        <p class="card-text">{{show.Genre}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination" *ngIf="totalPages!=0">
+          <li class="page-item" [ngClass]="{'disabled': (currentPage-1)<=0 }">
+            <a class="page-link" (click)="getNextPage(currentPage-1)" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li> 
+          <div *ngFor="let number of pageNumbers">
+          <li class="page-item" *ngIf="number>=1 && number <= totalPages"><a class="page-link" [ngClass]="{'active' : number == currentPage}" (click)="getNextPage(number)">{{number}}</a></li>
+          </div>
+          <li class="page-item" [ngClass]="{'disabled': (currentPage+1)>totalPages}">
+            <a class="page-link" (click)="getNextPage(currentPage+1)" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    
+</div>

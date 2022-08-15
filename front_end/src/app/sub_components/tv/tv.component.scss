@@ -1,0 +1,21 @@
+
+.carousel-thumbnail{
+    height: 400px;
+    object-fit: scale-down;
+    backdrop-filter: blur(2px);
+    
+}
+.carousel-item{
+    height: 400px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card:hover{
+    transform:scale(1.05);
+    cursor: pointer;
+}
+.card{
+    transition:.3s;
+}
