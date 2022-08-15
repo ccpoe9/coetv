@@ -139,7 +139,7 @@ export class MoviesComponent implements OnInit {
   }
 
   GetMovie( movie : Movie){
-    this.router.navigate(['video'], { queryParams : { v : movie.URL}});
+    this.router.navigate(['video'], { queryParams : { t : "m", v : movie.URL}});
   }
 
   getAllGenres(){

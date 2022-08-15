@@ -1,5 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Genre } from 'src/app/models/genre.model';
 import { Tv } from 'src/app/models/tv.model';
@@ -13,7 +14,7 @@ import { TvService } from 'src/app/services/tv.service';
 })
 export class TvComponent implements OnInit {
 
-  constructor(private tvservice : TvService, private movieService : MoviesService) { }
+  constructor(private tvservice : TvService, private movieService : MoviesService, private router : Router) { }
   searchSubscription : Subscription;
   shows : Tv[];
 
@@ -158,4 +159,7 @@ changeGenre(genre : string){
   this.getAllShows();
 }
 
+GetShow( show : Tv){
+  this.router.navigate(['video'], { queryParams : { t : "s", v : show.URL}});
+}
 }

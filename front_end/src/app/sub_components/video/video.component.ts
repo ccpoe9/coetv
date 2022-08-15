@@ -26,11 +26,13 @@ export class VideoComponent implements OnInit {
     if(this.router.url == '/video'){
       this.router.navigate(['/']);
     }
+    if(this.router.url.charAt(9) == 'm'){
+      this.movieService.getMovie(this.router.url).subscribe( data => {
+        this.movie = data[0];
+        this.getMoviesLikeThis(this.movie.Genre);
+      })
+    }
 
-    this.movieService.getMovie(this.router.url).subscribe( data => {
-      this.movie = data[0];
-      this.getMoviesLikeThis(this.movie.Genre);
-    })
   }
 
   getMoviesLikeThis(genre : string){

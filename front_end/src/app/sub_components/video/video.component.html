@@ -13,7 +13,7 @@
   <div class="row mt-3" style="margin-left: 12.5%;">
     <div class="card-deck">
         <div *ngFor="let recommendedMovie of recommendedMovies">
-          <a href="/video?v={{recommendedMovie.URL}}">
+          <a href="/video?t=m&v={{recommendedMovie.URL}}">
             <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngIf="recommendedMovie.Name != movie.Name">
               <img class="card-img-top" src="https://i.pinimg.com/474x/4c/5a/4d/4c5a4dddbe33d4b3974f87ef90489a90.jpg" alt="...">
               <div class="card-body">
