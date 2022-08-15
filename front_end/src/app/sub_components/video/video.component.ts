@@ -14,7 +14,7 @@ import { RouterService } from 'src/app/services/router.service';
 export class VideoComponent implements OnInit {
 
   previousUrl : string;
-  movie : Movie[];
+  movie : Movie;
   recommendedMovies : Movie[];
   httpParams : HttpParams;
   constructor(private router : Router, private routerService : RouterService, private movieService : MoviesService) { 
@@ -32,8 +32,8 @@ export class VideoComponent implements OnInit {
     }
 
     this.movieService.getMovie(this.router.url).subscribe( data => {
-      this.movie = data;
-      this.getMoviesLikeThis(this.movie[0].Genre);
+      this.movie = data[0];
+      this.getMoviesLikeThis(this.movie.Genre);
     })
   }
 
