@@ -9,6 +9,7 @@ import { MoviesComponent } from './sub_components/movies/movies.component';
 import { RegisterComponent } from './sub_components/register/register.component';
 import { SettingsComponent } from './sub_components/settings/settings.component';
 import { TvComponent } from './sub_components/tv/tv.component';
+import { UploadComponent } from './sub_components/upload/upload.component';
 import { VideoComponent } from './sub_components/video/video.component';
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
                         {path : 'tv', component : TvComponent, canActivate : [AuthGuard]},
                         {path : 'live', component : LiveComponent, canActivate : [AuthGuard]},
                         {path : 'settings', component : SettingsComponent, canActivate : [AuthGuard]},
-                        {path : 'video', component : VideoComponent, canActivate : [AuthGuard]}];
+                        {path : 'video', component : VideoComponent, canActivate : [AuthGuard]},
+                        {path : 'upload', component : UploadComponent, canActivate : [AuthGuard]}];
 
 
 @NgModule({
