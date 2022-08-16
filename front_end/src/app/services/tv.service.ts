@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { ConnectionConfig as config } from 'src/config/config';
+import { Tv } from '../models/tv.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +18,10 @@ export class TvService {
       {
         params : httpParams
       });  
+  }
+
+  getShow(url : string){
+    return this.http.get<Tv[]>(config.APIROOT+config.APIURLS.SHOWS+decodeURIComponent(url));
   }
 
   searchAllRecords(searchVal : string){

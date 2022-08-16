@@ -5,6 +5,7 @@ import { filter, pairwise, take } from 'rxjs';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
 import { RouterService } from 'src/app/services/router.service';
+import { TvService } from 'src/app/services/tv.service';
 
 @Component({
   selector: 'app-video',
@@ -14,10 +15,11 @@ import { RouterService } from 'src/app/services/router.service';
 export class VideoComponent implements OnInit {
 
   previousUrl : string;
-  movie : Movie;
-  recommendedMovies : Movie[];
+  video : any;
+  recommended : any[];
   httpParams : HttpParams;
-  constructor(private router : Router, private routerService : RouterService, private movieService : MoviesService) { 
+  constructor(private router : Router, private routerService : RouterService, private movieService : MoviesService,
+              private tvservice : TvService) { 
   
   }
 
@@ -27,8 +29,13 @@ export class VideoComponent implements OnInit {
     }
     if(this.router.url.charAt(9) == 'm'){
       this.movieService.getMovie(this.router.url).subscribe( data => {
-        this.movie = data[0];
-        this.getMoviesLikeThis(this.movie.Genre);
+        this.video = data[0];
+        this.getMoviesLikeThis(this.video.Genre);
+      })
+    }
+    else if(this.router.url.charAt(9) == 's'){
+      this.tvservice.getShow(this.router.url).subscribe( data => {
+        this.video = data[0];
       })
     }
 
@@ -44,9 +51,9 @@ export class VideoComponent implements OnInit {
       .set('orderDir', 'DESC');
 
     this.movieService.getAllMovies(this.httpParams).subscribe( data => {
-      this.recommendedMovies = data[0].filter( (item : any ) => { return item.Name != this.movie.Name});
-      if(this.recommendedMovies.length > 5) { 
-        this.recommendedMovies.pop();
+      this.recommended = data[0].filter( (item : any ) => { return item.Name != this.video.Name});
+      if(this.recommended.length > 5) { 
+        this.recommended.pop();
       }
     });
 

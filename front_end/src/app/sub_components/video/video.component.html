@@ -4,22 +4,22 @@
   </div>
 </div>
 <div class="player-info mt-3">
-  <h1 class="text-white" style="margin-left: 25%;">{{movie.Name}}</h1>
-  <h6 class="w-50 h-25" style="margin-left: 25%; color: rgb(97, 147, 168);"><i>{{movie.Desc}}</i></h6>
-  <h6 class="text-white" style="margin-left: 25%;">Genre : {{movie.Genre}}</h6>
+  <h1 class="text-white" style="margin-left: 25%;">{{video.Name}}</h1>
+  <h6 class="w-50 h-25" style="margin-left: 25%; color: rgb(97, 147, 168);"><i>{{video.Desc}}</i></h6>
+  <h6 class="text-white" style="margin-left: 25%;">Genre : {{video.Genre}}</h6>
 </div>
 <div class="more-like mt-4">
   <h2 class="text-white" style="margin-left: 12.5%;">More Like This : </h2>
   <div class="row mt-3" style="margin-left: 12.5%;">
     <div class="card-deck">
-        <div *ngFor="let recommendedMovie of recommendedMovies">
-          <a href="/video?t=m&v={{recommendedMovie.URL}}">
+        <div *ngFor="let item of recommended">
+          <a href="/video?t=m&v={{item.URL}}">
             <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;">
               <img class="card-img-top" src="https://i.pinimg.com/474x/4c/5a/4d/4c5a4dddbe33d4b3974f87ef90489a90.jpg" alt="...">
               <div class="card-body">
-                  <h5 class="card-title text-dark">{{recommendedMovie.Name}}</h5>
-                  <p class="card-text">{{recommendedMovie.Rating}}</p>
-                  <p class="card-text">{{recommendedMovie.Genre}}</p>
+                  <h5 class="card-title text-dark">{{item.Name}}</h5>
+                  <p class="card-text">{{item.Rating}}</p>
+                  <p class="card-text">{{item.Genre}}</p>
               </div>
           </div>
           </a>
