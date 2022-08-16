@@ -38,7 +38,7 @@ export class VideoComponent implements OnInit {
   getMoviesLikeThis(genre : string){
     this.httpParams = new HttpParams()
       .set('currentPage', 1)
-      .set('size', 5)
+      .set('size', 6)
       .set('search', '')
       .set('genre', genre)
       .set('orderBy', 'Rating')
@@ -46,7 +46,8 @@ export class VideoComponent implements OnInit {
 
     this.movieService.getAllMovies(this.httpParams).subscribe( data => {
       this.recommendedMovies = data[0];
-    })
+    });
+
   }
 
 }
