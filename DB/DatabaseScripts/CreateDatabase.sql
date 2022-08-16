@@ -13,7 +13,8 @@ CREATE TABLE `mediatime-db`.`Movies` (
   PRIMARY KEY (`id`));
 
 ALTER TABLE `mediatime-db`.`Movies` 
-ADD UNIQUE INDEX `URL_UNIQUE` (`URL` ASC) VISIBLE;
+ADD UNIQUE INDEX `URL_UNIQUE` (`URL` ASC) VISIBLE,
+ADD UNIQUE INDEX `Video_UNIQUE` (`Video` ASC) VISIBLE;
 
 USE `mediatime-db`;
 
@@ -92,6 +93,9 @@ CREATE TABLE `mediatime-db`.`Shows` (
   `URL` VARCHAR(20),
   PRIMARY KEY (`id`));
   
+ALTER TABLE `mediatime-db`.`Shows` 
+ADD UNIQUE INDEX `URL_UNIQUE` (`URL` ASC) VISIBLE;
+  
 DROP PROCEDURE IF EXISTS GetShowsByPage;
 
 DELIMITER //
@@ -131,7 +135,52 @@ END //
 
 DELIMITER ;  
   
+CREATE TABLE `mediatime-db`.`Episodes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(45) NULL,
+  `ShowName` VARCHAR(45) NULL,
+  `Season` INT,
+  `Episode` INT,
+  `Video` VARCHAR(45) NULL,
+  `Desc` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`));
+  
+ALTER TABLE `mediatime-db`.`Episodes` 
+ADD UNIQUE INDEX `Video_UNIQUE` (`Video` ASC) VISIBLE;
 
-CALL GetShowsByPage(1,20,'1','','id','DESC', @totalRecords, @totalPages);
+DROP PROCEDURE IF EXISTS GetEpisodesByShowSeason;
 
+DELIMITER //
+CREATE PROCEDURE GetEpisodesByShowSeason(
+	IN in_showname VARCHAR(45),
+    IN in_season INT,
+    OUT totalEpisodes INT
+)
+BEGIN
+	SELECT * FROM `mediatime-db`.`Episodes` e
+    WHERE e.`ShowName` = in_showname AND e.`Season` = in_season;
+    
+	SELECT COUNT(*) INTO totalEpisodes FROM(
+    SELECT * FROM `mediatime-db`.`Episodes` e
+    WHERE e.`ShowName` = in_showname AND e.`Season` = in_season
+    ) AS rescount;
+    
+END //
 
+DELIMITER ; 
+
+DROP PROCEDURE IF EXISTS GetEpisodeByNumber;
+
+DELIMITER //
+CREATE PROCEDURE GetEpisodesByNumber(
+	IN in_showname VARCHAR(45),
+    IN in_season INT,
+    IN in_episode INT
+)
+BEGIN
+	SELECT * FROM `mediatime-db`.`Episodes` e
+    WHERE e.`ShowName` = in_showname AND e.`Season` = in_season AND e.`Episode` = in_episode;
+    
+END //
+
+DELIMITER ;
