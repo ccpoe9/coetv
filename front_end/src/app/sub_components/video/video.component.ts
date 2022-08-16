@@ -45,7 +45,10 @@ export class VideoComponent implements OnInit {
       .set('orderDir', 'DESC');
 
     this.movieService.getAllMovies(this.httpParams).subscribe( data => {
-      this.recommendedMovies = data[0];
+      this.recommendedMovies = data[0].filter( (item : any ) => { return item.Name != this.movie.Name});
+      if(this.recommendedMovies.length > 5) { 
+        this.recommendedMovies.pop();
+      }
     });
 
   }
