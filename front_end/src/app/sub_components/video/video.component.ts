@@ -22,7 +22,6 @@ export class VideoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.previousUrl = this.routerService.getPreviousUrl();
     if(this.router.url == '/video'){
       this.router.navigate(['/']);
     }

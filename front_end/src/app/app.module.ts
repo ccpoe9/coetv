@@ -23,6 +23,7 @@ import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { VjsPlayerComponent } from './shared_components/videojs/videojs.component';
 import { UploadComponent } from './sub_components/upload/upload.component';
+import { FooterComponent } from './shared_components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UploadComponent } from './sub_components/upload/upload.component';
     ForgotPasswordComponent,
     VideoComponent,
     VjsPlayerComponent,
-    UploadComponent
+    UploadComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
