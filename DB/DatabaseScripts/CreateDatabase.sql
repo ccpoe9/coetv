@@ -148,6 +148,18 @@ CREATE TABLE `mediatime-db`.`Episodes` (
 ALTER TABLE `mediatime-db`.`Episodes` 
 ADD UNIQUE INDEX `Video_UNIQUE` (`Video` ASC) VISIBLE;
 
+
+DELIMITER //
+CREATE PROCEDURE GetShowByUrl(
+	IN in_url VARCHAR(45)
+)
+BEGIN
+	SELECT * FROM `mediatime-db`.`Shows` s
+    WHERE s.`URL` = in_url;
+END //
+
+DELIMITER ; 
+
 DROP PROCEDURE IF EXISTS GetEpisodesByShowSeason;
 
 DELIMITER //
