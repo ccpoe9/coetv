@@ -77,6 +77,7 @@ export class VideoComponent implements OnInit {
       if(this.recommended.length > 5) { 
         this.recommended.pop();
       }
+
     });
 
   }
