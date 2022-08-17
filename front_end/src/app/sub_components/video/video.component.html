@@ -17,6 +17,17 @@
       <a class="dropdown-item">SEASON 2</a>
     </div>
   </div>
+  <div class="row mt-3" style="margin-left: 12.5%;">
+    <div class="card-deck">
+        <div *ngFor="let item of recommended">
+            <div class="card mb-3" style="min-width: 12rem; max-width: 12rem;">
+              <div class="card-body">
+                  <h5 class="card-title text-dark">{{item.Name}}</h5>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
 </div>
 <div class="more-like mt-4">
   <h2 class="text-white" style="margin-left: 12.5%;">More Like This : </h2>
