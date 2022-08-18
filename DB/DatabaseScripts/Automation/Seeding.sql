@@ -52,7 +52,7 @@ VALUES('M25','Genre3','thumbnail.png','video25.mp4','Movie25 Desc..', '9.1','Njg
 
 
 
-#GENRES
+#GENRES 
 INSERT INTO `mediatime-db`.Genres(`Name`)
 VALUES('Genre1');
 INSERT INTO `mediatime-db`.Genres(`Name`)
