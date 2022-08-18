@@ -2,6 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { filter, pairwise, take } from 'rxjs';
+import { Episode } from 'src/app/models/episode.model';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
 import { RouterService } from 'src/app/services/router.service';
@@ -17,6 +18,7 @@ export class VideoComponent implements OnInit {
   previousUrl : string;
   video : any;
   recommended : any[];
+  episodes : Episode[];
   httpParams : HttpParams;
   type : string;
   constructor(private router : Router, private routerService : RouterService, private movieService : MoviesService,
@@ -39,10 +41,20 @@ export class VideoComponent implements OnInit {
       this.tvservice.getShow(this.router.url).subscribe( data => {
         this.type = 's';
         this.video = data[0];
+        this.constructParams(this.video.Name,1);
+        this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
+          this.episodes = data[0];
+        })
         this.getShowsLikeThis(this.video.Genre);
       })
     }
 
+  }
+
+  constructParams(showName : string, season : number){
+    this.httpParams = new HttpParams()
+    .set('showName',showName)
+    .set('season',season);
   }
 
   getMoviesLikeThis(genre : string){

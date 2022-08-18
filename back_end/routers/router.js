@@ -13,5 +13,5 @@ router.get('/api/movies/video', moviescontroller.GetMovieByUrl);
 router.get('/api/genres', moviescontroller.GetAllGenres);
 router.get('/api/shows',showscontroller.GetShowsByPage);
 router.get('/api/shows/video',showscontroller.GetShowByUrl);
-
+router.get('/api/shows/episodes',showscontroller.GetEpisodesByShowSeason);
 module.exports = router;

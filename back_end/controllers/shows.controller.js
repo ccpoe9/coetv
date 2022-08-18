@@ -31,7 +31,7 @@ exports.GetShowByUrl = (req,res) => {
 exports.GetEpisodesByShowSeason = (req,res) => {
 
     let GetEpisodesByShowSeason =
-    `CALL GetEpisodesByShowSeason(${req.query.showName},${req.query.season}, @totalEpisodes);
+    `CALL GetEpisodesByShowSeason('${req.query.showName}',${req.query.season}, @totalEpisodes);
      SELECT @totalEpisodes as totalEpisodes;`;
 
     db.query(GetEpisodesByShowSeason, (err,data,fields) =>{
@@ -39,5 +39,5 @@ exports.GetEpisodesByShowSeason = (req,res) => {
             return console.err(err.message);
         }
         res.send(data);
-    });
+    }); 
 }
