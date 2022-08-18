@@ -151,11 +151,21 @@ ADD UNIQUE INDEX `Video_UNIQUE` (`Video` ASC) VISIBLE;
 
 DELIMITER //
 CREATE PROCEDURE GetShowByUrl(
-	IN in_url VARCHAR(45)
+	IN in_url VARCHAR(45),
+    OUT totalSeasons INT
 )
 BEGIN
+	DECLARE show_name varchar(45);
 	SELECT * FROM `mediatime-db`.`Shows` s
     WHERE s.`URL` = in_url;
+    
+    SET show_name = (SELECT `Name` FROM `mediatime-db`.`Shows` s
+    WHERE s.`URL` = in_url);
+    
+    SELECT DISTINCT(`Season`) INTO totalSeasons FROM `mediatime-db`.`Episodes` e
+	WHERE e.`ShowName` = show_name
+	ORDER BY `Season` DESC LIMIT 1;
+    
 END //
 
 DELIMITER ; 

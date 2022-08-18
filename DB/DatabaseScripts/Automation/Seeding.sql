@@ -81,6 +81,10 @@ INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`
 VALUES('TV1S1E2', 'TV1',1,2,'TV1S1E2 video','TV1S1E2 desc');
 INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`,`Desc`)
 VALUES('TV2S1E1', 'TV2',1,1,'TV2S1E1 video','TV2S1E1 desc');
+INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`,`Desc`)
+VALUES('TV1S2E1', 'TV1',2,1,'TV1S2E1 video','TV1S2E1 desc');
+INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`,`Desc`)
+VALUES('TV1S3E1', 'TV1',3,1,'TV1S3E1 video','TV1S3E1 desc');
 
  
 

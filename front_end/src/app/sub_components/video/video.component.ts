@@ -19,6 +19,9 @@ export class VideoComponent implements OnInit {
   video : any;
   recommended : any[];
   episodes : Episode[];
+  seasons : number[] = [];
+  currentSeason : number = 1;
+  totalSeasons : number;
   httpParams : HttpParams;
   type : string;
   constructor(private router : Router, private routerService : RouterService, private movieService : MoviesService,
@@ -40,11 +43,13 @@ export class VideoComponent implements OnInit {
     else if(this.router.url.charAt(9) == 's'){
       this.tvservice.getShow(this.router.url).subscribe( data => {
         this.type = 's';
-        this.video = data[0];
+        this.video = data[0][0];
+        this.totalSeasons = data[2][0].totalSeasons;
+        this.setSeasons(this.totalSeasons);
         this.constructParams(this.video.Name,1);
         this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
           this.episodes = data[0];
-        })
+        });
         this.getShowsLikeThis(this.video.Genre);
       })
     }
@@ -55,6 +60,20 @@ export class VideoComponent implements OnInit {
     this.httpParams = new HttpParams()
     .set('showName',showName)
     .set('season',season);
+  }
+
+  setSeasons(totalSeasons : number){
+    for(let i = 1; i <= this.totalSeasons; i++){
+      this.seasons[i-1] = i;
+    }
+  }
+
+  changeSeason(season : number){
+    this.currentSeason = season;
+    this.constructParams(this.video.Name,season);
+    this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
+      this.episodes = data[0];
+    });
   }
 
   getMoviesLikeThis(genre : string){

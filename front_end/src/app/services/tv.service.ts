@@ -21,7 +21,7 @@ export class TvService {
   }
 
   getShow(url : string){
-    return this.http.get<Tv[]>(config.APIROOT+config.APIURLS.SHOWS+decodeURIComponent(url));
+    return this.http.get<any>(config.APIROOT+config.APIURLS.SHOWS+decodeURIComponent(url));
   }
   
   getShowSeason(httpParams : HttpParams) : Observable<any>{

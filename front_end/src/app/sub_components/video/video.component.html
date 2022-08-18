@@ -10,11 +10,13 @@
 </div>
 <div class="show-info text-white" style="margin-left: 12.5%;" *ngIf="type=='s'">
   <div class="btn-group">
-    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      SEASON 1
+    <button type="button" class="btn btn-info" [ngClass]="{'dropdown-toggle': this.totalSeasons>1 } "data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      SEASON {{currentSeason}}
     </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item">SEASON 2</a>
+    <div class="dropdown-menu" *ngIf="this.totalSeasons>1">
+      <div *ngFor="let season of seasons">
+        <a class="dropdown-item" *ngIf="season!=currentSeason" (click)="changeSeason(season)">SEASON {{season}}</a>
+      </div>
     </div>
   </div>
   <div class="row mt-3" style="margin-left: 12.5%; margin-right: 12.5%;">

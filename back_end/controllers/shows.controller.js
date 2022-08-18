@@ -16,13 +16,14 @@ exports.GetShowsByPage = (req,res) => {
 exports.GetShowByUrl = (req,res) => {
 
     let GetShowByUrl =
-    `CALL GetShowByUrl('${req.query.v}')`;
+    `CALL GetShowByUrl('${req.query.v}', @totalSeasons);
+    SELECT @totalSeasons as totalSeasons;`;
 
     db.query(GetShowByUrl, (err,data,fields) =>{
         if(err){
             return console.err(err.message);
         }
-        res.send(data[0]);
+        res.send(data);
     });
 
 
