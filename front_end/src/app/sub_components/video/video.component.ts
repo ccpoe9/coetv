@@ -21,6 +21,7 @@ export class VideoComponent implements OnInit {
   episodes : Episode[];
   seasons : number[] = [];
   currentSeason : number = 1;
+  currentEpisode : Episode;
   totalSeasons : number;
   httpParams : HttpParams;
   type : string;
@@ -49,6 +50,7 @@ export class VideoComponent implements OnInit {
         this.constructParams(this.video.Name,1);
         this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
           this.episodes = data[0];
+          this.currentEpisode = this.episodes[0];
         });
         this.getShowsLikeThis(this.video.Genre);
       })
@@ -74,6 +76,10 @@ export class VideoComponent implements OnInit {
     this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
       this.episodes = data[0];
     });
+  }
+
+  changeEpisode(episode : Episode){
+    this.currentEpisode = episode;
   }
 
   getMoviesLikeThis(genre : string){
