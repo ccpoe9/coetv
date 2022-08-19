@@ -51,11 +51,16 @@
         <div class="row mt-5" style="margin-left: 5.5rem;">
             <div class="card-deck">
                 <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngFor="let movie of movies" (click)="GetMovie(movie)">
-                    <img class="card-img-top" src="https://i.pinimg.com/474x/4c/5a/4d/4c5a4dddbe33d4b3974f87ef90489a90.jpg" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-dark">{{movie.Name}}</h5>
-                        <p class="card-text">{{movie.Rating}}</p>
-                        <p class="card-text">{{movie.Genre}}</p>
+                    <div class="card-image">
+                      <img class="card-img-top rounded" src="https://i.pinimg.com/474x/4c/5a/4d/4c5a4dddbe33d4b3974f87ef90489a90.jpg" alt="...">
+                      <div class="image-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="card-body bg-dark">
+                        <h5 class="card-title text-white">{{movie.Name}}</h5>
                     </div>
                 </div>
             </div>

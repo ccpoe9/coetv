@@ -15,7 +15,34 @@
 .card:hover{
     transform:scale(1.05);
     cursor: pointer;
+    .card-img-top{
+        filter: brightness(70%);
+    }
 }
+
+.card:hover .image-overlay {
+    opacity: .8;
+}
+
+.card-image {
+    position: relative;
+  }
+  
+.image-overlay {
+    position: absolute;
+    top: 35%;
+    bottom: 0;
+    left: 30%;
+    right: 0;
+    opacity: 0;
+    transition: 0.1s ease;
+    color: aqua;
+
+    margin : 0 auto;
+}
+
 .card{
     transition:.3s;
+    border: 0;
+    background-color: transparent;
 }
