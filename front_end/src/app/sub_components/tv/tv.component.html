@@ -28,7 +28,7 @@
     <div class="container mt-3">
       <div class="header-category">
         <div class="btn-group">
-          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{sortBySelected}}
           </button>
           <div class="dropdown-menu">
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="btn-group ml-3">
-          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             GENRE : {{sortByGenre}}
           </button>
           <div class="dropdown-menu">
@@ -58,7 +58,7 @@
                     </svg>
                   </div>
                 </div>
-                <div class="card-body bg-dark">
+                <div class="card-body">
                     <p class="card-title text-white">{{show.Name}}</p>
                 </div>
             </div>
@@ -75,7 +75,7 @@
             </a>
           </li> 
           <div *ngFor="let number of pageNumbers">
-          <li class="page-item" *ngIf="number>=1 && number <= totalPages"><a class="page-link" [ngClass]="{'active' : number == currentPage}" (click)="getNextPage(number)">{{number}}</a></li>
+          <li class="page-item" *ngIf="number>=1 && number <= totalPages"><a class="page-link" [ngStyle]="{'color': (currentPage==number) ? 'white': ''}" (click)="getNextPage(number)">{{number}}</a></li>
           </div>
           <li class="page-item" [ngClass]="{'disabled': (currentPage+1)>totalPages}">
             <a class="page-link" (click)="getNextPage(currentPage+1)" aria-label="Next">

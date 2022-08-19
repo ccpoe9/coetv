@@ -28,8 +28,8 @@ export class MoviesComponent implements OnInit {
   orderDir : string = 'DESC';
   httpParams : HttpParams;
 
-  sortBySelected : string = 'SORT BY LATEST';
-  sortByUnselected : string = 'SORT BY POPULAR';
+  sortBySelected : string = 'SORT BY : LATEST';
+  sortByUnselected : string = 'SORT BY : POPULAR';
   sortByGenre : string = 'All';
 
   totalRecords : number;
@@ -109,7 +109,7 @@ export class MoviesComponent implements OnInit {
     this.sortBySelected = sortByUnselected;
     this.sortByUnselected = temp;
 
-    if(this.sortBySelected == 'SORT BY POPULAR'){
+    if(this.sortBySelected == 'SORT BY : POPULAR'){
       this.currentPage = 1;
       this.startPage = 1;
       this.endPage = 6;
@@ -134,8 +134,8 @@ export class MoviesComponent implements OnInit {
     this.orderBy = 'id';
     this.genre = '';
     this.sortByGenre = 'All';
-    this.sortBySelected = 'SORT BY LATEST';
-    this.sortByUnselected = 'SORT BY POPULAR';
+    this.sortBySelected = 'SORT BY : LATEST';
+    this.sortByUnselected = 'SORT BY : POPULAR';
   }
 
   GetMovie( movie : Movie){

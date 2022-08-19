@@ -56,3 +56,30 @@
     border: 0;
     background-color: transparent;
 }
+
+.btn{
+    color:aqua;
+    background-color: black;
+}
+
+.pagination .page-link {
+    background: black;
+    color: aqua;
+    border: none;
+    font-weight: bold;
+    font-size: large;
+}
+.pagination .page-link:hover {
+    cursor: pointer;
+    color: rgb(0, 179, 179);
+}
+.pagination .page-link:active {
+    color: white;
+}
+
+.disabled{
+    .page-link {
+        color:black;
+    }
+   
+}
