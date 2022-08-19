@@ -1,3 +1,25 @@
 .dropdown-menu :active {
     background-color: lightgrey;
 }
+
+.nav-item > a:hover{
+    transform:scale(1.15);
+    color: aqua;
+}
+.navbar-brand:hover{
+    transform:scale(1.15);
+}
+
+.nav-item > a{
+    transition:.3s;
+}
+.navbar-brand{
+    transition:.3s;
+}
+
+.navbar-nav > li > a:hover{
+    color:aqua;
+}
+.navbar-nav > li > a{
+    color:white;
+}

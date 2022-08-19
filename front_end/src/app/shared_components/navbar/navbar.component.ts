@@ -27,8 +27,6 @@ export class NavbarComponent implements OnInit {
   }
 
   searchAction(){
-    //
-
     if(this.router.url == '/movies'){
       this.movieService.searchAllRecords(this.searchVal);
     }
