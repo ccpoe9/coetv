@@ -7,11 +7,23 @@ import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
 import { RouterService } from 'src/app/services/router.service';
 import { TvService } from 'src/app/services/tv.service';
+import { trigger, transition, animate, style } from '@angular/animations';
 
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
-  styleUrls: ['./video.component.scss']
+  styleUrls: ['./video.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({transform: 'translateY(-100%)'}),
+        animate('200ms ease-in', style({transform: 'translateY(0%)'}))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({transform: 'translateY(-100%)'}))
+      ])
+    ])
+  ]
 })
 export class VideoComponent implements OnInit {
 
@@ -25,6 +37,8 @@ export class VideoComponent implements OnInit {
   totalSeasons : number;
   httpParams : HttpParams;
   type : string;
+  isPlayed : boolean = false;
+  playText : string = 'PLAY'
   constructor(private router : Router, private routerService : RouterService, private movieService : MoviesService,
               private tvservice : TvService) { 
   
@@ -50,6 +64,8 @@ export class VideoComponent implements OnInit {
         this.constructParams(this.video.Name,1);
         this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
           this.episodes = data[0];
+          this.episodes[0].Video = "//vjs.zencdn.net/v/oceans.mp4";
+          this.episodes[1].Video = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
           this.currentEpisode = this.episodes[0];
         });
         this.getShowsLikeThis(this.video.Genre);
@@ -117,6 +133,13 @@ export class VideoComponent implements OnInit {
 
     });
 
+  }
+
+  playAction(){
+
+    this.isPlayed=true;
+
+    this.playText = 'PLAYED';
   }
 
 

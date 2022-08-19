@@ -1,3 +1,6 @@
 @import '~video.js/dist/video-js.css';
 
-$center-big-play-button: true;
+.vjs-default-skin.vjs-paused .vjs-big-play-button 
+{
+display: none;
+}
