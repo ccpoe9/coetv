@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { NavigationEnd, NavigationStart, Router, RouterEvent } from '@angular/router';
+import { filter } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { MoviesService } from 'src/app/services/movies.service';
 import { TvService } from 'src/app/services/tv.service';
-import { MoviesComponent } from 'src/app/sub_components/movies/movies.component';
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +15,20 @@ export class NavbarComponent implements OnInit {
 
   user$ = this.fireAuth.user;
   searchVal : string = '';
+  currentPage : string;
   constructor(private authService : AuthService, private readonly fireAuth : AngularFireAuth, 
-    private movieService : MoviesService, private router : Router, private tvservice : TvService) { }
+    private movieService : MoviesService, private router : Router, private tvservice : TvService) { 
+
+    this.router.events
+          .subscribe(
+            (event: any) => {
+              if(event instanceof NavigationStart) {
+                console.log(event.url);
+                this.currentPage = event.url;
+              }
+            });
+
+    }
 
   ngOnInit(): void {
   }

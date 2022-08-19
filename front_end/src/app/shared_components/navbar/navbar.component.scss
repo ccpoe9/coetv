@@ -8,6 +8,9 @@
 }
 .navbar-brand:hover{
     transform:scale(1.15);
+    svg{
+        fill: aqua
+    }
 }
 
 .nav-item > a{
@@ -19,7 +22,16 @@
 
 .navbar-nav > li > a:hover{
     color:aqua;
+    svg{
+        fill:aqua;
+    }
 }
 .navbar-nav > li > a{
     color:white;
+
+}
+
+.btn {
+    color: white;
+    outline-color: white;
 }
