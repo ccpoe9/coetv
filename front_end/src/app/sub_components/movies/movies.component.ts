@@ -31,7 +31,8 @@ export class MoviesComponent implements OnInit {
   sortBySelected : string = 'SORT BY : LATEST';
   sortByUnselected : string = 'SORT BY : POPULAR';
   sortByGenre : string = 'All';
-
+  sortByDropdown : boolean = false;
+  genreDropwdown : boolean = false;
   totalRecords : number;
   totalPages : number;
   genres : Genre[];
@@ -108,7 +109,6 @@ export class MoviesComponent implements OnInit {
     let temp = this.sortBySelected;
     this.sortBySelected = sortByUnselected;
     this.sortByUnselected = temp;
-
     if(this.sortBySelected == 'SORT BY : POPULAR'){
       this.currentPage = 1;
       this.startPage = 1;
