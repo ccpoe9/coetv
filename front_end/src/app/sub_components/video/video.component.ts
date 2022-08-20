@@ -64,8 +64,6 @@ export class VideoComponent implements OnInit {
         this.constructParams(this.video.Name,1);
         this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
           this.episodes = data[0];
-          this.episodes[0].Video = "//vjs.zencdn.net/v/oceans.mp4";
-          this.episodes[1].Video = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
           this.currentEpisode = this.episodes[0];
         });
         this.getShowsLikeThis(this.video.Genre);

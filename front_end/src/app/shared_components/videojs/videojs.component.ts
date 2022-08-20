@@ -1,6 +1,6 @@
 // videojs.ts component
 import { Component, ElementRef, Input, OnDestroy, 
-  OnInit, ViewChild, ViewEncapsulation } from 
+  OnInit, SimpleChanges, ViewChild, ViewEncapsulation } from 
   '@angular/core';
   import videojs from 'video.js';
   
@@ -39,6 +39,14 @@ import { Component, ElementRef, Input, OnDestroy,
         console.log('onPlayerReady', this);
       });
       this.player.controlBar.addChild('QualitySelector');
+    }
+
+    ngOnChanges( changes : SimpleChanges){
+      if(!changes['options'].firstChange){
+        this.player.src(this.options.sources);
+        this.player.load();
+        this.player.play();
+      }
     }
   
     ngOnDestroy() {
