@@ -1,0 +1,7 @@
+#RESET TO REMOTE
+git fetch origin
+git reset --hard origin/main
+
+#BEFORE PUSH
+ssh-agent -s        
+ssh-add ~/.ssh/id_rsa
