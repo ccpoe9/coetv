@@ -13,18 +13,7 @@ import { Tv } from 'src/app/models/tv.model';
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
-  styleUrls: ['./video.component.scss'],
-  animations: [
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({transform: 'translateY(-100%)'}),
-        animate('200ms ease-in', style({transform: 'translateY(0%)'}))
-      ]),
-      transition(':leave', [
-        animate('200ms ease-in', style({transform: 'translateY(-100%)'}))
-      ])
-    ])
-  ]
+  styleUrls: ['./video.component.scss']
 })
 export class VideoComponent implements OnInit {
 
@@ -148,7 +137,7 @@ export class VideoComponent implements OnInit {
   }
 
   playAction(){
-    this.isPlayed=true;
+    this.isPlayed=!this.isPlayed;
     this.playText = 'PLAYED';
   }
 
