@@ -31,7 +31,43 @@
 
 }
 
-.btn {
+.btn{
+    color:white;
+    background-color: black;
+    border-color: white;
+}
+
+.btn:active{
+    background-color: white;
+}
+
+.btn:hover{
+    color: aqua;
+    border-color: aqua;
+}
+
+
+.btn-selected{
+    background-color: aqua;
+    color: black;
+}
+
+.form-control {
     color: white;
-    outline-color: white;
+    background-color: black;
+    border-color: white;
+    outline: none;
+}
+
+.form-control:hover {
+    color: white;
+    background-color: black;
+    border-color: aqua;
+    outline: none;
+}
+.form-control:focus {
+    color: white;
+    background-color: black;
+    border-color: aqua;
+    outline: none;
 }

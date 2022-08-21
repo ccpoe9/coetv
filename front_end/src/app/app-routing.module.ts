@@ -7,6 +7,7 @@ import { LiveComponent } from './sub_components/live/live.component';
 import { LoginComponent } from './sub_components/login/login.component';
 import { MoviesComponent } from './sub_components/movies/movies.component';
 import { RegisterComponent } from './sub_components/register/register.component';
+import { SearchComponent } from './sub_components/search/search.component';
 import { SettingsComponent } from './sub_components/settings/settings.component';
 import { TvComponent } from './sub_components/tv/tv.component';
 import { UploadComponent } from './sub_components/upload/upload.component';
@@ -23,7 +24,8 @@ const routes: Routes = [
                         {path : 'live', component : LiveComponent, canActivate : [AuthGuard]},
                         {path : 'settings', component : SettingsComponent, canActivate : [AuthGuard]},
                         {path : 'video', component : VideoComponent, canActivate : [AuthGuard]},
-                        {path : 'upload', component : UploadComponent, canActivate : [AuthGuard]}];
+                        {path : 'upload', component : UploadComponent, canActivate : [AuthGuard]},
+                        {path : 'search', component : SearchComponent, canActivate : [AuthGuard]}];
 
 
 @NgModule({

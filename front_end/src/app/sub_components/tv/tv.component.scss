@@ -50,6 +50,24 @@
 .btn{
     color:aqua;
     background-color: black;
+    border-color: aqua;
+}
+
+.btn:active{
+    color:aqua;
+    background-color: black;
+    border-color: aqua;
+}
+
+.btn:hover{
+    background-color: aqua;
+    color: black;
+}
+
+
+.btn-selected{
+    background-color: aqua;
+    color: black;
 }
 
 .pagination .page-link {

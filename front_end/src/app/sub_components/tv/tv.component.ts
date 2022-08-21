@@ -15,7 +15,6 @@ import { TvService } from 'src/app/services/tv.service';
 export class TvComponent implements OnInit {
 
   constructor(private tvservice : TvService, private movieService : MoviesService, private router : Router) { }
-  searchSubscription : Subscription;
   shows : Tv[];
 
   currentPage : number = 1;
@@ -41,11 +40,6 @@ export class TvComponent implements OnInit {
     this.constructParams(this.currentPage, this.size, this.search, this.genre, this.orderBy, this.orderDir);
     this.getAllShows();
     this.getAllGenres();
-    this.tvservice.search.subscribe( val => {
-      this.searchAction(val);
-      this.constructParams(this.currentPage,this.size,this.search,this.genre,this.orderBy,this.orderDir);
-      this.getAllShows();
-  });
   }
 
 
@@ -122,18 +116,6 @@ changeSortBy(sortByUnselected : string){
     this.constructParams(this.currentPage, this.size, this.search,this.genre, this.orderBy, this.orderDir);
   }
   this.getAllShows();
-}
-
-searchAction(val : string){
-  this.search = val;
-  this.currentPage = 1;
-  this.startPage = 1;
-  this.endPage = 6;
-  this.orderBy = 'id';
-  this.genre = '';
-  this.sortByGenre = 'All';
-  this.sortBySelected = 'SORT BY : LATEST';
-  this.sortByUnselected = 'SORT BY : POPULAR';
 }
 
 getAllGenres(){

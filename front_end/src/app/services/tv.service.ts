@@ -8,8 +8,6 @@ import { Tv } from '../models/tv.model';
 })
 export class TvService {
 
-  searchSource : Subject<string> = new ReplaySubject<string>(1);
-  search = this.searchSource.asObservable();
   
   constructor(private http : HttpClient) { }
 
@@ -30,9 +28,5 @@ export class TvService {
         params : httpParams
       });
 
-  }
-
-  searchAllRecords(searchVal : string){
-    this.searchSource.next(searchVal);
   }
 }

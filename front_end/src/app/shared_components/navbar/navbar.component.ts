@@ -38,12 +38,7 @@ export class NavbarComponent implements OnInit {
   }
 
   searchAction(){
-    if(this.router.url == '/movies'){
-      this.movieService.searchAllRecords(this.searchVal);
-    }
-    else if(this.router.url == '/tv'){
-      this.tvservice.searchAllRecords(this.searchVal);
-    }
+    this.router.navigate(['search']);
   }
 
 }

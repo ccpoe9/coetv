@@ -21,10 +21,6 @@ export class MoviesService {
       });  
   }
 
-  searchAllRecords(searchVal : string){
-    this.searchSource.next(searchVal);
-  }
-
   getMovie(url : string){
     return this.http.get<Movie[]>(config.APIROOT+config.APIURLS.MOVIES+decodeURIComponent(url));
   }

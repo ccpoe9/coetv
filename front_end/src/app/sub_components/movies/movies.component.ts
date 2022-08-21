@@ -17,7 +17,6 @@ export class MoviesComponent implements OnInit {
 
   constructor(private moviesService : MoviesService, private router : Router) { }
 
-  searchSubscription : Subscription;
   movies : Movie[];
 
   currentPage : number = 1;
@@ -45,11 +44,6 @@ export class MoviesComponent implements OnInit {
     this.constructParams(this.currentPage, this.size, this.search, this.genre, this.orderBy, this.orderDir);
     this.getAllMovies();
     this.getAllGenres();
-    this.moviesService.search.subscribe( val => {
-        this.searchAction(val);
-        this.constructParams(this.currentPage,this.size,this.search,this.genre,this.orderBy,this.orderDir);
-        this.getAllMovies();
-    });
   }
 
   constructParams(currentPage : number,
@@ -124,18 +118,6 @@ export class MoviesComponent implements OnInit {
       this.constructParams(this.currentPage, this.size, this.search,this.genre, this.orderBy, this.orderDir);
     }
     this.getAllMovies();
-  }
-
-  searchAction(val : string){
-    this.search = val;
-    this.currentPage = 1;
-    this.startPage = 1;
-    this.endPage = 6;
-    this.orderBy = 'id';
-    this.genre = '';
-    this.sortByGenre = 'All';
-    this.sortBySelected = 'SORT BY : LATEST';
-    this.sortByUnselected = 'SORT BY : POPULAR';
   }
 
   GetMovie( movie : Movie){

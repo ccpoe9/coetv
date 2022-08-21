@@ -24,6 +24,7 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { VjsPlayerComponent } from './shared_components/videojs/videojs.component';
 import { UploadComponent } from './sub_components/upload/upload.component';
 import { FooterComponent } from './shared_components/footer/footer.component';
+import { SearchComponent } from './sub_components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FooterComponent } from './shared_components/footer/footer.component';
     VideoComponent,
     VjsPlayerComponent,
     UploadComponent,
-    FooterComponent
+    FooterComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
