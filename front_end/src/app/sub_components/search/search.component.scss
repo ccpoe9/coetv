@@ -1,0 +1,65 @@
+.card:hover{
+    transform:scale(1.05);
+    cursor: pointer;
+    .card-img-top{
+        filter: brightness(70%);
+    }
+}
+
+.card:hover .image-overlay {
+    opacity: .8;
+}
+
+.card-image {
+    position: relative;
+  }
+  
+.image-overlay {
+    position: absolute;
+    top: 35%;
+    bottom: 0;
+    left: 30%;
+    right: 0;
+    opacity: 0;
+    transition: 0.1s ease;
+    color: aqua;
+
+    margin : 0 auto;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+
+.card{
+    transition:.3s;
+    border: 0;
+    background-color: transparent;
+}
+.pagination .page-link {
+    background: black;
+    color: aqua;
+    border: none;
+    font-weight: bold;
+    font-size: large;
+}
+.pagination .page-link:hover {
+    cursor: pointer;
+    color: rgb(0, 179, 179);
+}
+.pagination .page-link:active {
+    color: white;
+}
+
+.disabled{
+    .page-link {
+        color:black;
+    }
+   
+}

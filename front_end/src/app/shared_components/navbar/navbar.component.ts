@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NavigationEnd, NavigationStart, Router, RouterEvent } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, ReplaySubject, Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { MoviesService } from 'src/app/services/movies.service';
 import { TvService } from 'src/app/services/tv.service';
@@ -15,6 +15,9 @@ export class NavbarComponent implements OnInit {
 
   user$ = this.fireAuth.user;
   searchVal : string = '';
+  searchSource : Subject<string> = new ReplaySubject<string>();
+  search = this.searchSource.asObservable();
+  
   currentPage : string;
   constructor(private authService : AuthService, private readonly fireAuth : AngularFireAuth, 
     private movieService : MoviesService, private router : Router, private tvservice : TvService) { 
@@ -23,7 +26,6 @@ export class NavbarComponent implements OnInit {
           .subscribe(
             (event: any) => {
               if(event instanceof NavigationStart) {
-                console.log(event.url);
                 this.currentPage = event.url;
               }
             });
@@ -38,7 +40,9 @@ export class NavbarComponent implements OnInit {
   }
 
   searchAction(){
-    this.router.navigate(['search']);
+    this.router.navigate(['/']).then(() => {
+      this.router.navigate(['search'], { queryParams : { s : this.searchVal}});
+    });
   }
 
 }

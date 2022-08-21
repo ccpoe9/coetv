@@ -9,8 +9,6 @@ import { Movie } from '../models/movie.model';
 })
 export class MoviesService {
 
-  searchSource : Subject<string> = new ReplaySubject<string>(1);
-  search = this.searchSource.asObservable();
 
     constructor(private http : HttpClient) { }
 
