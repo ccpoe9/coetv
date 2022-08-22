@@ -1,0 +1,37 @@
+.table{
+    color : white;
+    border: 3px solid white;
+    width: 95%;
+    margin-left: 2.5%;
+}
+.table-header{
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin-left: 2.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.icon-buttons :hover{
+    fill: aqua;
+    border-color: aqua;
+    cursor: pointer;
+}
+
+.btn{
+    color:aqua;
+    background-color: black;
+    border-color: aqua;
+}
+
+.btn:active{
+    color:aqua;
+    background-color: black;
+    border-color: aqua;
+}
+
+.btn:hover{
+    background-color: aqua;
+    color: black;
+}
