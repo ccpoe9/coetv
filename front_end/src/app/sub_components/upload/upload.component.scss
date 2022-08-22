@@ -13,6 +13,10 @@
     margin-bottom: 1%;
 }
 
+tbody > tr:hover{
+    border-color: aqua;
+    color: aqua;
+}
 .icon-buttons :hover{
     fill: aqua;
     border-color: aqua;
