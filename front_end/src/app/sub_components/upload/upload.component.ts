@@ -15,7 +15,7 @@ export class UploadComponent implements OnInit {
 
   constructor(private moviesService : MoviesService, private tvservice : TvService) { }
 
-  ContentTypes : string[] = ['MOVIES', 'TV SHOWS'];
+  ContentTypes : string[] = ['MOVIE', 'TV SHOW'];
   currentContentType : string = this.ContentTypes[0];
   httpParams : HttpParams;
 

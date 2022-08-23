@@ -12,11 +12,6 @@
     margin-top: 1%;
     margin-bottom: 1%;
 }
-
-tbody > tr:hover{
-    border-color: aqua;
-    color: aqua;
-}
 .icon-buttons :hover{
     fill: aqua;
     border-color: aqua;
@@ -38,4 +33,14 @@ tbody > tr:hover{
 .btn:hover{
     background-color: aqua;
     color: black;
+}
+
+#deletebutton{
+    color:red;
+    background-color: black;
+    border-color: red;
+}
+#deletebutton:hover{
+    background-color: red;
+    color:black;
 }
