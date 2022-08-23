@@ -12,10 +12,19 @@
     margin-top: 1%;
     margin-bottom: 1%;
 }
-.icon-buttons :hover{
-    fill: aqua;
-    border-color: aqua;
+tbody > tr:hover{
+    background-color: aqua;
+    color: black;
     cursor: pointer;
+}
+
+.icon-buttons-edit :hover{
+    cursor: pointer;
+    fill:blue;
+}
+.icon-buttons-delete :hover{
+    cursor: pointer;
+    fill:red;
 }
 
 .btn{
