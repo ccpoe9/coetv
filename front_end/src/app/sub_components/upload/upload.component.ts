@@ -26,6 +26,12 @@ export class UploadComponent implements OnInit {
   totalShowRecords : number;
   totalShowPages : number;
  
+  postItemName : string;
+  postItemDesc : string;
+  postItemGenre : string;
+  postItemRating : number;
+  postItemThumbnail : string;
+  postItemVideo : string;
 
   ngOnInit(): void {
     this.constructParams(1,20,'','','id','DESC');
@@ -74,6 +80,10 @@ export class UploadComponent implements OnInit {
 
   changeContentType( type : string){
     this.currentContentType = type;
+  }
+
+  validateForPost(){
+    console.log(this.postItemName, this.postItemDesc, this.postItemGenre, this.postItemRating, this.postItemThumbnail, this.postItemVideo);
   }
 
 }
