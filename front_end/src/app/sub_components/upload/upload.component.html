@@ -22,7 +22,39 @@
         <h5 class="modal-title" id="exampleModalLabel">ADD {{currentContentType}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">     
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label for="FormControlInput1" class="form-label">Name</label>
+              <input type="text" class="form-control" id="FormControlInput1" placeholder="Name" required>
+            </div>
+            <div class="col-12 mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="col-6 mb-3">
+              <label for="form-select" class="form-label">Genre</label>
+              <select class="form-select" id="form-select" aria-label="Default select example">
+                <option selected value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+            <div class="col-6 mb-3">
+              <label for="FormControlInput1" class="form-label">Rating</label>
+              <input type="number" step=".1" class="form-control" id="FormControlInput2" placeholder="1" required>
+            </div>
+            <div class="col-12 mb-3">
+              <label for="FormControlInput1" class="form-label">Thumbnail</label>
+              <input type="file" class="form-control" id="FormControlInput3"required>
+            </div>
+            <div class="col-12 mb-3">
+              <label for="FormControlInput1" class="form-label">Video</label>
+              <input type="file" class="form-control" id="FormControlInput4"required>
+            </div>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal">CANCEL</button>
