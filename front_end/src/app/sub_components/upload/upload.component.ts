@@ -28,23 +28,15 @@ export class UploadComponent implements OnInit {
  
   postItemName : string;
   postItemDesc : string;
-  postItemGenre : string;
+  postItemGenre : string = "Genre1";
   postItemRating : number;
   postItemThumbnail : string;
   postItemVideo : string;
 
   ngOnInit(): void {
     this.constructParams(1,20,'','','id','DESC');
-    this.moviesService.getAllMovies(this.httpParams).subscribe(data => {
-      this.movies = data[0];
-      this.totalMoviePages = data[2][0].totalPages;
-      this.totalMovieRecords = data[2][0].totalRecords;
-    });
-    this.tvservice.getAllShows(this.httpParams).subscribe(data => {
-      this.shows = data[0];
-      this.totalShowPages = data[2][0].totalPages;
-      this.totalShowRecords = data[2][0].totalRecords;
-    });
+    this.getAllMovies();
+    this.getAllShows();
   }
   constructParams(currentPage : number,
     size : number,
@@ -82,8 +74,19 @@ export class UploadComponent implements OnInit {
     this.currentContentType = type;
   }
 
-  validateForPost(){
-    console.log(this.postItemName, this.postItemDesc, this.postItemGenre, this.postItemRating, this.postItemThumbnail, this.postItemVideo);
+  PostMovie(){
+    //console.log(this.postItemName, this.postItemDesc, this.postItemGenre, this.postItemRating, this.postItemThumbnail, this.postItemVideo);
+    let postItem = {
+      "Name" : this.postItemName,
+      "Desc" : this.postItemDesc,
+      "Genre" : this.postItemGenre,
+      "Rating" : this.postItemRating,
+      "Thumbnail" : this.postItemThumbnail,
+      "Video" : this.postItemVideo
+    }
+    this.moviesService.createMovie(postItem).subscribe(data => {
+      this.getAllMovies();
+    },err => console.error(err));
   }
 
 }

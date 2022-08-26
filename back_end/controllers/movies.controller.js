@@ -66,10 +66,9 @@ exports.GetAllGenres = (req,res) => {
 
 exports.PostMovie = (req,res) => {
 
-    console.log(req);
 
     let PostMovie =
-    `CALL InsMovie('M7','Genre1','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie7 Desc..', 9.1,'ODSD2Mg==');`;
+    `CALL InsMovie('${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Video}','${req.body.Desc}', ${req.body.Rating},'ODSD2Mg==');`;
 
     db.query(PostMovie, (err,data,fields) => {
         if(err){
@@ -77,6 +76,7 @@ exports.PostMovie = (req,res) => {
             res.statusMessage = "SQL Error : " + err.message;
             return res.status(400).end();
         }
+        res.statusMessage = "POST SUCCESFUL";
         res.status(200).end();
     });
 
