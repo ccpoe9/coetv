@@ -1,3 +1,4 @@
+const { valid } = require('joi');
 const Joi = require('joi');
 
 const validator = (schema) => (payload) => 
@@ -35,3 +36,14 @@ const GetEpisodesByShowSeasonSchema = Joi.object({
 });
 
 exports.validateParamsGetEpisodesByShowSeason = validator(GetEpisodesByShowSeasonSchema);
+
+const PostMovieSchema = Joi.object({
+    Name : Joi.string().required(),
+    Desc : Joi.string().required(),
+    Genre : Joi.string().required(),
+    Rating : Joi.number().min(0).required(),
+    Thumbnail : Joi.string().required(),
+    Video : Joi.string().required()
+});
+
+exports.validateParamsPostMovie = validator(PostMovieSchema);

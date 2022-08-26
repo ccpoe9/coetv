@@ -1,7 +1,7 @@
 var db = require('../config/db.config');
 const Joi = require('joi');
-const { validateParamsGetMoviesByPage, validateParamsGetMovieByUrl } = require('../validation/validator');
-const { randomNumberGenerator, urlGenerator } = require('../generators/urlGenerate');
+const { validateParamsGetMoviesByPage, validateParamsGetMovieByUrl, validateParamsPostMovie } = require('../validation/validator');
+const { urlGenerator } = require('../generators/urlGenerate');
 
 exports.GetMoviesByPage = (req,res) => {
 
@@ -67,6 +67,12 @@ exports.GetAllGenres = (req,res) => {
 
 exports.PostMovie = (req,res) => {
 
+    const { error, value } = validateParamsPostMovie(req.body);
+    if(error){
+        console.log(error);
+        res.statusMessage = "Input Validation Error : " + error.details[0].message;
+        return res.status(400).end();
+    }
     let PostMovie =
     `CALL InsMovie('${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Video}','${req.body.Desc}', ${req.body.Rating},'${urlGenerator('movie')}');`;
 

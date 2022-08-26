@@ -53,3 +53,17 @@ tbody > tr:hover{
     background-color: red;
     color:black;
 }
+
+#addButton{
+    color:greenyellow;
+    background-color: black;
+    border-color: greenyellow;
+}
+#addButton:hover{
+    background-color: greenyellow;
+    color:black;
+}
+
+.error-text{
+    color : red;
+}

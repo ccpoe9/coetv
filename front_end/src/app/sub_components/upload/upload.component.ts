@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Movie } from 'src/app/models/movie.model';
 import { Tv } from 'src/app/models/tv.model';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -26,12 +26,16 @@ export class UploadComponent implements OnInit {
   totalShowRecords : number;
   totalShowPages : number;
  
-  postItemName : string;
-  postItemDesc : string;
+  postItemName : string = '';
+  postItemDesc : string = '';
   postItemGenre : string = "Genre1";
-  postItemRating : number;
-  postItemThumbnail : string;
-  postItemVideo : string;
+  postItemRating : number = 0;
+  postItemThumbnail : string = '';
+  postItemVideo : string = '';
+
+  errorMessage : string;
+
+  @ViewChild('closeButton') closeButton: ElementRef;
 
   ngOnInit(): void {
     this.constructParams(1,20,'','','id','DESC');
@@ -87,7 +91,8 @@ export class UploadComponent implements OnInit {
     this.moviesService.createMovie(postItem).subscribe(data => {
       this.getAllMovies();
       this.resetPostItems();
-    },err => console.error(err));
+      this.closeDialog();
+    },err => this.errorMessage = err.statusText);
   }
 
   resetPostItems(){
@@ -97,6 +102,15 @@ export class UploadComponent implements OnInit {
     this.postItemRating = 0;
     this.postItemThumbnail = '';
     this.postItemVideo = '';
+  }
+
+  closeDialog(){
+    this.closeButton.nativeElement.click();
+  }
+
+  cancelPost(){
+    this.errorMessage = '';
+    this.resetPostItems();
   }
 
 }
