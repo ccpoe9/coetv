@@ -5,6 +5,7 @@ var app = express();
 var db = require('./config/db.config');
 let router = require('./routers/router');
 
+
 app.use(bodyparser.json());
 app.use(cors({origin: "http://localhost:4200"}))
 

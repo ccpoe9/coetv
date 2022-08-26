@@ -44,6 +44,7 @@ export class VideoComponent implements OnInit {
     }
     if(this.router.url.charAt(9) == 'm'){
       this.movieService.getMovie(this.router.url).subscribe( data => {
+        if(data.length == 0) this.router.navigate(['/']);
         this.type = 'm';
         this.movie = data[0];
         this.Name = this.movie.Name;
@@ -55,6 +56,7 @@ export class VideoComponent implements OnInit {
     }
     else if(this.router.url.charAt(9) == 's'){
       this.tvservice.getShow(this.router.url).subscribe( data => {
+        if(data[0].length == 0) this.router.navigate(['/']);
         this.type = 's';
         this.show = data[0][0];
         this.Name = this.show.Name;
@@ -69,9 +71,11 @@ export class VideoComponent implements OnInit {
           this.currentEpisode = this.episodes[0];
         });
         this.getShowsLikeThis(this.show.Genre);
-      })
+      });
     }
-
+    else{
+      this.router.navigate(['/']);
+    }
   }
 
   constructParams(showName : string, season : number){
