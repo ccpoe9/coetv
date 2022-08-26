@@ -8,7 +8,7 @@ exports.GetShowsByPage = (req,res) => {
     if(error){
         console.log(error);
         res.statusMessage = "Input Validation Error : " + error.details[0].message;
-        return res.status(400).send(res.statusMessage);
+        return res.status(400).end();
     }
 
     let GetShowsByPage = 
@@ -17,7 +17,9 @@ exports.GetShowsByPage = (req,res) => {
 
     db.query(GetShowsByPage, (err,data,fields) =>{
         if(err){
-            return console.err(err.message);
+            console.error(err.message);
+            res.statusMessage = "SQL Error : " + err.message;
+            return res.status(400).end();
         }
         res.send(data);
     });
@@ -28,7 +30,7 @@ exports.GetShowByUrl = (req,res) => {
     if(error){
         console.log(error);
         res.statusMessage = "Input Validation Error : " + error.details[0].message;
-        return res.status(400).send(res.statusMessage);
+        return res.status(400).end();
     }
 
     let GetShowByUrl =
@@ -37,7 +39,9 @@ exports.GetShowByUrl = (req,res) => {
 
     db.query(GetShowByUrl, (err,data,fields) =>{
         if(err){
-            return console.err(err.message);
+            console.error(err.message);
+            res.statusMessage = "SQL Error : " + err.message;
+            return res.status(400).end();
         }
         res.send(data);
     });
@@ -51,7 +55,7 @@ exports.GetEpisodesByShowSeason = (req,res) => {
     if(error){
         console.log(error);
         res.statusMessage = "Input Validation Error : " + error.details[0].message;
-        return res.status(400).send(res.statusMessage);
+        return res.status(400).end();
     }
 
     let GetEpisodesByShowSeason =
@@ -60,7 +64,9 @@ exports.GetEpisodesByShowSeason = (req,res) => {
 
     db.query(GetEpisodesByShowSeason, (err,data,fields) =>{
         if(err){
-            return console.err(err.message);
+            console.error(err.message);
+            res.statusMessage = "SQL Error : " + err.message;
+            return res.status(400).end();
         }
         res.send(data);
     }); 

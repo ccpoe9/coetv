@@ -9,6 +9,7 @@ router.get('/api', (req,res) =>{
 });
 
 router.get('/api/movies',moviescontroller.GetMoviesByPage);
+router.post('/api/movies',moviescontroller.PostMovie);
 router.get('/api/movies/video', moviescontroller.GetMovieByUrl);
 router.get('/api/genres', moviescontroller.GetAllGenres);
 router.get('/api/shows',showscontroller.GetShowsByPage);
