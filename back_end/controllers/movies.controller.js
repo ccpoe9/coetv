@@ -1,6 +1,7 @@
 var db = require('../config/db.config');
 const Joi = require('joi');
 const { validateParamsGetMoviesByPage, validateParamsGetMovieByUrl } = require('../validation/validator');
+const { randomNumberGenerator, urlGenerator } = require('../generators/urlGenerate');
 
 exports.GetMoviesByPage = (req,res) => {
 
@@ -66,9 +67,8 @@ exports.GetAllGenres = (req,res) => {
 
 exports.PostMovie = (req,res) => {
 
-
     let PostMovie =
-    `CALL InsMovie('${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Video}','${req.body.Desc}', ${req.body.Rating},'ODSD2Mg==');`;
+    `CALL InsMovie('${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Video}','${req.body.Desc}', ${req.body.Rating},'${urlGenerator('movie')}');`;
 
     db.query(PostMovie, (err,data,fields) => {
         if(err){

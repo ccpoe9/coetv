@@ -86,7 +86,17 @@ export class UploadComponent implements OnInit {
     }
     this.moviesService.createMovie(postItem).subscribe(data => {
       this.getAllMovies();
+      this.resetPostItems();
     },err => console.error(err));
+  }
+
+  resetPostItems(){
+    this.postItemName  = '';
+    this.postItemDesc = '';
+    this.postItemGenre = 'Genre1';
+    this.postItemRating = 0;
+    this.postItemThumbnail = '';
+    this.postItemVideo = '';
   }
 
 }
