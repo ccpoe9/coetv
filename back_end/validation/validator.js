@@ -7,8 +7,8 @@ const validator = (schema) => (payload) =>
 const GetMoviesByPageSchema =  Joi.object({
     currentPage : Joi.number().min(1).required(),
     size : Joi.number().min(1).required(),
-    search : Joi.string().allow('').required(),
-    genre : Joi.string().allow('').required(),
+    search : Joi.string().max(100,'utf8').allow('').required(),
+    genre : Joi.string().max(100,'utf8').allow('').required(),
     orderBy : Joi.string().valid("id","Name","Rating").required(),
     orderDir: Joi.string().valid("ASC","DESC").required()
 });

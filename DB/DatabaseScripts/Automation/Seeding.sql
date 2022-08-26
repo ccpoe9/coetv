@@ -1,16 +1,16 @@
 #MOVIES
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M1','Genre1','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie1 Desc..', '9.1','Mjk1NDE=');
+VALUES('M1','Genre1','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie1 Desc..', 9.1,'Mjk1NDE=');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M2','Genre2','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie2 Desc..', '9.1','NzM2MTQ=');
+VALUES('M2','Genre2','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie2 Desc..', 9.1,'NzM2MTQ=');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M3','Genre1','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie3 Desc..', '9.1','NDU4Nzg=');
+VALUES('M3','Genre1','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie3 Desc..', 9.1,'NDU4Nzg=');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M4','Genre2','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie4 Desc..', '9.1','ODU1ODQ=');
+VALUES('M4','Genre2','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie4 Desc..', 9.1,'ODU1ODQ=');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M5','Genre1','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie5 Desc..', '9.1','ODU3NQ==');
+VALUES('M5','Genre1','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie5 Desc..', 9.1,'ODU3NQ==');
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M6','Genre1','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie6 Desc..', '9.1','ODE2Mg==');
+VALUES('M6','Genre1','thumbnail.png','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','Movie6 Desc..', 9.1,'ODE2Mg==');
 
 
 
@@ -24,17 +24,17 @@ VALUES('Genre3');
 
 #SHOWS
 INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV1','Genre1','thumbnail.png','TV1 Desc..', '9.1','1');
+VALUES('TV1','Genre1','thumbnail.png','TV1 Desc..', 9.1,'1');
 INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV2','Genre1','thumbnail.png','TV2 Desc..', '9.1','2');
+VALUES('TV2','Genre1','thumbnail.png','TV2 Desc..', 9.1,'2');
 INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV3','Genre1','thumbnail.png','TV3 Desc..', '9.1','3');
+VALUES('TV3','Genre1','thumbnail.png','TV3 Desc..', 9.1,'3');
 INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV4','Genre1','thumbnail.png','TV4 Desc..', '9.1','4');
+VALUES('TV4','Genre1','thumbnail.png','TV4 Desc..', 9.1,'4');
 INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV5','Genre1','thumbnail.png','TV5 Desc..', '9.1','5');
+VALUES('TV5','Genre1','thumbnail.png','TV5 Desc..', 9.1,'5');
 INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV6','Genre1','thumbnail.png','TV6 Desc..', '9.1','6');
+VALUES('TV6','Genre1','thumbnail.png','TV6 Desc..', 9.1,'6');
 
 
 INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`,`Desc`)

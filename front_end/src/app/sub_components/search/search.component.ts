@@ -48,6 +48,8 @@ export class SearchComponent implements OnInit {
         this.totalMovieRecords = data[2][0].totalRecords;
         this.totalMoviePages = data[2][0].totalPages;
         this.setPagesMovie();
+    }, err => {
+      this.movies = [];
     })
   }
 
@@ -101,10 +103,11 @@ export class SearchComponent implements OnInit {
   getAllShows(){
     this.tvservice.getAllShows(this.httpParams).subscribe(data => {
       this.shows = data[0];
-      console.log(this.shows);
       this.totalShowPages = data[2][0].totalPages;
       this.totalShowRecords = data[2][0].totalRecords;
       this.setPagesShow();
+  }, err => {
+    this.shows = [];
   });
   }
 
