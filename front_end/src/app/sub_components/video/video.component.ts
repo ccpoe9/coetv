@@ -51,7 +51,7 @@ export class VideoComponent implements OnInit {
         this.Desc = this.movie.Desc;
         this.Genre = this.movie.Genre;
         this.source = this.movie.Video;
-        this.getMoviesLikeThis(this.movie.Genre);
+        this.getMoviesLikeThis(this.randomizeGenre(this.movie.Genre));
       })
     }
     else if(this.router.url.charAt(9) == 's'){
@@ -78,6 +78,14 @@ export class VideoComponent implements OnInit {
     }
   }
 
+  getMovie(){
+
+  }
+
+  getShow(){
+
+  }
+
   constructParams(showName : string, season : number){
     this.httpParams = new HttpParams()
     .set('showName',showName)
@@ -88,6 +96,12 @@ export class VideoComponent implements OnInit {
     for(let i = 1; i <= this.totalSeasons; i++){
       this.seasons[i-1] = i;
     }
+  }
+
+  randomizeGenre(genres : string){
+    let genresArr = genres.replace(/\s/g, '').split(',');
+    let max = genresArr.length;
+    return genresArr[0];
   }
 
   changeSeason(season : number){

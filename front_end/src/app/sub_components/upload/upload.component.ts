@@ -1,5 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Genre } from 'src/app/models/genre.model';
 import { Movie } from 'src/app/models/movie.model';
 import { Tv } from 'src/app/models/tv.model';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -25,10 +26,11 @@ export class UploadComponent implements OnInit {
   shows : Tv[];
   totalShowRecords : number;
   totalShowPages : number;
- 
+  genres : Genre[];
+  isChecked : boolean[];
   postItemName : string = '';
   postItemDesc : string = '';
-  postItemGenre : string = "Genre1";
+  postItemGenre : string = '';
   postItemRating : number = 0;
   postItemThumbnail : string = '';
   postItemVideo : string = '';
@@ -36,11 +38,13 @@ export class UploadComponent implements OnInit {
   errorMessage : string;
 
   @ViewChild('closeButton') closeButton: ElementRef;
+  @ViewChild('addForm') addForm: ElementRef;
 
   ngOnInit(): void {
     this.constructParams(1,20,'','','id','DESC');
     this.getAllMovies();
     this.getAllShows();
+    this.getAllGenres();
   }
   constructParams(currentPage : number,
     size : number,
@@ -73,6 +77,12 @@ export class UploadComponent implements OnInit {
       this.totalShowRecords = data[2][0].totalRecords;
   });
   }
+  getAllGenres(){
+    this.moviesService.getGenres().subscribe( data => {
+      this.genres = data;
+      this.isChecked = new Array(this.genres.length).fill(false);
+    })
+  }
 
   changeContentType( type : string){
     this.currentContentType = type;
@@ -80,6 +90,8 @@ export class UploadComponent implements OnInit {
 
   PostMovie(){
     //console.log(this.postItemName, this.postItemDesc, this.postItemGenre, this.postItemRating, this.postItemThumbnail, this.postItemVideo);
+    this.setGenre();
+
     let postItem = {
       "Name" : this.postItemName,
       "Desc" : this.postItemDesc,
@@ -94,14 +106,27 @@ export class UploadComponent implements OnInit {
       this.closeDialog();
     },err => this.errorMessage = err.statusText);
   }
+  
+  setGenre(){
+
+    for(let i = 0; i<this.genres.length; i++){
+      if(this.isChecked[i]){
+        this.postItemGenre += this.genres[i].Name + ", ";
+      }
+    }
+
+    this.postItemGenre = this.postItemGenre.slice(0, -2);
+  }
 
   resetPostItems(){
     this.postItemName  = '';
     this.postItemDesc = '';
-    this.postItemGenre = 'Genre1';
+    this.postItemGenre = '';
     this.postItemRating = 0;
     this.postItemThumbnail = '';
     this.postItemVideo = '';
+    this.isChecked = new Array(this.genres.length).fill(false);
+    this.addForm.nativeElement.reset();
   }
 
   closeDialog(){
@@ -111,6 +136,10 @@ export class UploadComponent implements OnInit {
   cancelPost(){
     this.errorMessage = '';
     this.resetPostItems();
+  }
+
+  changeChecked( id : number){
+    this.isChecked[(id-1)] = !this.isChecked[(id-1)];
   }
 
 }

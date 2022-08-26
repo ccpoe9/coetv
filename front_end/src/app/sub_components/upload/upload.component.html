@@ -26,7 +26,7 @@
         <div class="error-text"*ngIf="errorMessage">
           <p><i>{{errorMessage}}</i></p>
         </div>
-        <form>
+        <form #addForm>
           <div class="row">
             <div class="col-12 mb-3">
               <label for="FormControlInput1" class="form-label">Name</label>
@@ -38,11 +38,11 @@
             </div>
             <div class="col-12 mb-3">
               <label for="genre-input">Genre(s)</label>
-              <div class="row ml-2">
-                <div class="form-check col-3">
-                  <input class="form-check-input" type="checkbox" value="Action" id="defaultCheck1">
+              <div class="row ml-2 mt-2" style="margin-left: 1.5%;">
+                <div class="form-check col-3" *ngFor="let genre of genres">
+                  <input class="form-check-input" type="checkbox" value="{{genre.Name}}" id="defaultCheck{{genre.id}}" (change)="changeChecked(genre.id)">
                   <label class="form-check-label" for="defaultCheck1">
-                    Action
+                    {{genre.Name}}
                   </label>
                 </div>
               </div>
