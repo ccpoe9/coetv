@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, DEFAULT_CURRENCY_CODE, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
-import { filter, pairwise, take } from 'rxjs';
+import { filter, pairwise, switchMap, take } from 'rxjs';
 import { Episode } from 'src/app/models/episode.model';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -30,9 +30,10 @@ export class VideoComponent implements OnInit {
   currentEpisode : Episode;
   totalSeasons : number;
   httpParams : HttpParams;
+  httpGenreParams : HttpParams;
   type : string;
   isPlayed : boolean = false;
-  playText : string = 'PLAY'
+  playText : string = 'PLAY';
   constructor(private router : Router, private routerService : RouterService, private movieService : MoviesService,
               private tvservice : TvService) { 
   
@@ -43,10 +44,12 @@ export class VideoComponent implements OnInit {
       this.router.navigate(['/']);
     }
     if(this.router.url.charAt(9) == 'm'){
+      this.type = 'm';
       this.getMovie();
 
     }
     else if(this.router.url.charAt(9) == 's'){
+      this.type = 's';
       this.getShow();
     }
     else{
@@ -55,22 +58,29 @@ export class VideoComponent implements OnInit {
   }
 
   getMovie(){
-    this.movieService.getMovie(this.router.url).subscribe( data => {
+    this.movieService.getMovie(this.router.url).pipe(switchMap( (data) => { 
       if(data.length == 0) this.router.navigate(['/']);
-      this.type = 'm';
       this.movie = data[0];
-      this.Name = this.movie.Name;
-      this.Desc = this.movie.Desc;
-      this.Genre = this.movie.Genre;
-      this.source = this.movie.Video;
-      this.getMoviesLikeThis(this.randomizeGenre(this.movie.Genre));
-    });
+      this.setMovieVideo();
+      let genresArr = this.movie.Genre.replace(/\s/g, '').split(',');
+      this.constructGenreParams(genresArr[0]);
+      return this.movieService.getAllMovies(this.httpGenreParams);
+    })).subscribe( data => {
+      this.recommended = data[0];
+      this.setMoviesLikeThis();
+    })
+  }
+
+  setMovieVideo(){
+    this.Name = this.movie.Name;
+    this.Desc = this.movie.Desc;
+    this.Genre = this.movie.Genre;
+    this.source = this.movie.Video;
   }
 
   getShow(){
     this.tvservice.getShow(this.router.url).subscribe( data => {
       if(data[0].length == 0) this.router.navigate(['/']);
-      this.type = 's';
       this.show = data[0][0];
       this.Name = this.show.Name;
       this.Genre = this.show.Genre;
@@ -93,17 +103,21 @@ export class VideoComponent implements OnInit {
     .set('season',season);
   }
 
+  constructGenreParams(genre : string){
+    this.httpGenreParams = new HttpParams()
+      .set('currentPage', 1)
+      .set('size', 6)
+      .set('search', '')
+      .set('genre', genre)
+      .set('orderBy', 'Rating')
+      .set('orderDir', 'DESC');
+  }
+  
+
   setSeasons(totalSeasons : number){
     for(let i = 1; i <= this.totalSeasons; i++){
       this.seasons[i-1] = i;
     }
-  }
-
-  randomizeGenre(genres : string){
-    let genresArr = genres.replace(/\s/g, '').split(',');
-    let max = genresArr.length;
-    let random = Math.floor(Math.random() * (max + 1))
-    return genresArr[random];
   }
 
   changeSeason(season : number){
@@ -119,21 +133,11 @@ export class VideoComponent implements OnInit {
     this.source = episode.Video;
   }
 
-  getMoviesLikeThis(genre : string){
-    this.httpParams = new HttpParams()
-      .set('currentPage', 1)
-      .set('size', 6)
-      .set('search', '')
-      .set('genre', genre)
-      .set('orderBy', 'Rating')
-      .set('orderDir', 'DESC');
-
-    this.movieService.getAllMovies(this.httpParams).subscribe( data => {
-      this.recommended = data[0].filter( (item : any ) => { return item.Name != this.movie.Name});
+  setMoviesLikeThis(){
+      this.recommended = this.recommended.filter( (item : any ) => { return item.Name != this.movie.Name});
       if(this.recommended.length > 5) { 
         this.recommended.pop();
       }
-    });
 
   }
 
