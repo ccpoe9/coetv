@@ -43,35 +43,11 @@ export class VideoComponent implements OnInit {
       this.router.navigate(['/']);
     }
     if(this.router.url.charAt(9) == 'm'){
-      this.movieService.getMovie(this.router.url).subscribe( data => {
-        if(data.length == 0) this.router.navigate(['/']);
-        this.type = 'm';
-        this.movie = data[0];
-        this.Name = this.movie.Name;
-        this.Desc = this.movie.Desc;
-        this.Genre = this.movie.Genre;
-        this.source = this.movie.Video;
-        this.getMoviesLikeThis(this.randomizeGenre(this.movie.Genre));
-      })
+      this.getMovie();
+
     }
     else if(this.router.url.charAt(9) == 's'){
-      this.tvservice.getShow(this.router.url).subscribe( data => {
-        if(data[0].length == 0) this.router.navigate(['/']);
-        this.type = 's';
-        this.show = data[0][0];
-        this.Name = this.show.Name;
-        this.Genre = this.show.Genre;
-        this.totalSeasons = data[2][0].totalSeasons;
-        this.setSeasons(this.totalSeasons);
-        this.constructParams(this.show.Name,1);
-        this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
-          this.episodes = data[0];
-          this.Desc = this.episodes[0].Desc;
-          this.source = this.episodes[0].Video;
-          this.currentEpisode = this.episodes[0];
-        });
-        this.getShowsLikeThis(this.show.Genre);
-      });
+      this.getShow();
     }
     else{
       this.router.navigate(['/']);
@@ -79,11 +55,36 @@ export class VideoComponent implements OnInit {
   }
 
   getMovie(){
-
+    this.movieService.getMovie(this.router.url).subscribe( data => {
+      if(data.length == 0) this.router.navigate(['/']);
+      this.type = 'm';
+      this.movie = data[0];
+      this.Name = this.movie.Name;
+      this.Desc = this.movie.Desc;
+      this.Genre = this.movie.Genre;
+      this.source = this.movie.Video;
+      this.getMoviesLikeThis(this.randomizeGenre(this.movie.Genre));
+    });
   }
 
   getShow(){
-
+    this.tvservice.getShow(this.router.url).subscribe( data => {
+      if(data[0].length == 0) this.router.navigate(['/']);
+      this.type = 's';
+      this.show = data[0][0];
+      this.Name = this.show.Name;
+      this.Genre = this.show.Genre;
+      this.totalSeasons = data[2][0].totalSeasons;
+      this.setSeasons(this.totalSeasons);
+      this.constructParams(this.show.Name,1);
+      this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
+        this.episodes = data[0];
+        this.Desc = this.episodes[0].Desc;
+        this.source = this.episodes[0].Video;
+        this.currentEpisode = this.episodes[0];
+      });
+      this.getShowsLikeThis(this.show.Genre);
+    });
   }
 
   constructParams(showName : string, season : number){
@@ -101,7 +102,8 @@ export class VideoComponent implements OnInit {
   randomizeGenre(genres : string){
     let genresArr = genres.replace(/\s/g, '').split(',');
     let max = genresArr.length;
-    return genresArr[0];
+    let random = Math.floor(Math.random() * (max + 1))
+    return genresArr[random];
   }
 
   changeSeason(season : number){
@@ -151,7 +153,6 @@ export class VideoComponent implements OnInit {
       }
 
     });
-
   }
 
   playAction(){
