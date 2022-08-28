@@ -1,6 +1,7 @@
 var db = require('../config/db.config');
 const Joi = require('joi');
-const { validateParamsGetMoviesByPage, validateParamsGetShowByUrl, validateParamsGetEpisodesByShowSeason } = require('../validation/validator');
+const { validateParamsGetMoviesByPage, validateParamsGetShowByUrl, validateParamsGetEpisodesByShowSeason, validateParamsPostShow } = require('../validation/validator');
+const { urlGenerator } = require('../generators/urlGenerate');
 
 exports.GetShowsByPage = (req,res) => {
 
@@ -70,4 +71,27 @@ exports.GetEpisodesByShowSeason = (req,res) => {
         }
         res.send(data);
     }); 
+}
+
+exports.PostShow = (req,res) => {
+
+    const { error, value } = validateParamsPostShow(req.body);
+    if(error){
+        console.log(error);
+        res.statusMessage = "Input Validation Error : " + error.details[0].message;
+        return res.status(400).end();
+    }
+    let PostShow =
+    `CALL InsShow('${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Desc}', ${req.body.Rating},'${urlGenerator('show')}');`;
+
+    db.query(PostShow, (err,data,fields) => {
+        if(err){
+            console.error(err.message);
+            res.statusMessage = "SQL Error : " + err.message;
+            return res.status(400).end();
+        }
+        res.statusMessage = "POST SUCCESFUL";
+        res.status(200).end();
+    });
+
 }

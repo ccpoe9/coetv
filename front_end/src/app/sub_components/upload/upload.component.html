@@ -55,7 +55,7 @@
               <label for="FormControlInput1" class="form-label">Thumbnail Link</label>
               <input type="url" class="form-control" id="FormControlInput3" name="postItemThumbnail" [(ngModel)]="postItemThumbnail" required>
             </div>
-            <div class="col-12 mb-3">
+            <div class="col-12 mb-3" *ngIf="currentContentType=='MOVIE'">
               <label for="FormControlInput1" class="form-label">Video Link</label>
               <input type="url" class="form-control" id="FormControlInput3" name="postItemVideo" [(ngModel)]="postItemVideo" required>
             </div>
@@ -64,7 +64,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" #closeButton data-bs-dismiss="modal" (click)="cancelPost()">CANCEL</button>
-        <button type="button" class="btn" id="addButton" (click)="PostMovie()">ADD</button>
+        <button type="button" class="btn" id="addButton" (click)="postItem(currentContentType)">ADD</button>
       </div>
     </div>
   </div>

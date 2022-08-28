@@ -40,13 +40,11 @@ export class VideoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.router.url == '/video'){
-      this.router.navigate(['/']);
-    }
+    if(this.router.url == '/video') this.router.navigate(['/']);
+
     if(this.router.url.charAt(9) == 'm'){
       this.type = 'm';
       this.getMovie();
-
     }
     else if(this.router.url.charAt(9) == 's'){
       this.type = 's';
@@ -61,17 +59,17 @@ export class VideoComponent implements OnInit {
     this.movieService.getMovie(this.router.url).pipe(switchMap( (data) => { 
       if(data.length == 0) this.router.navigate(['/']);
       this.movie = data[0];
-      this.setMovieVideo();
+      this.setMovie();
       let genresArr = this.movie.Genre.replace(/\s/g, '').split(',');
       this.constructGenreParams(genresArr[0]);
       return this.movieService.getAllMovies(this.httpGenreParams);
     })).subscribe( data => {
       this.recommended = data[0];
       this.setMoviesLikeThis();
-    })
+    });
   }
 
-  setMovieVideo(){
+  setMovie(){
     this.Name = this.movie.Name;
     this.Desc = this.movie.Desc;
     this.Genre = this.movie.Genre;
@@ -79,22 +77,34 @@ export class VideoComponent implements OnInit {
   }
 
   getShow(){
-    this.tvservice.getShow(this.router.url).subscribe( data => {
+    this.tvservice.getShow(this.router.url).pipe( switchMap( data => {
       if(data[0].length == 0) this.router.navigate(['/']);
       this.show = data[0][0];
-      this.Name = this.show.Name;
-      this.Genre = this.show.Genre;
       this.totalSeasons = data[2][0].totalSeasons;
-      this.setSeasons(this.totalSeasons);
-      this.constructParams(this.show.Name,1);
-      this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
-        this.episodes = data[0];
-        this.Desc = this.episodes[0].Desc;
-        this.source = this.episodes[0].Video;
-        this.currentEpisode = this.episodes[0];
-      });
-      this.getShowsLikeThis(this.show.Genre);
+      this.setShow();
+      return this.tvservice.getAllShows(this.httpGenreParams);
+    })).pipe( switchMap (data => {
+      this.recommended = data[0];
+      this.setShowsLikeThis();
+      return this.tvservice.getShowSeason(this.httpParams);
+    })).subscribe( data => {
+      this.episodes = data[0];
+      this.setShowEpisodes();
     });
+  }
+
+  setShow(){
+    this.Name = this.show.Name;
+    this.Genre = this.show.Genre;
+    this.constructParams(this.show.Name,1);
+    let genresArr = this.show.Genre.replace(/\s/g, '').split(',');
+    this.constructGenreParams(genresArr[0]);
+    this.setSeasons(this.totalSeasons);
+  }
+  setShowEpisodes(){
+    this.Desc = this.episodes[0].Desc;
+    this.source = this.episodes[0].Video;
+    this.currentEpisode = this.episodes[0];
   }
 
   constructParams(showName : string, season : number){
@@ -140,23 +150,11 @@ export class VideoComponent implements OnInit {
       }
 
   }
-
-  getShowsLikeThis(genre : string){
-    this.httpParams = new HttpParams()
-      .set('currentPage', 1)
-      .set('size', 6)
-      .set('search', '')
-      .set('genre', genre)
-      .set('orderBy', 'Rating')
-      .set('orderDir', 'DESC');
-
-    this.tvservice.getAllShows(this.httpParams).subscribe( data => {
-      this.recommended = data[0].filter( (item : any ) => { return item.Name != this.show.Name});
-      if(this.recommended.length > 5) { 
-        this.recommended.pop();
-      }
-
-    });
+  setShowsLikeThis(){
+    this.recommended = this.recommended.filter( (item : any ) => { return item.Name != this.show.Name});
+    if(this.recommended.length > 5) { 
+      this.recommended.pop();
+    }
   }
 
   playAction(){

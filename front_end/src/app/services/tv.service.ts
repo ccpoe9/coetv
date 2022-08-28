@@ -45,4 +45,15 @@ export class TvService {
       );
 
   }
+
+  createShow(show : any){
+    console.log(show);
+    return this.http.post(config.APIROOT+config.APIURLS.SHOWS, show)
+    .pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
 }

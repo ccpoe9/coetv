@@ -88,10 +88,13 @@ export class UploadComponent implements OnInit {
     this.currentContentType = type;
   }
 
-  PostMovie(){
-    //console.log(this.postItemName, this.postItemDesc, this.postItemGenre, this.postItemRating, this.postItemThumbnail, this.postItemVideo);
-    this.setGenre();
+  postItem(type : string){
+    if(type == 'MOVIE') this.PostMovie();
+    else if(type == 'TV SHOW') this.PostShow();
+  }
 
+  PostMovie(){
+    this.setGenre();
     let postItem = {
       "Name" : this.postItemName,
       "Desc" : this.postItemDesc,
@@ -106,15 +109,29 @@ export class UploadComponent implements OnInit {
       this.closeDialog();
     },err => this.errorMessage = err.statusText);
   }
-  
-  setGenre(){
 
+  PostShow(){
+    this.setGenre();
+    let postItem = {
+      "Name" : this.postItemName,
+      "Desc" : this.postItemDesc,
+      "Genre" : this.postItemGenre,
+      "Rating" : this.postItemRating,
+      "Thumbnail" : this.postItemThumbnail
+    }
+    this.tvservice.createShow(postItem).subscribe(data => {
+      this.getAllShows();
+      this.resetPostItems();
+      this.closeDialog();
+    },err => this.errorMessage = err.statusText);
+  }
+
+  setGenre(){
     for(let i = 0; i<this.genres.length; i++){
       if(this.isChecked[i]){
         this.postItemGenre += this.genres[i].Name + ", ";
       }
     }
-
     this.postItemGenre = this.postItemGenre.slice(0, -2);
   }
 

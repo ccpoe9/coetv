@@ -23,7 +23,7 @@ urlValidator = (url, type) => {
     if(type=='movie'){
         getUrls = `SELECT \`URL\` FROM \`mediatime-db\`.\`Movies\`;`
     }
-    else{
+    else if (type=='show'){
         getUrls = `SELECT \`URL\` FROM \`mediatime-db\`.\`Shows\`;`
     }
 
