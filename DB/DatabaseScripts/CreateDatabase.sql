@@ -35,7 +35,7 @@ BEGIN
 	DECLARE offsetval INT DEFAULT 0;
 	SET offsetval = (currentpage - 1) * size;
 	SELECT * FROM `mediatime-db`.`Movies`
-    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT(in_genre,'%')
+    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT('%',in_genre,'%')
     ORDER BY
 		(CASE WHEN orderBy= 'id' AND orderDir='ASC' THEN `id` END) ASC,
         (CASE WHEN orderBy= 'id' AND orderDir= 'DESC' THEN `id` END) DESC,
@@ -75,7 +75,6 @@ VALUES(in_Name,in_Genre,in_Thumbnail,in_Video, in_Desc, in_Rating , in_Url);
 END //
 
 DELIMITER ;
-
 DROP PROCEDURE IF EXISTS GetMovieByUrl;
 
 DELIMITER //
@@ -152,7 +151,26 @@ BEGIN
     
 END //
 
-DELIMITER ;  
+DELIMITER ; 
+
+DROP PROCEDURE IF EXISTS InsShow;
+
+DELIMITER //
+
+CREATE PROCEDURE InsShow(
+	IN in_Name VARCHAR(50),
+    IN in_Genre VARCHAR(100),
+    IN in_Thumbnail VARCHAR(100),
+    IN in_Desc VARCHAR(250),
+    IN in_Rating DECIMAL(4,1),
+    IN in_Url VARCHAR(50)
+)
+BEGIN
+INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
+VALUES(in_Name,in_Genre,in_Thumbnail,in_Desc, in_Rating , in_Url);
+END //
+
+DELIMITER ; 
   
 CREATE TABLE `mediatime-db`.`Episodes` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -206,5 +224,3 @@ BEGIN
 END //
 
 DELIMITER ; 
-
-
