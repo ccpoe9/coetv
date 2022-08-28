@@ -132,7 +132,7 @@ BEGIN
 	DECLARE offsetval INT DEFAULT 0;
 	SET offsetval = (currentpage - 1) * size;
 	SELECT * FROM `mediatime-db`.`Shows`
-    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT(in_genre,'%')
+    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT('%',in_genre,'%')
     ORDER BY
 		(CASE WHEN orderBy= 'id' AND orderDir='ASC' THEN `id` END) ASC,
         (CASE WHEN orderBy= 'id' AND orderDir= 'DESC' THEN `id` END) DESC,
