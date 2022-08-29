@@ -141,6 +141,7 @@ export class UploadComponent implements OnInit {
   }
 
   setPostGenre(){
+    this.postItemGenre = '';
     for(let i = 0; i<this.genres.length; i++){
       if(this.isChecked[i]){
         this.postItemGenre += this.genres[i].Name + ", ";
