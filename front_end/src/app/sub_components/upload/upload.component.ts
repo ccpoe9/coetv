@@ -202,7 +202,6 @@ export class UploadComponent implements OnInit {
   }
 
   PutMovie(){
-    console.log(this.isChecked);
     let putItem = {
       "id" : this.putItemId,
       "Name" : this.putItemName,
