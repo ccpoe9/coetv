@@ -94,7 +94,7 @@
               <label for="genre-input">Genre(s)</label>
               <div class="row ml-2 mt-2" style="margin-left: 1.5%;">
                 <div class="form-check col-3" *ngFor="let genre of genres">
-                  <input class="form-check-input" type="checkbox" value="{{genre.Name}}" id="defaultCheck{{genre.id}}" [checked]="isChecked[genre.id-1]" (click)="changeChecked(genre.id)">
+                  <input class="form-check-input" type="checkbox" value="{{genre.Name}}" id="defaultCheck{{genre.id}}" [checked]="isChecked[genre.id-1]" (change)="changeChecked(genre.id)">
                   <label class="form-check-label" for="defaultCheck1">
                     {{genre.Name}}
                   </label>
