@@ -1,6 +1,6 @@
 var db = require('../config/db.config');
 const Joi = require('joi');
-const { validateParamsGetMoviesByPage, validateParamsGetMovieByUrl, validateParamsPostMovie } = require('../validation/validator');
+const { validateParamsGetMoviesByPage, validateParamsGetMovieByUrl, validateParamsPostMovie , validateParamsUpdateMovie} = require('../validation/validator');
 const { urlGenerator } = require('../generators/urlGenerate');
 
 exports.GetMoviesByPage = (req,res) => {
@@ -86,4 +86,27 @@ exports.PostMovie = (req,res) => {
         res.status(200).end();
     });
 
+}
+
+exports.UpdateMovie = (req,res) => {
+
+    const { error, value } = validateParamsUpdateMovie(req.body);
+    if(error){
+        console.log(error);
+        res.statusMessage = "Input Validation Error : " + error.details[0].message;
+        return res.status(400).end();
+    }
+
+    let UpdateMovie = 
+    `CALL UpdMovie(${req.body.id},'${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Video}','${req.body.Desc}',${req.body.Rating});`;
+
+    db.query(UpdateMovie, (err,data,fields) => {
+        if(err){
+            console.error(err.message);
+            res.statusMessage = "SQL Error : " + err.message;
+            return res.status(400).end();
+        }
+        res.statusMessage = "PUT SUCCESFUL";
+        res.status(200).end();
+    });
 }

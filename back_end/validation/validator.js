@@ -57,3 +57,15 @@ const PostShowSchema = Joi.object({
 });
 
 exports.validateParamsPostShow = validator(PostShowSchema);
+
+const UpdateMovieSchema = Joi.object({
+    id : Joi.number().min(1).required(),
+    Name : Joi.string().required(),
+    Desc : Joi.string().required(),
+    Genre : Joi.string().required(),
+    Rating : Joi.number().min(0).required(),
+    Thumbnail : Joi.string().required(),
+    Video : Joi.string().required()
+});
+
+exports.validateParamsUpdateMovie = validator(UpdateMovieSchema);

@@ -36,6 +36,7 @@ export class UploadComponent implements OnInit {
   postItemThumbnail : string = '';
   postItemVideo : string = '';
 
+  putItemId : string;
   putItemName : string;
   putItemDesc : string;
   putItemGenres : string[];
@@ -48,6 +49,7 @@ export class UploadComponent implements OnInit {
   errorMessage : string;
 
   @ViewChild('closeButton') closeButton: ElementRef;
+  @ViewChild('discardButton') discardButton: ElementRef;
   @ViewChild('addForm') addForm: ElementRef;
 
   ngOnInit(): void {
@@ -165,6 +167,7 @@ export class UploadComponent implements OnInit {
   }
 
   setPutItems(item : any){
+    this.putItemId = item.id;
     this.putItemName = item.Name;
     this.putItemDesc = item.Desc;
     this.isChecked = new Array(this.genres.length).fill(false);
@@ -182,6 +185,43 @@ export class UploadComponent implements OnInit {
       }
     }
   }
+  getPutGenre(){
+    let genres = '';
+    for(let i = 0; i<this.genres.length; i++){
+      if(this.isChecked[i]){
+        genres += this.genres[i].Name + ", ";
+      }
+    }
+    genres = genres.slice(0, -2);
+    return genres;
+  }
+  putItem(type : string){
+    if(type == 'MOVIE') this.PutMovie();
+    else if(type == 'TV SHOW') this.PutShow();
+  }
+
+  PutMovie(){
+    console.log(this.isChecked);
+    let putItem = {
+      "id" : this.putItemId,
+      "Name" : this.putItemName,
+      "Desc" : this.putItemDesc,
+      "Genre" : this.getPutGenre(),
+      "Rating" : this.putItemRating,
+      "Thumbnail" : this.putItemThumbnail,
+      "Video" : this.putItemVideo
+    }
+
+    this.moviesService.updateMovie(putItem).subscribe(data => {
+      this.getAllMovies();
+      this.closeDialog();
+    },err => this.errorMessage = err.statusText);
+  }
+
+  PutShow(){
+
+  }
+
 
   setDeleteItem(item : any){
     this.deleteItemName = item.Name;
@@ -190,6 +230,7 @@ export class UploadComponent implements OnInit {
 
   closeDialog(){
     this.closeButton.nativeElement.click();
+    this.discardButton.nativeElement.click();
   }
 
 }

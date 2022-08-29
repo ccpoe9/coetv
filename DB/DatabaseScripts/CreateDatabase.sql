@@ -75,6 +75,35 @@ VALUES(in_Name,in_Genre,in_Thumbnail,in_Video, in_Desc, in_Rating , in_Url);
 END //
 
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS UpdMovie;
+
+DELIMITER //
+
+CREATE PROCEDURE UpdMovie(
+	IN in_id INT,
+	IN in_Name VARCHAR(50),
+    IN in_Genre VARCHAR(100),
+    IN in_Thumbnail VARCHAR(100),
+    IN in_Video VARCHAR(100),
+    IN in_Desc VARCHAR(250),
+    IN in_Rating DECIMAL(4,1)
+)
+BEGIN
+UPDATE `mediatime-db`.Movies
+SET
+	`Name` = in_Name,
+    `Genre` = in_Genre,
+    `Thumbnail` = in_Thumbnail,
+    `Video` = in_Video,
+    `Desc` = in_Desc,
+    `Rating` = in_Rating
+WHERE 
+	`id` = in_id;
+END //
+
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS GetMovieByUrl;
 
 DELIMITER //

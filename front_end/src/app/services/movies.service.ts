@@ -45,8 +45,17 @@ export class MoviesService {
   }
 
   createMovie(movie : any){
-    console.log(movie);
     return this.http.post(config.APIROOT+config.APIURLS.MOVIES, movie)
+    .pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
+
+  updateMovie(movie : any){
+    return this.http.put(config.APIROOT+config.APIURLS.MOVIES, movie)
     .pipe(
       catchError((err) => {
         console.error(err);
