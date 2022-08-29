@@ -28,12 +28,22 @@ export class UploadComponent implements OnInit {
   totalShowPages : number;
   genres : Genre[];
   isChecked : boolean[];
+
   postItemName : string = '';
   postItemDesc : string = '';
   postItemGenre : string = '';
   postItemRating : number = 0;
   postItemThumbnail : string = '';
   postItemVideo : string = '';
+
+  putItemName : string;
+  putItemDesc : string;
+  putItemGenres : string[];
+  putItemRating : number;
+  putItemThumbnail : string;
+  putItemVideo : string;
+
+  deleteItemName : string;
 
   errorMessage : string;
 
@@ -94,7 +104,7 @@ export class UploadComponent implements OnInit {
   }
 
   PostMovie(){
-    this.setGenre();
+    this.setPostGenre();
     let postItem = {
       "Name" : this.postItemName,
       "Desc" : this.postItemDesc,
@@ -111,7 +121,7 @@ export class UploadComponent implements OnInit {
   }
 
   PostShow(){
-    this.setGenre();
+    this.setPostGenre();
     let postItem = {
       "Name" : this.postItemName,
       "Desc" : this.postItemDesc,
@@ -126,7 +136,7 @@ export class UploadComponent implements OnInit {
     },err => this.errorMessage = err.statusText);
   }
 
-  setGenre(){
+  setPostGenre(){
     for(let i = 0; i<this.genres.length; i++){
       if(this.isChecked[i]){
         this.postItemGenre += this.genres[i].Name + ", ";
@@ -145,11 +155,6 @@ export class UploadComponent implements OnInit {
     this.isChecked = new Array(this.genres.length).fill(false);
     this.addForm.nativeElement.reset();
   }
-
-  closeDialog(){
-    this.closeButton.nativeElement.click();
-  }
-
   cancelPost(){
     this.errorMessage = '';
     this.resetPostItems();
@@ -157,6 +162,34 @@ export class UploadComponent implements OnInit {
 
   changeChecked( id : number){
     this.isChecked[(id-1)] = !this.isChecked[(id-1)];
+  }
+
+  setPutItems(item : any){
+    this.putItemName = item.Name;
+    this.putItemDesc = item.Desc;
+    this.isChecked = new Array(this.genres.length).fill(false);
+    this.putItemGenres = item.Genre.replace(/\s/g, '').split(',');
+    this.setEditChecked();
+    this.putItemRating = item.Rating;
+    this.putItemThumbnail = item.Thumbnail;
+    this.putItemVideo = item.Video;
+  }
+
+  setEditChecked(){
+    for(let i=0; i<this.genres.length; i++){
+      if(this.putItemGenres.includes(this.genres[i].Name)){
+        this.isChecked[i] = true;
+      }
+    }
+  }
+
+  setDeleteItem(item : any){
+    this.deleteItemName = item.Name;
+  }
+
+
+  closeDialog(){
+    this.closeButton.nativeElement.click();
   }
 
 }
