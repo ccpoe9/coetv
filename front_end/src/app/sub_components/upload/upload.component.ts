@@ -51,7 +51,6 @@ export class UploadComponent implements OnInit {
   @ViewChild('closeButton') closeButton: ElementRef;
   @ViewChild('discardButton') discardButton: ElementRef;
   @ViewChild('addForm') addForm: ElementRef;
-  @ViewChild('editForm') editForm: ElementRef;
   ngOnInit(): void {
     this.constructParams(1,20,'','','id','DESC');
     this.getAllMovies();
@@ -164,17 +163,16 @@ export class UploadComponent implements OnInit {
   }
 
   setPutItems(item : any){
-    this.editForm.nativeElement.reset();
     this.errorMessage = '';
     this.putItemId = item.id;
     this.putItemName = item.Name;
     this.putItemDesc = item.Desc;
     this.isChecked = new Array(this.genres.length).fill(false);
     this.putItemGenres = item.Genre.replace(/\s/g, '').split(',');
-    this.setEditChecked();
     this.putItemRating = item.Rating;
     this.putItemThumbnail = item.Thumbnail;
     this.putItemVideo = item.Video;
+    this.setEditChecked();
   }
 
   setEditChecked(){
