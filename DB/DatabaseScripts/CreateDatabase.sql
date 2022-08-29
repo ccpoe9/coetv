@@ -104,6 +104,21 @@ END //
 
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS DeleteMovie;
+
+DELIMITER //
+
+CREATE PROCEDURE DeleteMovie(
+	IN in_id INT
+)
+BEGIN
+DELETE FROM `mediatime-db`.Movies
+WHERE 
+	`id` = in_id;
+END //
+
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS GetMovieByUrl;
 
 DELIMITER //
@@ -253,3 +268,5 @@ BEGIN
 END //
 
 DELIMITER ; 
+
+

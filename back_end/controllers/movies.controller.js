@@ -1,6 +1,6 @@
 var db = require('../config/db.config');
 const Joi = require('joi');
-const { validateParamsGetMoviesByPage, validateParamsGetMovieByUrl, validateParamsPostMovie , validateParamsUpdateMovie} = require('../validation/validator');
+const { validateParamsGetMoviesByPage, validateParamsGetMovieByUrl, validateParamsPostMovie , validateParamsUpdateMovie, validateParamsDeleteMovie} = require('../validation/validator');
 const { urlGenerator } = require('../generators/urlGenerate');
 
 exports.GetMoviesByPage = (req,res) => {
@@ -15,8 +15,7 @@ exports.GetMoviesByPage = (req,res) => {
     let GetMoviesByPage = 
     `CALL GetMoviesByPage(${req.query.currentPage},${req.query.size},'${req.query.search}','${req.query.genre}','${req.query.orderBy}','${req.query.orderDir}', @totalRecords, @totalPages);
      SELECT @totalRecords as totalRecords, @totalPages as totalPages;`;
-
-    console.log(GetMoviesByPage);
+     
     db.query(GetMoviesByPage, (err,data,fields) =>{
         if(err){
             console.error(err.message);
@@ -107,6 +106,29 @@ exports.UpdateMovie = (req,res) => {
             return res.status(400).end();
         }
         res.statusMessage = "PUT SUCCESFUL";
+        res.status(200).end();
+    });
+}
+
+exports.DeleteMovie = (req,res) => {
+
+    const { error, value } = validateParamsDeleteMovie(req.query);
+    if(error){
+        console.log(error);
+        res.statusMessage = "Input Validation Error : " + error.details[0].message;
+        return res.status(400).end();
+    }
+
+    let DeleteMovie = 
+    `CALL DeleteMovie(${req.query.id});`;
+
+    db.query(DeleteMovie, (err,data,fields) => {
+        if(err){
+            console.error(err);
+            res.statusMessage = "SQL Error : " + err.message;
+            return res.status(400).end();
+        }
+        res.statusMessage = "DELETE SUCCESFUL";
         res.status(200).end();
     });
 }

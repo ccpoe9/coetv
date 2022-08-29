@@ -64,5 +64,17 @@ export class MoviesService {
     );
   }
 
+  deleteMovie(httpDeleteParams : HttpParams){
+    return this.http.delete(config.APIROOT+config.APIURLS.MOVIES, {
+      params : httpDeleteParams
+    })
+    .pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
+
 
 }

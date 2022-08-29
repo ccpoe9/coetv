@@ -69,3 +69,9 @@ const UpdateMovieSchema = Joi.object({
 });
 
 exports.validateParamsUpdateMovie = validator(UpdateMovieSchema);
+
+const DeleteMovieSchema = Joi.object({
+    id : Joi.number().min(1).required()
+});
+
+exports.validateParamsDeleteMovie = validator(DeleteMovieSchema);

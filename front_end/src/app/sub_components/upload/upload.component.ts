@@ -19,6 +19,7 @@ export class UploadComponent implements OnInit {
   ContentTypes : string[] = ['MOVIE', 'TV SHOW'];
   currentContentType : string = this.ContentTypes[0];
   httpParams : HttpParams;
+  httpDeleteParams : HttpParams;
 
   movies : Movie[];
   totalMovieRecords : number;
@@ -45,11 +46,13 @@ export class UploadComponent implements OnInit {
   putItemVideo : string;
 
   deleteItemName : string;
+  deleteItemId : number;
 
   errorMessage : string;
 
   @ViewChild('closeButton') closeButton: ElementRef;
   @ViewChild('discardButton') discardButton: ElementRef;
+  @ViewChild('cancelButton') cancelButton: ElementRef;
   @ViewChild('addForm') addForm: ElementRef;
   ngOnInit(): void {
     this.constructParams(1,20,'','','id','DESC');
@@ -222,12 +225,34 @@ export class UploadComponent implements OnInit {
 
   setDeleteItem(item : any){
     this.deleteItemName = item.Name;
+    this.deleteItemId = item.id;
+
   }
 
+  deleteItem(type : string){
+    if(type == 'MOVIE') this.DeleteMovie();
+    else if(type == 'TV SHOW') this.DeleteShow();
+  }
+
+  DeleteMovie(){
+     this.httpDeleteParams = new HttpParams()
+     .set('id', this.deleteItemId);
+
+     this.moviesService.deleteMovie(this.httpDeleteParams).subscribe(data => {
+      this.getAllMovies();
+      this.closeDialog();
+    },err => console.log(err.statusText));
+
+  }
+
+  DeleteShow(){
+
+  }
 
   closeDialog(){
     this.closeButton.nativeElement.click();
     this.discardButton.nativeElement.click();
+    this.cancelButton.nativeElement.click();
   }
 
 }

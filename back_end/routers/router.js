@@ -11,6 +11,7 @@ router.get('/api', (req,res) =>{
 router.get('/api/movies',moviescontroller.GetMoviesByPage);
 router.post('/api/movies',moviescontroller.PostMovie);
 router.put('/api/movies',moviescontroller.UpdateMovie);
+router.delete('/api/movies',moviescontroller.DeleteMovie);
 router.get('/api/movies/video', moviescontroller.GetMovieByUrl);
 router.get('/api/genres', moviescontroller.GetAllGenres);
 router.get('/api/shows',showscontroller.GetShowsByPage);
