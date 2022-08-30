@@ -4,6 +4,13 @@
     width: 95%;
     margin-left: 2.5%;
 }
+
+#episodeTable{
+    color : black;
+    border: 3px solid black;
+    width: 95%;
+    margin-left: 2.5%;
+}
 .table-header{
     display: flex;
     justify-content: space-between;
@@ -66,4 +73,28 @@ tbody > tr:hover{
 
 .error-text{
     color : red;
+}
+
+#episodesDropdown{
+    color:black;
+    background-color: white;
+    border-color: black;
+    border-radius: 10px;
+}
+
+#episodesDropdown:hover {
+    background-color: aqua;
+    color: black;
+}
+
+#episodesAdd{
+    color:black;
+    background-color: white;
+    border-color: black;
+    border-radius: 10px;
+}
+
+#episodesAdd:hover {
+    background-color: aqua;
+    color: black;
 }
