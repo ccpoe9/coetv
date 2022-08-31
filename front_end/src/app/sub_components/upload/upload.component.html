@@ -117,7 +117,7 @@
         </form>
         <div class="table-content mt-4" *ngIf="currentContentType=='TV SHOW'">
           <div class="table-header">
-            <div class="btn-group mb-4">
+            <div class="btn-group mb-2">
               <button type="button" class="btn" [ngClass]="{'dropdown-toggle': this.totalSeasons>1, 'disabled' : this.totalSeasons<=1 }" id="episodesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 SEASON {{editCurrentSeason}}
               </button>
@@ -164,6 +164,28 @@
                 </tr>
               </tbody>
             </table>
+            <div class="post-episode row ml-3 mr-3 mb-3">
+              <div class="col-1 mb-3">
+                <label for="FormControlInput1" class="form-label">Season</label>
+                <input type="number" step="1" class="form-control" id="FormControlInput2" placeholder="1" name=""required>
+              </div>
+              <div class="col-1 mb-3">
+                <label for="FormControlInput1" class="form-label">Episode</label>
+                <input type="number" step="1" class="form-control" id="FormControlInput2" placeholder="1" name=""required>
+              </div>
+              <div class="col-12 mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name=""></textarea>
+              </div>
+              <div class="col-12 mb-3">
+                <label for="FormControlInput1" class="form-label">Video Link</label>
+                <input type="url" class="form-control" id="FormControlInput3" name=""required>
+              </div>
+              <div class="col-12 d-flex justify-content-end">
+                <button type="button" class="btn">CLEAR</button>
+                <button type="button" class="btn ml-2">POST</button>
+              </div>
+            </div>
       </div>
       </div>
       <div class="modal-footer">

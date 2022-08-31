@@ -100,6 +100,12 @@ exports.PostEpisode = async (req,res) => {
 
     totalSeasons  = await getLatestSeason(req.body.showName);
     
+    var EpisodeExists = await ifEpisodeExists(req.body.showName, req.body.season, req.body.episode);
+
+    if(EpisodeExists){
+        res.statusMessage = "Input Validation Error : Episode already exists";
+        return res.status(400).end();
+    }
     if(req.body.season > totalSeasons + 1 || !totalSeasons && req.body.season > 1){
         res.statusMessage = "Input Validation Error : Cannot insert seasons out of order";
         return res.status(400).end();
@@ -144,4 +150,20 @@ getLatestSeason = async (showName) => {
             resolve(data[1][0].totalSeasons);
         });
     });
+}
+
+ifEpisodeExists = async (showName, season, episode) => {
+
+    let GetEpisodesByShowSeason =
+    `CALL GetEpisodesByShowSeason('${showName}',${season}, @totalEpisodes);`;
+
+    return new Promise((resolve, reject) => {
+        db.query(GetEpisodesByShowSeason, (err,data,fields) =>{
+            if(err){
+                reject(err.message);
+            }
+            resolve(data[0].some( obj => (obj.Season === season && obj.Episode === episode )));
+        }); 
+    });
+
 }
