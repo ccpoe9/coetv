@@ -1,6 +1,6 @@
 var db = require('../config/db.config');
 const Joi = require('joi');
-const { validateParamsGetMoviesByPage, validateParamsGetShowByUrl, validateParamsGetEpisodesByShowSeason, validateParamsPostShow } = require('../validation/validator');
+const { validateParamsGetMoviesByPage, validateParamsGetShowByUrl, validateParamsGetEpisodesByShowSeason, validateParamsPostShow , validateParamsPostEpisode} = require('../validation/validator');
 const { urlGenerator } = require('../generators/urlGenerate');
 
 exports.GetShowsByPage = (req,res) => {
@@ -94,4 +94,54 @@ exports.PostShow = (req,res) => {
         res.status(200).end();
     });
 
+}
+
+exports.PostEpisode = async (req,res) => {
+
+    totalSeasons  = await getLatestSeason(req.body.showName);
+    
+    if(req.body.season > totalSeasons + 1 || !totalSeasons && req.body.season > 1){
+        res.statusMessage = "Input Validation Error : Cannot insert seasons out of order";
+        return res.status(400).end();
+    }
+    const { error, value } = validateParamsPostEpisode(req.body);
+    if(error){
+        console.log(error);
+        res.statusMessage = "Input Validation Error : " + error.details[0].message;
+        return res.status(400).end();
+    }
+
+
+    let PostEpisode =
+    `CALL InsEpisode('${req.body.Name}', '${req.body.showName}',${req.body.season},${req.body.episode},'${req.body.Video}','${req.body.Desc}');`;
+
+    db.query(PostEpisode, (err,data,fields) => {
+        if(err){
+            console.error(err.message);
+            res.statusMessage = "SQL Error : " + err.message;
+            return res.status(400).end();
+        }
+        res.statusMessage = "POST SUCCESFUL";
+        res.status(200).end();
+    });
+}
+
+getLatestSeason = async (showName) => {
+
+    let getTotalSeasons =
+    `SET @totalSeasons := 
+    (SELECT DISTINCT(\`Season\`) FROM \`mediatime-db\`.\`Episodes\` e
+        WHERE e.\`ShowName\` = '${showName}'
+        ORDER BY \`Season\` DESC LIMIT 1);
+    SELECT @totalSeasons as totalSeasons;`;
+
+    return new Promise((resolve, reject) => {
+        db.query(getTotalSeasons, (err,data,fields) =>{
+            if(err){
+                console.error(err.message);
+                reject(err.message);
+            }
+            resolve(data[1][0].totalSeasons);
+        });
+    });
 }

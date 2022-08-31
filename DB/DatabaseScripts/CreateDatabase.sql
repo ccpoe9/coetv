@@ -311,4 +311,20 @@ END //
 
 DELIMITER ; 
 
+DROP PROCEDURE IF EXISTS InsEpisode;
 
+DELIMITER //
+CREATE PROCEDURE InsEpisode(
+	IN in_Name VARCHAR(50),
+	IN in_showName VARCHAR(50),
+    IN in_season INT,
+    IN in_episode INT,
+    IN in_Video VARCHAR(100),
+    IN in_Desc VARCHAR(250)
+)
+BEGIN
+INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`,`Desc`)
+VALUES(in_Name, in_showName, in_season, in_episode, in_Video, in_Desc);
+END //
+
+DELIMITER ; 

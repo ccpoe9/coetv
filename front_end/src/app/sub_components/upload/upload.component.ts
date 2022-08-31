@@ -1,5 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { switchMap } from 'rxjs';
+import { Episode } from 'src/app/models/episode.model';
 import { Genre } from 'src/app/models/genre.model';
 import { Movie } from 'src/app/models/movie.model';
 import { Tv } from 'src/app/models/tv.model';
@@ -29,6 +31,11 @@ export class UploadComponent implements OnInit {
   totalShowPages : number;
   genres : Genre[];
   isChecked : boolean[];
+
+  totalSeasons : number;
+  episodes : Episode[];
+  seasons : number[];
+  editCurrentSeason : number = 1;
 
   postItemName : string = '';
   postItemDesc : string = '';
@@ -167,6 +174,9 @@ export class UploadComponent implements OnInit {
   }
 
   setPutItems(item : any){
+    if(this.currentContentType=='TV SHOW'){
+      this.getShow(item.URL);
+    }
     this.errorMessage = '';
     this.putItemId = item.id;
     this.putItemName = item.Name;
@@ -177,6 +187,29 @@ export class UploadComponent implements OnInit {
     this.putItemThumbnail = item.Thumbnail;
     this.putItemVideo = item.Video;
     this.setEditChecked();
+  }
+  getShow(url : string){
+    this.tvservice.getShow(`/video?t=s&v=${url}`).pipe( switchMap( data => {
+      this.totalSeasons = data[2][0].totalSeasons;
+      this.seasons = Array.from({length: this.totalSeasons}, (_, i) => i + 1);
+      this.editCurrentSeason = 1;
+      this.httpParams = new HttpParams()
+      .set('showName',this.putItemName)
+      .set('season',this.editCurrentSeason);
+      return this.tvservice.getShowSeason(this.httpParams);
+    })).subscribe( data => {
+      this.episodes = data[0];
+    });
+  }
+
+  changeSeason(season : number){
+    this.editCurrentSeason = season;
+    this.httpParams = new HttpParams()
+      .set('showName',this.putItemName)
+      .set('season',season);
+      this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
+        this.episodes = data[0];
+      });
   }
 
   setEditChecked(){

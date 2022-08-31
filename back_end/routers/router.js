@@ -18,4 +18,5 @@ router.get('/api/shows',showscontroller.GetShowsByPage);
 router.post('/api/shows',showscontroller.PostShow);
 router.get('/api/shows/video',showscontroller.GetShowByUrl);
 router.get('/api/shows/episodes',showscontroller.GetEpisodesByShowSeason);
+router.post('/api/shows/episodes', showscontroller.PostEpisode);
 module.exports = router;

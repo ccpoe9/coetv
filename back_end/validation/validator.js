@@ -1,9 +1,9 @@
 const { valid } = require('joi');
 const Joi = require('joi');
+var db = require('../config/db.config');
 
 const validator = (schema) => (payload) => 
     schema.validate(payload);
-
 
 const GetMoviesByPageSchema =  Joi.object({
     currentPage : Joi.number().min(1).required(),
@@ -75,3 +75,14 @@ const DeleteMovieSchema = Joi.object({
 });
 
 exports.validateParamsDeleteMovie = validator(DeleteMovieSchema);
+
+const PostEpisodeSchema = Joi.object({
+    Name : Joi.string().required(),
+    Desc : Joi.string().required(),
+    showName : Joi.string().required(),
+    season : Joi.number().min(1).required(),
+    episode : Joi.number().min(1).required(),
+    Video : Joi.string().required()
+});
+
+exports.validateParamsPostEpisode = validator(PostEpisodeSchema);
