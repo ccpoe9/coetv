@@ -306,4 +306,48 @@
         </tbody>
       </table>
 </div>
+<div class="d-flex justify-content-center" *ngIf="currentContentType=='MOVIE'">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination" *ngIf="totalMoviePages!=0">
+      <li class="page-item" [ngClass]="{'disabled': (currentPage-1)<=0 }">
+        <a class="page-link" (click)="getNextPage(currentPage-1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li> 
+      <div *ngFor="let number of pageNumbers">
+      <li class="page-item" *ngIf="number>=1 && number <= totalMoviePages"><a class="page-link" [ngStyle]="{'color': (currentPage==number) ? 'white': ''}" (click)="getNextPage(number)">{{number}}</a></li>
+      </div>
+      <li class="page-item" [ngClass]="{'disabled': (currentPage+1)>totalMoviePages}">
+        <a class="page-link" (click)="getNextPage(currentPage+1)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <h6 class="text-white mb-4" *ngIf="totalMoviePages<=0">NO RECORDS FOUND...</h6>
+</div>
+<div class="d-flex justify-content-center" *ngIf="currentContentType=='TV SHOW'">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination" *ngIf="totalShowPages!=0">
+      <li class="page-item" [ngClass]="{'disabled': (currentPage-1)<=0 }">
+        <a class="page-link" (click)="getNextPage(currentPage-1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li> 
+      <div *ngFor="let number of pageNumbers">
+      <li class="page-item" *ngIf="number>=1 && number <= totalShowPages"><a class="page-link" [ngStyle]="{'color': (currentPage==number) ? 'white': ''}" (click)="getNextPage(number)">{{number}}</a></li>
+      </div>
+      <li class="page-item" [ngClass]="{'disabled': (currentPage+1)>totalShowPages}">
+        <a class="page-link" (click)="getNextPage(currentPage+1)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <h6 class="text-white mb-4" *ngIf="totalShowPages<=0">NO RECORDS FOUND...</h6>
+</div>
 

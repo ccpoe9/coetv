@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ɵsetCurrentInjector } from '@angular/core';
 import { switchMap } from 'rxjs';
 import { Episode } from 'src/app/models/episode.model';
 import { Genre } from 'src/app/models/genre.model';
@@ -31,6 +31,11 @@ export class UploadComponent implements OnInit {
   totalShowPages : number;
   genres : Genre[];
   isChecked : boolean[];
+
+  startPage : number = 1;
+  endPage : number = 6;
+  pageNumbers : number[] = [0,0,0,0,0,0];
+  currentPage : number = 1;
 
   totalSeasons : number;
   episodes : Episode[];
@@ -77,7 +82,6 @@ export class UploadComponent implements OnInit {
   ngOnInit(): void {
     this.constructParams(1,20,'','','id','DESC');
     this.getAllMovies();
-    this.getAllShows();
     this.getAllGenres();
   }
   constructParams(currentPage : number,
@@ -98,17 +102,19 @@ export class UploadComponent implements OnInit {
   getAllMovies(){
     this.moviesService.getAllMovies(this.httpParams).subscribe(data => {
       this.movies = data[0];
-      this.totalMoviePages = data[2][0].totalPages;
+      this.totalMoviePages = data[2][0].totalPages
       this.totalMovieRecords = data[2][0].totalRecords;
-      
+      this.setPages(this.totalMoviePages);
   });
   }
 
   getAllShows(){
     this.tvservice.getAllShows(this.httpParams).subscribe(data => {
       this.shows = data[0];
-      this.totalShowPages = data[2][0].totalPages;
+      this.totalShowPages = data[2][0].totalPages
+      console.log(this.totalShowPages);;
       this.totalShowRecords = data[2][0].totalRecords;
+      this.setPages(this.totalShowPages);
   });
   }
   getAllGenres(){
@@ -119,7 +125,22 @@ export class UploadComponent implements OnInit {
   }
 
   changeContentType( type : string){
+    this.resetPages();
     this.currentContentType = type;
+    this.constructParams(this.currentPage,20,'','','id','DESC');
+    if(type == this.ContentTypes[1]){
+      this.getAllShows();
+    }
+    else{
+      this.getAllMovies();
+    }  
+  }
+
+  resetPages(){
+    this.pageNumbers = [0,0,0,0,0,0];
+    this.currentPage = 1;
+    this.startPage = 1;
+    this.endPage = 6;
   }
 
   postItem(type : string){
@@ -138,12 +159,14 @@ export class UploadComponent implements OnInit {
       "Video" : this.postItemVideo
     }
     this.moviesService.createMovie(postItem).pipe( switchMap( data => {
+      this.resetPages();
       this.constructParams(1,20,'','','id','DESC');
       return this.moviesService.getAllMovies(this.httpParams);
     })).subscribe(data => {
       this.movies = data[0];
       this.totalMoviePages = data[2][0].totalPages;
       this.totalMovieRecords = data[2][0].totalRecords;
+      this.setPages(this.totalMoviePages);
       this.resetPostItems();
       this.closeDialog();
     },err => this.errorMessage = err.statusText);
@@ -159,12 +182,14 @@ export class UploadComponent implements OnInit {
       "Thumbnail" : this.postItemThumbnail
     }
     this.tvservice.createShow(postItem).pipe( switchMap ( data => {
+      this.resetPages();
       this.constructParams(1,20,'','','id','DESC');
       return this.tvservice.getAllShows(this.httpParams);
     })).subscribe(data => {
       this.shows = data[0];
       this.totalShowPages = data[2][0].totalPages;
       this.totalShowRecords = data[2][0].totalRecords;
+      this.setPages(this.totalShowPages)
       this.resetPostItems();
       this.closeDialog();
     },err => this.errorMessage = err.statusText);
@@ -306,12 +331,14 @@ export class UploadComponent implements OnInit {
     }
 
     this.moviesService.updateMovie(putItem).pipe( switchMap( data => {
+      this.resetPages();
       this.constructParams(1,20,'','','id','DESC');
       return this.moviesService.getAllMovies(this.httpParams);
     })).subscribe(data => {
       this.movies = data[0];
       this.totalMoviePages = data[2][0].totalPages;
       this.totalMovieRecords = data[2][0].totalRecords;
+      this.setPages(this.totalMoviePages);
       this.closeDialog();
     },err => this.errorMessage = err.statusText);
   }
@@ -327,12 +354,14 @@ export class UploadComponent implements OnInit {
     }
 
     this.tvservice.updateShow(putItem).pipe( switchMap( data => {
+      this.resetPages();
       this.constructParams(1,20,'','','id','DESC');
       return this.tvservice.getAllShows(this.httpParams)
     })).subscribe(data => {
       this.shows = data[0];
       this.totalShowPages = data[2][0].totalPages;
       this.totalShowRecords = data[2][0].totalRecords;
+      this.setPages(this.totalShowPages);
       this.closeDialog();
     }, err => this.errorMessage = err.statusText);
   }
@@ -353,12 +382,14 @@ export class UploadComponent implements OnInit {
      this.httpDeleteParams = new HttpParams()
      .set('id', this.deleteItemId);
      this.moviesService.deleteMovie(this.httpDeleteParams).pipe( switchMap( data => {
+      this.resetPages();
       this.constructParams(1,20,'','','id','DESC');
       return this.moviesService.getAllMovies(this.httpParams);
     })).subscribe(data => {
       this.movies = data[0];
       this.totalMoviePages = data[2][0].totalPages;
       this.totalMovieRecords = data[2][0].totalRecords;
+      this.setPages(this.totalMoviePages);
       this.closeDialog();
     },err => console.log(err.statusText));
 
@@ -368,12 +399,14 @@ export class UploadComponent implements OnInit {
     this.httpDeleteParams = new HttpParams()
     .set('id', this.deleteItemId);
     this.tvservice.deleteShow(this.httpDeleteParams).pipe( switchMap( data => {
+      this.resetPages();
       this.constructParams(1,20,'','','id','DESC');
       return this.tvservice.getAllShows(this.httpParams);
     })).subscribe(data => {
       this.shows = data[0];
       this.totalShowPages = data[2][0].totalPages;
       this.totalShowRecords = data[2][0].totalRecords;
+      this.setPages(this.totalShowPages);
       this.closeDialog();
     },err => console.log(err.statusText));
   }
@@ -427,6 +460,39 @@ export class UploadComponent implements OnInit {
       this.editEpisodeMode = false;
       this.errorMessage = '';
     },err => this.errorMessage = err.statusText);
+  }
+
+  getNextPage(nextPage : number){
+    this.currentPage = nextPage;
+    this.constructParams(this.currentPage, 20, '', '', 'id', 'DESC');
+    if(this.currentContentType == this.ContentTypes[0]){
+      this.getAllMovies();
+    }
+    else{
+      this.getAllShows();
+    }
+  }
+  
+  setPages(totalPages : number){
+    this.endPage = Math.min(totalPages,this.endPage);
+  
+    while(this.currentPage - this.startPage < 3 && this.startPage > 1){
+      this.endPage--;
+      this.startPage--;
+    }
+    while(this.endPage - this.currentPage < 3 && this.endPage < totalPages){
+      this.endPage++;
+      this.startPage++;
+    }
+  
+    let i = 0;
+    let startPage = this.startPage;
+    let endPage = this.endPage;
+    while(startPage <= endPage){
+      this.pageNumbers[i] = startPage;
+      startPage++;
+      i++;
+    }
   }
 
 }
