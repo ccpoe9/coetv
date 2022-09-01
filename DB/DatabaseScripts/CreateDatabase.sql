@@ -15,7 +15,35 @@ CREATE TABLE `mediatime-db`.`Movies` (
 ALTER TABLE `mediatime-db`.`Movies` 
 ADD UNIQUE INDEX `URL_UNIQUE` (`URL` ASC) VISIBLE;
 
+CREATE TABLE `mediatime-db`.`Shows` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(50) NULL,
+  `Genre` VARCHAR(100) NULL,
+  `Thumbnail` VARCHAR(100) NULL,
+  `Desc` VARCHAR(250) NULL,
+  `Rating` DECIMAL(4,1),
+  `URL` VARCHAR(50),
+  PRIMARY KEY (`id`));
+  
+ALTER TABLE `mediatime-db`.`Shows` 
+ADD UNIQUE INDEX `URL_UNIQUE` (`URL` ASC) VISIBLE;
+
+CREATE TABLE `mediatime-db`.`Episodes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(50) NULL,
+  `ShowName` VARCHAR(50) NULL,
+  `Season` INT,
+  `Episode` INT,
+  `Video` VARCHAR(100) NULL,
+  `Desc` VARCHAR(250) NULL,
+  PRIMARY KEY (`id`));
+
 USE `mediatime-db`;
+
+CREATE TABLE `mediatime-db`.`Genres` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
 
 DROP PROCEDURE IF EXISTS GetMoviesByPage;
 
@@ -131,11 +159,6 @@ BEGIN
 END //
 
 DELIMITER ; 
-
-CREATE TABLE `mediatime-db`.`Genres` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`));
   
 DELIMITER //
 CREATE PROCEDURE GetAllGenres()
@@ -144,19 +167,6 @@ BEGIN
 END //
 
 DELIMITER ;
-
-CREATE TABLE `mediatime-db`.`Shows` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(50) NULL,
-  `Genre` VARCHAR(100) NULL,
-  `Thumbnail` VARCHAR(100) NULL,
-  `Desc` VARCHAR(250) NULL,
-  `Rating` DECIMAL(4,1),
-  `URL` VARCHAR(50),
-  PRIMARY KEY (`id`));
-  
-ALTER TABLE `mediatime-db`.`Shows` 
-ADD UNIQUE INDEX `URL_UNIQUE` (`URL` ASC) VISIBLE;
   
 DROP PROCEDURE IF EXISTS GetShowsByPage;
 
@@ -229,16 +239,25 @@ CREATE PROCEDURE UpdShow(
     IN in_Rating DECIMAL(4,1)
 )
 BEGIN
-UPDATE `mediatime-db`.Movies
+DECLARE showOldName VARCHAR(50);
+SET showOldName = (SELECT `Name` FROM `mediatime-db`.Shows
+				WHERE `id` = in_id);
+                
+UPDATE `mediatime-db`.Shows
 SET
 	`Name` = in_Name,
     `Genre` = in_Genre,
     `Thumbnail` = in_Thumbnail,
-    `Video` = in_Video,
     `Desc` = in_Desc,
     `Rating` = in_Rating
 WHERE 
 	`id` = in_id;
+    
+UPDATE `mediatime-db`.Episodes
+SET
+	`ShowName`= in_Name
+WHERE
+	`ShowName`= showOldName;
 END //
 
 DELIMITER ;
@@ -251,22 +270,33 @@ CREATE PROCEDURE DeleteShow(
 	IN in_id INT
 )
 BEGIN
-DELETE FROM `mediatime-db`.Movies
+SET @showName = (SELECT `Name` FROM `mediatime-db`.Shows
+				WHERE `id` = in_id);           
+DELETE FROM `mediatime-db`.Episodes
+WHERE
+	`ShowName` = @showName;
+DELETE FROM `mediatime-db`.Shows
 WHERE 
 	`id` = in_id;
 END //
 
 DELIMITER ;
-  
-CREATE TABLE `mediatime-db`.`Episodes` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(50) NULL,
-  `ShowName` VARCHAR(50) NULL,
-  `Season` INT,
-  `Episode` INT,
-  `Video` VARCHAR(100) NULL,
-  `Desc` VARCHAR(250) NULL,
-  PRIMARY KEY (`id`));
+
+DROP PROCEDURE IF EXISTS DeleteEpisode;
+
+DELIMITER //
+
+CREATE PROCEDURE DeleteEpisode(
+	IN in_id INT
+)
+BEGIN
+DELETE FROM `mediatime-db`.Episodes
+WHERE 
+	`id` = in_id;
+END //
+
+DELIMITER ;
+
 
 
 DELIMITER //
@@ -328,3 +358,27 @@ VALUES(in_Name, in_showName, in_season, in_episode, in_Video, in_Desc);
 END //
 
 DELIMITER ; 
+
+DROP PROCEDURE IF EXISTS UpdEpisode;
+
+DELIMITER //
+CREATE PROCEDURE UpdEpisode(
+	IN in_id INT,
+	IN in_Name VARCHAR(50),
+    IN in_Video VARCHAR(100),
+    IN in_Desc VARCHAR(250)
+)
+BEGIN
+UPDATE `mediatime-db`.Episodes
+SET 
+	`Name` = in_Name,
+    `Video` = in_Video,
+    `Desc` = in_Desc
+WHERE 
+	`id` = in_id;
+END //
+
+DELIMITER ;
+
+
+

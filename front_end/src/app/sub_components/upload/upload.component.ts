@@ -55,15 +55,19 @@ export class UploadComponent implements OnInit {
   postItemEpisodeName : string;
   postItemEpisodeDesc : string;
   postItemEpisodeSeason : number;
-  postItemEpisodeNumber : number;
   postItemEpisodeVideo : string;
-  
+
+  putItemEpisodeName : string;
+  putItemEpisodeDesc : string;
+  putItemEpisodeVideo : string;
+
   deleteItemName : string;
   deleteItemId : number;
 
   errorMessage : string;
 
-  addEpisode : boolean = false;
+  addEpisodeMode : boolean = false;
+  editEpisodeMode : boolean = false;
   editEpisode : number;
 
   @ViewChild('closeButton') closeButton: ElementRef;
@@ -167,18 +171,17 @@ export class UploadComponent implements OnInit {
   }
 
   onAddEpisode(){
-    this.addEpisode = true;
+    this.addEpisodeMode = true;
+    this.editEpisodeMode = false;
     this.postItemEpisodeName = '';
     this.postItemEpisodeSeason = 1;
-    this.postItemEpisodeNumber = 1;
     this.postItemEpisodeVideo = '';
     this.postItemEpisodeDesc = '';
   }
   cancelPostEpisode(){
-    this.addEpisode = false;
+    this.addEpisodeMode = false;
     this.postItemEpisodeName = '';
     this.postItemEpisodeSeason = 1;
-    this.postItemEpisodeNumber = 1;
     this.postItemEpisodeVideo = '';
     this.postItemEpisodeDesc = '';
   }
@@ -187,7 +190,6 @@ export class UploadComponent implements OnInit {
       "Name" : this.postItemEpisodeName,
       "showName" : this.putItemName,
       "season" : this.postItemEpisodeSeason,
-      "episode" : this.postItemEpisodeNumber,
       "Video" : this.postItemEpisodeVideo,
       "Desc" : this.postItemEpisodeDesc
     }
@@ -199,8 +201,10 @@ export class UploadComponent implements OnInit {
       return this.tvservice.getShowSeason(this.httpParams);
     })).subscribe( data => {
       this.episodes = data[0];
-      this.addEpisode = false;
-    });
+      this.addEpisodeMode = false;
+      this.errorMessage = '';
+      alert('New Episode Created.');
+    },err => this.errorMessage = err.statusText);
   }
 
   setPostGenre(){
@@ -361,6 +365,32 @@ export class UploadComponent implements OnInit {
   }
 
   DeleteShow(){
+    this.httpDeleteParams = new HttpParams()
+    .set('id', this.deleteItemId);
+    this.tvservice.deleteShow(this.httpDeleteParams).pipe( switchMap( data => {
+      this.constructParams(1,20,'','','id','DESC');
+      return this.tvservice.getAllShows(this.httpParams);
+    })).subscribe(data => {
+      this.shows = data[0];
+      this.totalShowPages = data[2][0].totalPages;
+      this.totalShowRecords = data[2][0].totalRecords;
+      this.closeDialog();
+    },err => console.log(err.statusText));
+  }
+  
+  DeleteEpisode(episode : Episode){
+    this.httpDeleteParams = new HttpParams()
+    .set('id', episode.id);
+
+    this.tvservice.deleteEpisode(this.httpDeleteParams).pipe( switchMap( data => {
+      this.httpParams = new HttpParams()
+      .set('showName',this.putItemName)
+      .set('season',this.editCurrentSeason);
+      return this.tvservice.getShowSeason(this.httpParams);
+    })).subscribe( data => {
+      this.episodes = data[0];
+      this.errorMessage = '';
+    },err => this.errorMessage = err.statusText);
 
   }
 
@@ -370,8 +400,33 @@ export class UploadComponent implements OnInit {
     this.cancelButton.nativeElement.click();
   }
 
-  setEdit(id : number){
-    this.editEpisode = id;
+  setEdit(episode : Episode){
+    this.editEpisode = episode.id;
+    this.putItemEpisodeName = episode.Name;
+    this.putItemEpisodeDesc = episode.Desc;
+    this.putItemEpisodeVideo = episode.Video;
+    this.addEpisodeMode = false;
+    this.editEpisodeMode  = true;
+  }
+
+  PutEpisode(){
+    let putItem = {
+      "id" : this.editEpisode,
+      "Name" : this.putItemEpisodeName,
+      "Desc" : this.putItemEpisodeDesc,
+      "Video" : this.putItemEpisodeVideo
+    }
+
+    this.tvservice.updateEpisode(putItem).pipe( switchMap( data => {
+      this.httpParams = new HttpParams()
+      .set('showName',this.putItemName)
+      .set('season',this.editCurrentSeason);
+      return this.tvservice.getShowSeason(this.httpParams);
+    })).subscribe( data => {
+      this.episodes = data[0];
+      this.editEpisodeMode = false;
+      this.errorMessage = '';
+    },err => this.errorMessage = err.statusText);
   }
 
 }

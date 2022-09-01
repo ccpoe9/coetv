@@ -1,6 +1,8 @@
 var db = require('../config/db.config');
 const Joi = require('joi');
-const { validateParamsGetMoviesByPage, validateParamsGetShowByUrl, validateParamsGetEpisodesByShowSeason, validateParamsPostShow , validateParamsPostEpisode, validateParamsUpdateShow} = require('../validation/validator');
+const { validateParamsGetMoviesByPage, validateParamsGetShowByUrl, validateParamsGetEpisodesByShowSeason,
+     validateParamsPostShow , validateParamsPostEpisode, validateParamsUpdateShow, validateParamsUpdateEpisode, 
+     validateParamsDeleteShow,  validateParamsDeleteEpisode} = require('../validation/validator');
 const { urlGenerator } = require('../generators/urlGenerate');
 
 exports.GetShowsByPage = (req,res) => {
@@ -124,12 +126,8 @@ exports.PostEpisode = async (req,res) => {
 
     totalSeasons  = await getLatestSeason(req.body.showName);
     
-    var EpisodeExists = await ifEpisodeExists(req.body.showName, req.body.season, req.body.episode);
+    var totalEpisodes = await getTotalEpisodes(req.body.showName, req.body.season);
 
-    if(EpisodeExists){
-        res.statusMessage = "Input Validation Error : Episode already exists";
-        return res.status(400).end();
-    }
     if(req.body.season > totalSeasons + 1 || !totalSeasons && req.body.season > 1){
         res.statusMessage = "Input Validation Error : Cannot insert seasons out of order";
         return res.status(400).end();
@@ -143,7 +141,7 @@ exports.PostEpisode = async (req,res) => {
 
 
     let PostEpisode =
-    `CALL InsEpisode('${req.body.Name}', '${req.body.showName}',${req.body.season},${req.body.episode},'${req.body.Video}','${req.body.Desc}');`;
+    `CALL InsEpisode('${req.body.Name}', '${req.body.showName}',${req.body.season},${totalEpisodes+1},'${req.body.Video}','${req.body.Desc}');`;
 
     db.query(PostEpisode, (err,data,fields) => {
         if(err){
@@ -155,6 +153,78 @@ exports.PostEpisode = async (req,res) => {
         res.status(200).end();
     });
 }
+
+exports.UpdateEpisode = (req,res) => {
+
+    const { error, value } = validateParamsUpdateEpisode(req.body);
+    if(error){
+        console.log(error);
+        res.statusMessage = "Input Validation Error : " + error.details[0].message;
+        return res.status(400).end();
+    }
+
+    let UpdateEpisode = 
+    `CALL UpdEpisode(${req.body.id},'${req.body.Name}','${req.body.Video}', '${req.body.Desc}');`;
+
+    db.query(UpdateEpisode, (err,data,fields) => {
+        if(err){
+            console.error(err.message);
+            res.statusMessage = "SQL Error : " + err.message;
+            return res.status(400).end();
+        }
+        res.statusMessage = "PUT SUCCESFUL";
+        res.status(200).end();
+    });
+}
+
+exports.DeleteShow = (req,res) => {
+
+    const { error, value } = validateParamsDeleteShow(req.query);
+    if(error){
+        console.log(error);
+        res.statusMessage = "Input Validation Error : " + error.details[0].message;
+        return res.status(400).end();
+    }
+
+    let DeleteShow = 
+    `SET SQL_SAFE_UPDATES = 0;
+    CALL DeleteShow(${req.query.id});
+    SET SQL_SAFE_UPDATES = 1;`;
+
+    db.query(DeleteShow, (err,data,fields) => {
+        if(err){
+            console.error(err.message);
+            res.statusMessage = "SQL Error : " + err.message;
+            return res.status(400).end();
+        }
+        res.statusMessage = "DELETE SUCCESFUL";
+        res.status(200).end();
+    });
+}
+exports.DeleteEpisode = (req,res) => {
+
+    const { error, value } = validateParamsDeleteEpisode(req.query);
+    if(error){
+        console.log(error);
+        res.statusMessage = "Input Validation Error : " + error.details[0].message;
+        return res.status(400).end();
+    }
+
+    let DeleteEpisode = 
+    `CALL DeleteEpisode(${req.query.id});`;
+
+    db.query(DeleteEpisode, (err,data,fields) => {
+        if(err){
+            console.error(err.message);
+            res.statusMessage = "SQL Error : " + err.message;
+            return res.status(400).end();
+        }
+        res.statusMessage = "DELETE SUCCESFUL";
+        res.status(200).end();
+    });
+}
+
+
 
 getLatestSeason = async (showName) => {
 
@@ -176,17 +246,19 @@ getLatestSeason = async (showName) => {
     });
 }
 
-ifEpisodeExists = async (showName, season, episode) => {
+
+getTotalEpisodes = async (showName, season) => {
 
     let GetEpisodesByShowSeason =
-    `CALL GetEpisodesByShowSeason('${showName}',${season}, @totalEpisodes);`;
+    `CALL GetEpisodesByShowSeason('${showName}',${season}, @totalEpisodes);
+    SELECT @totalEpisodes as totalEpisodes`;
 
     return new Promise((resolve, reject) => {
         db.query(GetEpisodesByShowSeason, (err,data,fields) =>{
             if(err){
                 reject(err.message);
-            }
-            resolve(data[0].some( obj => (obj.Season === season && obj.Episode === episode )));
+            }   
+            resolve(data[2][0].totalEpisodes);
         }); 
     });
 

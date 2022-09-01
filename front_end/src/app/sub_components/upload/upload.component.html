@@ -113,6 +113,9 @@
               <label for="FormControlInput1" class="form-label">Video Link</label>
               <input type="url" class="form-control" id="FormControlInput3" name="putItemVideo" [(ngModel)]="putItemVideo" required>
             </div>
+            <div class="error-text"*ngIf="errorMessage">
+              <p><i>{{errorMessage}}</i></p>
+            </div>
           </div>
         </form>
         <div class="table-content mt-4" *ngIf="currentContentType=='TV SHOW'">
@@ -130,17 +133,17 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill mb-1 mt-1 ml-1" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                 </svg>
-            </button>
+              </button>
+            </div>
+            <div class="mb-1" *ngIf="editEpisodeMode">
+                <button type="button" class="btn" (click)="editEpisodeMode=false">CANCEL</button>
+                <button type="button" class="btn ml-2" (click)="PutEpisode()">UPDATE</button>
             </div>
           </div>
-          <div class="post-episode row ml-3 mr-3 mb-3" *ngIf="addEpisode">
+          <div class="post-episode row ml-3 mr-3 mb-3" *ngIf="addEpisodeMode">
             <div class="col-1 mb-3">
               <label for="FormControlInput1" class="form-label">Season</label>
               <input type="number" step="1" class="form-control" id="FormControlInput2" placeholder="1" name="postItemEpisodeSeason" [(ngModel)]="postItemEpisodeSeason" required>
-            </div>
-            <div class="col-1 mb-3">
-              <label for="FormControlInput1" class="form-label">Episode</label>
-              <input type="number" step="1" class="form-control" id="FormControlInput2" placeholder="1" name="postItemEpisodeNumber" [(ngModel)]="postItemEpisodeNumber" required>
             </div>
             <div class="col-12 mb-3">
               <label for="FormControlInput1" class="form-label">Name</label>
@@ -172,25 +175,24 @@
               </thead>
               <tbody>
                 <tr *ngFor="let episode of episodes">
-                  <th scope="row"><span *ngIf="episode.id!=editEpisode">{{episode.Episode}}</span>
-                    <input *ngIf="episode.id==editEpisode" type="number" style="width: 75px;" step="1" class="form-control" id="FormControlInput2" value="{{episode.Episode}}" name=""required>
+                  <th scope="row"><span>{{episode.Episode}}</span>
                   </th>
-                  <td><span *ngIf="episode.id!=editEpisode">{{episode.Name}}</span>
-                    <input *ngIf="episode.id==editEpisode" type="text" class="form-control" id="FormControlInput1" value="{{episode.Name}}" name="" required>
+                  <td><span *ngIf="!editEpisodeMode || editEpisodeMode && episode.id!=editEpisode">{{episode.Name}}</span>
+                    <input *ngIf="editEpisodeMode && episode.id==editEpisode" type="text" class="form-control" id="FormControlInput1" name="putItemEpisodeName" [(ngModel)]="putItemEpisodeName" required>
                   </td>
-                  <td><span *ngIf="episode.id!=editEpisode">{{episode.Desc}}</span>
-                    <input *ngIf="episode.id==editEpisode" type="text" class="form-control" id="FormControlInput1" value="{{episode.Desc}}" name="" required>
+                  <td><span *ngIf="!editEpisodeMode || editEpisodeMode && episode.id!=editEpisode">{{episode.Desc}}</span>
+                    <input *ngIf="editEpisodeMode && episode.id==editEpisode" type="text" class="form-control" id="FormControlInput1" name="putItemEpisodeDesc" [(ngModel)]="putItemEpisodeDesc" required>
                   </td>
-                  <td><span *ngIf="episode.id!=editEpisode">{{episode.Video}}</span>
-                    <input *ngIf="episode.id==editEpisode" type="text" class="form-control" id="FormControlInput1" value="{{episode.Video}}" name="" required>
+                  <td><span *ngIf="!editEpisodeMode || editEpisodeMode && episode.id!=editEpisode">{{episode.Video}}</span>
+                    <input *ngIf="editEpisodeMode && episode.id==editEpisode" type="text" class="form-control" id="FormControlInput1" name="putItemEpisodeVideo" [(ngModel)]="putItemEpisodeVideo" required>
                   </td>
-                  <td><div class="icon-buttons-edit" (click)="setEdit(episode.id)">
+                  <td><div class="icon-buttons-edit" (click)="setEdit(episode)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                           <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                           <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                         </svg>
                   </div></td>
-                  <td><div class="icon-buttons-delete">
+                  <td><div class="icon-buttons-delete" (click)="DeleteEpisode(episode)">
                       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                       <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                     </svg>
@@ -295,7 +297,7 @@
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                   </svg>
             </div></td>
-            <td><div class="icon-buttons-delete" data-bs-toggle="modal" data-bs-target="#deleteItemModal">
+            <td><div class="icon-buttons-delete" data-bs-toggle="modal" data-bs-target="#deleteItemModal" (click)="setDeleteItem(show)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
               </svg>

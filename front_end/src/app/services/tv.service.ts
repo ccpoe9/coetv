@@ -55,7 +55,7 @@ export class TvService {
       })
     );
   }
-  
+
   updateShow(show : any){
     return this.http.put(config.APIROOT+config.APIURLS.SHOWS, show)
     .pipe(
@@ -68,6 +68,38 @@ export class TvService {
 
   createEpisode(episode : any){
     return this.http.post(config.APIROOT+config.APIURLS.EPISODES, episode)
+    .pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
+
+  updateEpisode(episode : any){
+    return this.http.put(config.APIROOT+config.APIURLS.EPISODES, episode)
+    .pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
+  deleteShow(httpDeleteParams : HttpParams){
+    return this.http.delete(config.APIROOT+config.APIURLS.SHOWS, {
+      params : httpDeleteParams
+    })
+    .pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
+  deleteEpisode(httpDeleteParams : HttpParams){
+    return this.http.delete(config.APIROOT+config.APIURLS.EPISODES, {
+      params : httpDeleteParams
+    })
     .pipe(
       catchError((err) => {
         console.error(err);

@@ -81,7 +81,6 @@ const PostEpisodeSchema = Joi.object({
     Desc : Joi.string().required(),
     showName : Joi.string().required(),
     season : Joi.number().min(1).required(),
-    episode : Joi.number().min(1).required(),
     Video : Joi.string().required()
 });
 
@@ -97,3 +96,24 @@ const UpdateShowSchema = Joi.object({
 });
 
 exports.validateParamsUpdateShow = validator(UpdateShowSchema);
+
+const UpdateEpisodeSchema = Joi.object({
+    id : Joi.number().min(1).required(),
+    Name : Joi.string().required(),
+    Desc : Joi.string().required(),
+    Video : Joi.string().required()
+});
+
+exports.validateParamsUpdateEpisode = validator(UpdateEpisodeSchema);
+
+const DeleteShowSchema = Joi.object({
+    id : Joi.number().min(1).required()
+});
+
+exports.validateParamsDeleteShow = validator(DeleteShowSchema);
+
+const DeleteEpisodeSchema = Joi.object({
+    id : Joi.number().min(1).required()
+});
+
+exports.validateParamsDeleteEpisode = validator(DeleteEpisodeSchema);
