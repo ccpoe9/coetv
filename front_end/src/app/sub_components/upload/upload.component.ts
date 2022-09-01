@@ -64,6 +64,7 @@ export class UploadComponent implements OnInit {
   errorMessage : string;
 
   addEpisode : boolean = false;
+  editEpisode : number;
 
   @ViewChild('closeButton') closeButton: ElementRef;
   @ViewChild('discardButton') discardButton: ElementRef;
@@ -367,6 +368,10 @@ export class UploadComponent implements OnInit {
     this.closeButton.nativeElement.click();
     this.discardButton.nativeElement.click();
     this.cancelButton.nativeElement.click();
+  }
+
+  setEdit(id : number){
+    this.editEpisode = id;
   }
 
 }
