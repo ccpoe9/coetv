@@ -1,1 +1,37 @@
-<p class="text-white">live works!</p>
+
+
+<div class="live-header mt-4 d-flex">
+    <div class="player-div" style="margin-left:5%; width: 40%; height:40%;">
+        <app-videojs [options]="{ fluid : true, aspectRatio : '16:9', playbackRates: [0.5, 1, 1.5, 2] , autoplay: true, muted: false, controls: true , sources: [{ src: 'https://h1.ustvgo.la/CN/myStream/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9OS8xLzIwMjIgMjo1NDo0OSBQTSZoYXNoX3ZhbHVlPXZ0U3VBU1ZaTGpOT2xENVh5RE5MalE9PSZ2YWxpZG1pbnV0ZXM9MjQw', type: 'video/mp4' }]}"></app-videojs>
+    </div>
+    <div class="player-info ml-4 mt-2">
+        <h2>CURRENT PROGRAM</h2>
+        <h3>1:00 AM - 2:00PM</h3>
+    </div>
+</div>
+<div class="live-content mt-4" style="margin-left:5%; width:90%;">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">DATE</th>
+            <th scope="col">1:00</th>
+            <th scope="col">2:00</th>
+            <th scope="col">3:00</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
