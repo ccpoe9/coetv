@@ -126,11 +126,37 @@
                       <a class="dropdown-item" *ngIf="season != editCurrentSeason" (click)="changeSeason(season)">SEASON {{season}}</a>
                   </div>
               </div> 
-              <button type="button" class="btn ml-2" id="episodesAdd">ADD EPISODE
+              <button type="button" class="btn ml-2" id="episodesAdd" (click)="onAddEpisode()">ADD EPISODE
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill mb-1 mt-1 ml-1" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                 </svg>
             </button>
+            </div>
+          </div>
+          <div class="post-episode row ml-3 mr-3 mb-3" *ngIf="addEpisode">
+            <div class="col-1 mb-3">
+              <label for="FormControlInput1" class="form-label">Season</label>
+              <input type="number" step="1" class="form-control" id="FormControlInput2" placeholder="1" name="postItemEpisodeSeason" [(ngModel)]="postItemEpisodeSeason" required>
+            </div>
+            <div class="col-1 mb-3">
+              <label for="FormControlInput1" class="form-label">Episode</label>
+              <input type="number" step="1" class="form-control" id="FormControlInput2" placeholder="1" name="postItemEpisodeNumber" [(ngModel)]="postItemEpisodeNumber" required>
+            </div>
+            <div class="col-12 mb-3">
+              <label for="FormControlInput1" class="form-label">Name</label>
+              <input type="text" class="form-control" id="FormControlInput1" placeholder="Name" name="postItemEpisodeName" [(ngModel)]="postItemEpisodeName" required>
+            </div>
+            <div class="col-12 mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="postItemEpisodeDesc" [(ngModel)]="postItemEpisodeDesc"></textarea>
+            </div>
+            <div class="col-12 mb-3">
+              <label for="FormControlInput1" class="form-label">Video Link</label>
+              <input type="url" class="form-control" id="FormControlInput3" name="postItemEpisodeVideo" [(ngModel)]="postItemEpisodeVideo"required>
+            </div>
+            <div class="col-12 d-flex justify-content-end">
+              <button type="button" class="btn" (click)="cancelPostEpisode()">CANCEL</button>
+              <button type="button" class="btn ml-2" (click)="PostEpisode()">POST</button>
             </div>
           </div>
           <table class="table" id="episodeTable">
@@ -164,32 +190,6 @@
                 </tr>
               </tbody>
             </table>
-            <div class="post-episode row ml-3 mr-3 mb-3">
-              <div class="col-1 mb-3">
-                <label for="FormControlInput1" class="form-label">Season</label>
-                <input type="number" step="1" class="form-control" id="FormControlInput2" placeholder="1" name=""required>
-              </div>
-              <div class="col-1 mb-3">
-                <label for="FormControlInput1" class="form-label">Episode</label>
-                <input type="number" step="1" class="form-control" id="FormControlInput2" placeholder="1" name=""required>
-              </div>
-              <div class="col-12 mb-3">
-                <label for="FormControlInput1" class="form-label">Name</label>
-                <input type="text" class="form-control" id="FormControlInput1" placeholder="Name" name=""required>
-              </div>
-              <div class="col-12 mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name=""></textarea>
-              </div>
-              <div class="col-12 mb-3">
-                <label for="FormControlInput1" class="form-label">Video Link</label>
-                <input type="url" class="form-control" id="FormControlInput3" name=""required>
-              </div>
-              <div class="col-12 d-flex justify-content-end">
-                <button type="button" class="btn">CLEAR</button>
-                <button type="button" class="btn ml-2">POST</button>
-              </div>
-            </div>
       </div>
       </div>
       <div class="modal-footer">

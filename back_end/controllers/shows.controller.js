@@ -1,6 +1,6 @@
 var db = require('../config/db.config');
 const Joi = require('joi');
-const { validateParamsGetMoviesByPage, validateParamsGetShowByUrl, validateParamsGetEpisodesByShowSeason, validateParamsPostShow , validateParamsPostEpisode} = require('../validation/validator');
+const { validateParamsGetMoviesByPage, validateParamsGetShowByUrl, validateParamsGetEpisodesByShowSeason, validateParamsPostShow , validateParamsPostEpisode, validateParamsUpdateShow} = require('../validation/validator');
 const { urlGenerator } = require('../generators/urlGenerate');
 
 exports.GetShowsByPage = (req,res) => {
@@ -94,6 +94,30 @@ exports.PostShow = (req,res) => {
         res.status(200).end();
     });
 
+}
+exports.UpdateShow = (req,res) => {
+
+    const { error, value } = validateParamsUpdateShow(req.body);
+    if(error){
+        console.log(error);
+        res.statusMessage = "Input Validation Error : " + error.details[0].message;
+        return res.status(400).end();
+    }
+
+    let UpdateShow =
+    `SET SQL_SAFE_UPDATES = 0;
+    CALL UpdShow(${req.body.id},'${req.body.Name}','${req.body.Genre}', '${req.body.Thumbnail}','${req.body.Desc}',${req.body.Rating});
+    SET SQL_SAFE_UPDATES = 1;`;
+
+    db.query(UpdateShow, (err,data,fields) => {
+        if(err){
+            console.error(err.message);
+            res.statusMessage = "SQL Error : " + err.message;
+            return res.status(400).end();
+        }
+        res.statusMessage = "PUT SUCCESFUL";
+        res.status(200).end();
+    });
 }
 
 exports.PostEpisode = async (req,res) => {

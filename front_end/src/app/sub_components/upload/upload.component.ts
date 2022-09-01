@@ -52,10 +52,18 @@ export class UploadComponent implements OnInit {
   putItemThumbnail : string;
   putItemVideo : string;
 
+  postItemEpisodeName : string;
+  postItemEpisodeDesc : string;
+  postItemEpisodeSeason : number;
+  postItemEpisodeNumber : number;
+  postItemEpisodeVideo : string;
+  
   deleteItemName : string;
   deleteItemId : number;
 
   errorMessage : string;
+
+  addEpisode : boolean = false;
 
   @ViewChild('closeButton') closeButton: ElementRef;
   @ViewChild('discardButton') discardButton: ElementRef;
@@ -124,8 +132,13 @@ export class UploadComponent implements OnInit {
       "Thumbnail" : this.postItemThumbnail,
       "Video" : this.postItemVideo
     }
-    this.moviesService.createMovie(postItem).subscribe(data => {
-      this.getAllMovies();
+    this.moviesService.createMovie(postItem).pipe( switchMap( data => {
+      this.constructParams(1,20,'','','id','DESC');
+      return this.moviesService.getAllMovies(this.httpParams);
+    })).subscribe(data => {
+      this.movies = data[0];
+      this.totalMoviePages = data[2][0].totalPages;
+      this.totalMovieRecords = data[2][0].totalRecords;
       this.resetPostItems();
       this.closeDialog();
     },err => this.errorMessage = err.statusText);
@@ -140,11 +153,53 @@ export class UploadComponent implements OnInit {
       "Rating" : this.postItemRating,
       "Thumbnail" : this.postItemThumbnail
     }
-    this.tvservice.createShow(postItem).subscribe(data => {
-      this.getAllShows();
+    this.tvservice.createShow(postItem).pipe( switchMap ( data => {
+      this.constructParams(1,20,'','','id','DESC');
+      return this.tvservice.getAllShows(this.httpParams);
+    })).subscribe(data => {
+      this.shows = data[0];
+      this.totalShowPages = data[2][0].totalPages;
+      this.totalShowRecords = data[2][0].totalRecords;
       this.resetPostItems();
       this.closeDialog();
     },err => this.errorMessage = err.statusText);
+  }
+
+  onAddEpisode(){
+    this.addEpisode = true;
+    this.postItemEpisodeName = '';
+    this.postItemEpisodeSeason = 1;
+    this.postItemEpisodeNumber = 1;
+    this.postItemEpisodeVideo = '';
+    this.postItemEpisodeDesc = '';
+  }
+  cancelPostEpisode(){
+    this.addEpisode = false;
+    this.postItemEpisodeName = '';
+    this.postItemEpisodeSeason = 1;
+    this.postItemEpisodeNumber = 1;
+    this.postItemEpisodeVideo = '';
+    this.postItemEpisodeDesc = '';
+  }
+  PostEpisode(){
+    let postItem = {
+      "Name" : this.postItemEpisodeName,
+      "showName" : this.putItemName,
+      "season" : this.postItemEpisodeSeason,
+      "episode" : this.postItemEpisodeNumber,
+      "Video" : this.postItemEpisodeVideo,
+      "Desc" : this.postItemEpisodeDesc
+    }
+
+    this.tvservice.createEpisode(postItem).pipe( switchMap( data => {
+      this.httpParams = new HttpParams()
+      .set('showName',this.putItemName)
+      .set('season',this.editCurrentSeason);
+      return this.tvservice.getShowSeason(this.httpParams);
+    })).subscribe( data => {
+      this.episodes = data[0];
+      this.addEpisode = false;
+    });
   }
 
   setPostGenre(){
@@ -245,14 +300,36 @@ export class UploadComponent implements OnInit {
       "Video" : this.putItemVideo
     }
 
-    this.moviesService.updateMovie(putItem).subscribe(data => {
-      this.getAllMovies();
+    this.moviesService.updateMovie(putItem).pipe( switchMap( data => {
+      this.constructParams(1,20,'','','id','DESC');
+      return this.moviesService.getAllMovies(this.httpParams);
+    })).subscribe(data => {
+      this.movies = data[0];
+      this.totalMoviePages = data[2][0].totalPages;
+      this.totalMovieRecords = data[2][0].totalRecords;
       this.closeDialog();
     },err => this.errorMessage = err.statusText);
   }
 
   PutShow(){
+    let putItem = {
+      "id" : this.putItemId,
+      "Name" : this.putItemName,
+      "Genre" : this.getPutGenre(),
+      "Desc" : this.putItemDesc,
+      "Thumbnail" : this.putItemThumbnail,
+      "Rating" : this.putItemRating
+    }
 
+    this.tvservice.updateShow(putItem).pipe( switchMap( data => {
+      this.constructParams(1,20,'','','id','DESC');
+      return this.tvservice.getAllShows(this.httpParams)
+    })).subscribe(data => {
+      this.shows = data[0];
+      this.totalShowPages = data[2][0].totalPages;
+      this.totalShowRecords = data[2][0].totalRecords;
+      this.closeDialog();
+    }, err => this.errorMessage = err.statusText);
   }
 
 
@@ -270,9 +347,13 @@ export class UploadComponent implements OnInit {
   DeleteMovie(){
      this.httpDeleteParams = new HttpParams()
      .set('id', this.deleteItemId);
-
-     this.moviesService.deleteMovie(this.httpDeleteParams).subscribe(data => {
-      this.getAllMovies();
+     this.moviesService.deleteMovie(this.httpDeleteParams).pipe( switchMap( data => {
+      this.constructParams(1,20,'','','id','DESC');
+      return this.moviesService.getAllMovies(this.httpParams);
+    })).subscribe(data => {
+      this.movies = data[0];
+      this.totalMoviePages = data[2][0].totalPages;
+      this.totalMovieRecords = data[2][0].totalRecords;
       this.closeDialog();
     },err => console.log(err.statusText));
 

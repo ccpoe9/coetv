@@ -86,3 +86,14 @@ const PostEpisodeSchema = Joi.object({
 });
 
 exports.validateParamsPostEpisode = validator(PostEpisodeSchema);
+
+const UpdateShowSchema = Joi.object({
+    id : Joi.number().min(1).required(),
+    Name : Joi.string().required(),
+    Desc : Joi.string().required(),
+    Genre : Joi.string().required(),
+    Rating : Joi.number().min(0).required(),
+    Thumbnail : Joi.string().required()
+});
+
+exports.validateParamsUpdateShow = validator(UpdateShowSchema);

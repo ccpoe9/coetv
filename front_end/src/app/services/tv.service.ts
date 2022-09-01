@@ -55,6 +55,16 @@ export class TvService {
       })
     );
   }
+  
+  updateShow(show : any){
+    return this.http.put(config.APIROOT+config.APIURLS.SHOWS, show)
+    .pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
 
   createEpisode(episode : any){
     return this.http.post(config.APIROOT+config.APIURLS.EPISODES, episode)
