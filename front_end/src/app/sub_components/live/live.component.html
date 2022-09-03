@@ -2,7 +2,7 @@
 
 <div class="live-header mt-4 d-flex">
     <div class="player-div" style="margin-left:5%; width: 40%; height:40%;">
-        <app-videojs [options]="{ fluid : true, aspectRatio : '16:9', playbackRates: [0.5, 1, 1.5, 2] , autoplay: true, muted: false, controls: true , 
+        <app-videojs [options]="{ fluid : true, aspectRatio : '16:9', autoplay: true, muted: false, controls: true , 
         sources: [{ src: currentChannel.Source, type: 'video/mp4' }]}"></app-videojs>
     </div>
     <div class="player-info ml-4 mt-2">
@@ -23,8 +23,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let channel of channels">
-            <th scope="row" style="width: 30%;" class="channel-head" [ngStyle]="{'color': (currentChannel==channel) ? 'aqua': ''}">
-              <img src="https://images.pluto.tv/channels/5ca671f215a62078d2ec0abf/colorLogoPNG.png" alt="cc" style="width: 20%;">
+            <th scope="row" style="width: 30%;" class="channel-head" [ngStyle]="{'color': (currentChannel==channel) ? 'aqua': ''}" (click)="changeChannel(channel)">
+              <img src="{{channel.Thumbnail}}" alt="cc" style="width: 20%;">
               {{channel.Name}}</th>
             <td style="width: 20%;" class="channel-guide">Mark</td>
             <td style="width: 20%;" class="channel-guide">Otto</td>

@@ -17,7 +17,6 @@ import { Component, ElementRef, Input, OnDestroy,
     @Input() options: {
         fluid: boolean,
         aspectRatio: string,
-        playbackRates: number[],
         autoplay: boolean,
         muted:boolean,
         controls:boolean,

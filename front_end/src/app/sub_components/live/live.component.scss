@@ -3,3 +3,11 @@ table, th, td {
     color:white;
     border: 1px solid aqua;
 }
+
+.channel-head{
+    cursor: pointer;
+}
+
+.channel-head:hover{
+    color: aqua;
+}

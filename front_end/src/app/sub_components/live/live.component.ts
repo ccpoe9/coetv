@@ -24,4 +24,8 @@ export class LiveComponent implements OnInit {
     })
   }
 
+  changeChannel(channel : Live){
+    this.currentChannel = channel;
+  }
+
 }

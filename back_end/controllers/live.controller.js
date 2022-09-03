@@ -1,7 +1,4 @@
 var db = require('../config/db.config');
-
-
-
 exports.GetLive = (req,res) => {
 
     let GetLive = 
