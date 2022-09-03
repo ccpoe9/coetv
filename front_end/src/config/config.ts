@@ -7,6 +7,7 @@ export class ConnectionConfig{
         MOVIES : "/movies",
         GENRES : "/genres",
         SHOWS : "/shows",
-        EPISODES : "/shows/episodes"
+        EPISODES : "/shows/episodes",
+        LIVE : "/live"
     }
 }

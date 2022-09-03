@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Live } from 'src/app/models/live.model';
+import { LiveService } from 'src/app/services/live.service';
 
 @Component({
   selector: 'app-live',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LiveComponent implements OnInit {
 
-  constructor() { }
+  constructor(private liveservice : LiveService) { }
 
+  channels : Live[];
+  currentChannel : Live;
   ngOnInit(): void {
+    this.getLive();
+  }
+
+  getLive(){
+    this.liveservice.getLive().subscribe( data => {
+      this.channels = data;
+      this.currentChannel = this.channels[0];
+    })
   }
 
 }
