@@ -2,7 +2,8 @@
 
 <div class="live-header mt-4 d-flex">
     <div class="player-div" style="margin-left:5%; width: 40%; height:40%;">
-        <app-videojs [options]="{ fluid : true, aspectRatio : '16:9', playbackRates: [0.5, 1, 1.5, 2] , autoplay: true, muted: false, controls: true , sources: [{ src: 'https://siloh.pluto.tv/lilo/production/Nick/01/master.m3u8', type: 'video/mp4' }]}"></app-videojs>
+        <app-videojs [options]="{ fluid : true, aspectRatio : '16:9', playbackRates: [0.5, 1, 1.5, 2] , autoplay: true, muted: false, controls: true , 
+        sources: [{ src: 'https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5ca7f16c37b88b2694731c79/master.m3u8?advertisingId=channel&appName=rokuchannel&appVersion=1.0&bmodel=bm1&channel_id=channel&content=channel&content_rating=ROKU_ADS_CONTENT_RATING&content_type=livefeed&coppa=false&deviceDNT=1&deviceId=channel&deviceMake=rokuChannel&deviceModel=web&deviceType=rokuChannel&deviceVersion=1.0&embedPartner=rokuChannel&genre=ROKU_ADS_CONTENT_GENRE&is_lat=1&platform=web&rdid=channel&studio_id=viacom&tags=ROKU_CONTENT_TAGS', type: 'video/mp4' }]}"></app-videojs>
     </div>
     <div class="player-info ml-4 mt-2">
         <h2>CURRENT PROGRAM</h2>

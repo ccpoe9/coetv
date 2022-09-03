@@ -1,4 +1,5 @@
 let express = require('express');
+let livecontroller = require('../controllers/live.controller');
 let router = express.Router();
 let moviescontroller = require('../controllers/movies.controller');
 let showscontroller = require('../controllers/shows.controller');
@@ -23,4 +24,5 @@ router.get('/api/shows/episodes',showscontroller.GetEpisodesByShowSeason);
 router.post('/api/shows/episodes', showscontroller.PostEpisode);
 router.put('/api/shows/episodes', showscontroller.UpdateEpisode);
 router.delete('/api/shows/episodes', showscontroller.DeleteEpisode);
+router.get('/api/live', livecontroller.GetLive);
 module.exports = router;

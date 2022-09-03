@@ -44,6 +44,16 @@ CREATE TABLE `mediatime-db`.`Genres` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
+  
+  CREATE TABLE `mediatime-db`.`Live` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(45) NULL,
+  `EPGID` VARCHAR(30) NULL,
+  `Thumbnail` VARCHAR(100) NULL,
+  `Source` VARCHAR(500) NULL,
+  PRIMARY KEY (`id`));
+  
+  
 
 DROP PROCEDURE IF EXISTS GetMoviesByPage;
 
@@ -379,6 +389,17 @@ WHERE
 END //
 
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS GetLive;
+
+DELIMITER //
+CREATE PROCEDURE GetLive()
+BEGIN
+	SELECT * FROM `mediatime-db`.Live;
+END //
+
+DELIMITER ;
+
 
 
 
