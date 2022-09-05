@@ -20,4 +20,14 @@ export class LiveService {
       })
     );  
   }
+
+  getGuide(){
+    return this.http.get<any>(config.APIROOT+config.APIURLS.GUIDE)
+    .pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );  
+  }
 }

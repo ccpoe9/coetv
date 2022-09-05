@@ -8,6 +8,7 @@ export class ConnectionConfig{
         GENRES : "/genres",
         SHOWS : "/shows",
         EPISODES : "/shows/episodes",
-        LIVE : "/live"
+        LIVE : "/live",
+        GUIDE : "/live/guide"
     }
 }
