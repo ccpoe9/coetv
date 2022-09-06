@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs';
 import { Live } from 'src/app/models/live.model';
 import { LiveService } from 'src/app/services/live.service';
@@ -19,7 +19,9 @@ export class LiveComponent implements OnInit {
   now = new Date();
   formattedDate = this.pipe.transform(this.now, 'short');
   GUIDE : any[];
-  programs : any[];
+  currentPrograms : any[];
+  currentProgramTitle : string;
+  currentProgramDesc : string;
 
   ngOnInit(): void {
     this.getLive();
@@ -32,26 +34,30 @@ export class LiveComponent implements OnInit {
   getLive(){
     this.liveservice.getLive().pipe( switchMap ( data => {
       this.channels = data;
-      this.currentChannel = this.channels[1];
+      this.currentChannel = this.channels[0];
       return this.liveservice.getGuide();
     }))
     .subscribe( data => {
       this.GUIDE = data;
-      this.programs = this.getPrograms(this.currentChannel);
+      this.currentPrograms = this.getPrograms(this.currentChannel, this.GUIDE);
+      this.currentProgramTitle = this.currentPrograms[0]['sub-title'][0];
+      this.currentProgramDesc = this.currentPrograms[0].desc[0];
     })
   }
 
   changeChannel(channel : Live){
+    this.currentPrograms = this.getPrograms(channel, this.GUIDE);
     this.currentChannel = channel;
-    this.programs = this.getPrograms(this.currentChannel);
+    this.currentProgramTitle = this.currentPrograms[0]['sub-title'][0];
+    this.currentProgramDesc = this.currentPrograms[0].desc[0];
 
   }
 
-  getPrograms(channel : Live){
+  getPrograms(channel : Live, GUIDE : any[]){
     let count = 0;
     let now = this.pipe.transform(this.now, 'yyyyMMddHHmmss','UTC-0');
     let val = Number(now);
-    return this.GUIDE.filter(function(item) {
+    return GUIDE.filter(function(item) {
       if (count < 3 && item.$.channel == channel.EPGID && Number(item.$.stop.substring(0,14)) > val) {
         count++;
         return true;
@@ -63,7 +69,9 @@ export class LiveComponent implements OnInit {
   getGuide(){
     this.liveservice.getGuide().subscribe( data => {
       this.GUIDE = data;
-      this.programs = this.getPrograms(this.currentChannel);
+      this.currentPrograms = this.getPrograms(this.currentChannel,this.GUIDE);
+      this.currentProgramTitle = this.currentPrograms[0]['sub-title'][0];
+      this.currentProgramDesc = this.currentPrograms[0].desc[0];
     });
   }
 
