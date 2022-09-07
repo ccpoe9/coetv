@@ -144,4 +144,9 @@ changeGenre(genre : string){
 GetShow( show : Tv){
   this.router.navigate(['video'], { queryParams : { t : "s", v : show.URL}});
 }
+
+generateRandomInteger(min : number , max : number) {
+  return Math.floor(min + Math.random()*(max - min + 1));
+}
+
 }
