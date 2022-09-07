@@ -1,52 +1,41 @@
 #MOVIES
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M1','Genre1','https://m.media-amazon.com/images/M/MV5BYmMxZWRiMTgtZjM0Ny00NDQxLWIxYWQtZDdlNDNkOTEzYTdlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg','https://c1.s2dmax.xyz/a/extra/m1/2011/Thor.2011.mp4?tok=5153496C6A396B612D4173316E4F592D6D564550396C4A3541395535375533426925334455613042633170674E33696B6F6271684D6D71386C563053334A5A4E584C705066716D63395464586A7A71687447754D30437A654C56524E34536D544C786A4E4C436D57477534515932714E354379664D6D574B6E7A76534C746E4E35696A566B4B68514D69784F34327952334B644D587A7239504F585A387A6B54447A6B674E2D344D49563153494A6C396B4730424C70694A4E54576958337A6759782D396C6430536F6877&valid=wPuKA9Ui3lPy5DLJEL-7TQ&t=1662524927','Movie1 Desc..', 9.1,'Mjk1NDE=');
-INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M2','Genre2','https://m.media-amazon.com/images/M/MV5BYmMxZWRiMTgtZjM0Ny00NDQxLWIxYWQtZDdlNDNkOTEzYTdlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg','https://c1.s2dmax.xyz/a/extra/m1/2011/Thor.2011.mp4?tok=5153496C6A396B612D4173316E4F592D6D564550396C4A3541395535375533426925334455613042633170674E33696B6F6271684D6D71386C563053334A5A4E584C705066716D63395464586A7A71687447754D30437A654C56524E34536D544C786A4E4C436D57477534515932714E354379664D6D574B6E7A76534C746E4E35696A566B4B68514D69784F34327952334B644D587A7239504F585A387A6B54447A6B674E2D344D49563153494A6C396B4730424C70694A4E54576958337A6759782D396C6430536F6877&valid=wPuKA9Ui3lPy5DLJEL-7TQ&t=1662524927','Movie2 Desc..', 9.1,'NzM2MTQ=');
-INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M3','Genre1','https://m.media-amazon.com/images/M/MV5BYmMxZWRiMTgtZjM0Ny00NDQxLWIxYWQtZDdlNDNkOTEzYTdlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg','https://c1.s2dmax.xyz/a/extra/m1/2011/Thor.2011.mp4?tok=5153496C6A396B612D4173316E4F592D6D564550396C4A3541395535375533426925334455613042633170674E33696B6F6271684D6D71386C563053334A5A4E584C705066716D63395464586A7A71687447754D30437A654C56524E34536D544C786A4E4C436D57477534515932714E354379664D6D574B6E7A76534C746E4E35696A566B4B68514D69784F34327952334B644D587A7239504F585A387A6B54447A6B674E2D344D49563153494A6C396B4730424C70694A4E54576958337A6759782D396C6430536F6877&valid=wPuKA9Ui3lPy5DLJEL-7TQ&t=1662524927','Movie3 Desc..', 9.1,'NDU4Nzg=');
-INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M4','Genre2','https://m.media-amazon.com/images/M/MV5BYmMxZWRiMTgtZjM0Ny00NDQxLWIxYWQtZDdlNDNkOTEzYTdlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg','https://c1.s2dmax.xyz/a/extra/m1/2011/Thor.2011.mp4?tok=5153496C6A396B612D4173316E4F592D6D564550396C4A3541395535375533426925334455613042633170674E33696B6F6271684D6D71386C563053334A5A4E584C705066716D63395464586A7A71687447754D30437A654C56524E34536D544C786A4E4C436D57477534515932714E354379664D6D574B6E7A76534C746E4E35696A566B4B68514D69784F34327952334B644D587A7239504F585A387A6B54447A6B674E2D344D49563153494A6C396B4730424C70694A4E54576958337A6759782D396C6430536F6877&valid=wPuKA9Ui3lPy5DLJEL-7TQ&t=1662524927','Movie4 Desc..', 9.1,'ODU1ODQ=');
-INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M5','Genre1','https://m.media-amazon.com/images/M/MV5BYmMxZWRiMTgtZjM0Ny00NDQxLWIxYWQtZDdlNDNkOTEzYTdlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg','https://c1.s2dmax.xyz/a/extra/m1/2011/Thor.2011.mp4?tok=5153496C6A396B612D4173316E4F592D6D564550396C4A3541395535375533426925334455613042633170674E33696B6F6271684D6D71386C563053334A5A4E584C705066716D63395464586A7A71687447754D30437A654C56524E34536D544C786A4E4C436D57477534515932714E354379664D6D574B6E7A76534C746E4E35696A566B4B68514D69784F34327952334B644D587A7239504F585A387A6B54447A6B674E2D344D49563153494A6C396B4730424C70694A4E54576958337A6759782D396C6430536F6877&valid=wPuKA9Ui3lPy5DLJEL-7TQ&t=1662524927','Movie5 Desc..', 9.1,'ODU3NQ==');
-INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('M6','Genre1','https://m.media-amazon.com/images/M/MV5BYmMxZWRiMTgtZjM0Ny00NDQxLWIxYWQtZDdlNDNkOTEzYTdlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg','https://c1.s2dmax.xyz/a/extra/m1/2011/Thor.2011.mp4?tok=5153496C6A396B612D4173316E4F592D6D564550396C4A3541395535375533426925334455613042633170674E33696B6F6271684D6D71386C563053334A5A4E584C705066716D63395464586A7A71687447754D30437A654C56524E34536D544C786A4E4C436D57477534515932714E354379664D6D574B6E7A76534C746E4E35696A566B4B68514D69784F34327952334B644D587A7239504F585A387A6B54447A6B674E2D344D49563153494A6C396B4730424C70694A4E54576958337A6759782D396C6430536F6877&valid=wPuKA9Ui3lPy5DLJEL-7TQ&t=1662524927','Movie6 Desc..', 9.1,'ODE2Mg==');
+VALUES('Big Buck Bunny','Comedy,Animation','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/1200px-Big_buck_bunny_poster_big.jpg','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4','A day in the life of Big Buck Bunny', 6.5,'Mjk1NDE=');
 
 
 
 #GENRES 
 INSERT INTO `mediatime-db`.Genres(`Name`)
-VALUES('Genre1');
+VALUES('Comedy');
 INSERT INTO `mediatime-db`.Genres(`Name`)
-VALUES('Genre2');
+VALUES('Animation');
 INSERT INTO `mediatime-db`.Genres(`Name`)
-VALUES('Genre3');
+VALUES('Action');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Adeventure');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Horror');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Fantasy');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Thriller');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Crime');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Historical');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Romance');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Sci-Fi');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Western');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Other');
+
 
 #SHOWS
 INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV1','Genre1','https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg','TV1 Desc..', 9.1,'1');
-INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV2','Genre1','https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg','TV2 Desc..', 9.1,'2');
-INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV3','Genre1','https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg','TV3 Desc..', 9.1,'3');
-INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV4','Genre1','https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg','TV4 Desc..', 9.1,'4');
-INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV5','Genre1','https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg','TV5 Desc..', 9.1,'5');
-INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('TV6','Genre1','https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg','TV6 Desc..', 9.1,'6');
-
-
-INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`,`Desc`)
-VALUES('TV1S1E1', 'TV1',1,1,'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','TV1S1E1 desc');
-INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`,`Desc`)
-VALUES('TV1S1E2', 'TV1',1,2,'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','TV1S1E2 desc');
-INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`,`Desc`)
-VALUES('TV2S1E1', 'TV2',1,1,'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','TV2S1E1 desc');
-INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`,`Desc`)
-VALUES('TV1S2E1', 'TV1',2,1,'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','TV1S2E1 desc');
-INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`,`Desc`)
-VALUES('TV1S3E1', 'TV1',3,1,'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4','TV1S3E1 desc');
+VALUES('For Bigger What?','Other','https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg','Introducing Chromecast. The easiest way to enjoy online video and music on your TV—for when Batman\'s escapes aren\'t quite big enough. For $35. Learn how to use Chromecast with Google Play Movies and more at google.com/chromecast.', 9.1,'NzM2MTQ=');
 
 
 
