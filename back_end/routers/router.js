@@ -25,5 +25,8 @@ router.post('/api/shows/episodes', showscontroller.PostEpisode);
 router.put('/api/shows/episodes', showscontroller.UpdateEpisode);
 router.delete('/api/shows/episodes', showscontroller.DeleteEpisode);
 router.get('/api/live', livecontroller.GetLive);
+router.post('/api/live', livecontroller.PostChannel);
+router.put('/api/live', livecontroller.UpdateChannel);
+router.delete('/api/live', livecontroller.DeleteChannel);
 router.get('/api/live/guide', livecontroller.GetGuide);
 module.exports = router;

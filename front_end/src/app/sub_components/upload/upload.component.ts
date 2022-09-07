@@ -1,10 +1,13 @@
 import { HttpParams } from '@angular/common/http';
+import { ThisReceiver } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild, ɵsetCurrentInjector } from '@angular/core';
 import { switchMap } from 'rxjs';
 import { Episode } from 'src/app/models/episode.model';
 import { Genre } from 'src/app/models/genre.model';
+import { Live } from 'src/app/models/live.model';
 import { Movie } from 'src/app/models/movie.model';
 import { Tv } from 'src/app/models/tv.model';
+import { LiveService } from 'src/app/services/live.service';
 import { MoviesService } from 'src/app/services/movies.service';
 import { TvService } from 'src/app/services/tv.service';
 import { MoviesComponent } from '../movies/movies.component';
@@ -15,10 +18,9 @@ import { MoviesComponent } from '../movies/movies.component';
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit {
+  constructor(private moviesService : MoviesService, private tvservice : TvService, private liveservice : LiveService) { }
 
-  constructor(private moviesService : MoviesService, private tvservice : TvService) { }
-
-  ContentTypes : string[] = ['MOVIE', 'TV SHOW'];
+  ContentTypes : string[] = ['MOVIE', 'TV SHOW','CHANNEL'];
   currentContentType : string = this.ContentTypes[0];
   httpParams : HttpParams;
   httpDeleteParams : HttpParams;
@@ -29,6 +31,9 @@ export class UploadComponent implements OnInit {
   shows : Tv[];
   totalShowRecords : number;
   totalShowPages : number;
+
+  channels : Live[];
+  
   genres : Genre[];
   isChecked : boolean[];
 
@@ -62,6 +67,17 @@ export class UploadComponent implements OnInit {
   postItemEpisodeSeason : number;
   postItemEpisodeVideo : string;
 
+  postChannelName : string;
+  postChannelEPGID : string;
+  postChannelThumbnail : string;
+  postChannelSource : string;
+
+  putChannelId : number;
+  putChannelName : string;
+  putChannelEPGID : string;
+  putChannelThumbnail : string;
+  putChannelSource : string;
+
   putItemEpisodeName : string;
   putItemEpisodeDesc : string;
   putItemEpisodeVideo : string;
@@ -77,6 +93,8 @@ export class UploadComponent implements OnInit {
 
   @ViewChild('closeButton') closeButton: ElementRef;
   @ViewChild('discardButton') discardButton: ElementRef;
+  @ViewChild('closeButton2') closeButton2: ElementRef;
+  @ViewChild('discardButton2') discardButton2: ElementRef;
   @ViewChild('cancelButton') cancelButton: ElementRef;
   @ViewChild('addForm') addForm: ElementRef;
   ngOnInit(): void {
@@ -117,6 +135,13 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalShowPages);
   });
   }
+
+  getAllChannels(){
+    this.liveservice.getLive().subscribe( data => {
+      this.channels = data;
+    })
+  }
+
   getAllGenres(){
     this.moviesService.getGenres().subscribe( data => {
       this.genres = data;
@@ -131,8 +156,11 @@ export class UploadComponent implements OnInit {
     if(type == this.ContentTypes[1]){
       this.getAllShows();
     }
-    else{
+    else if(type == this.ContentTypes[0]){
       this.getAllMovies();
+    }
+    else if(type == this.ContentTypes[2]){
+      this.getAllChannels();
     }  
   }
 
@@ -146,6 +174,7 @@ export class UploadComponent implements OnInit {
   postItem(type : string){
     if(type == 'MOVIE') this.PostMovie();
     else if(type == 'TV SHOW') this.PostShow();
+    else if( type == 'CHANNEL') this.PostChannel();
   }
 
   PostMovie(){
@@ -169,6 +198,7 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalMoviePages);
       this.resetPostItems();
       this.closeDialog();
+      this.errorMessage = '';
     },err => this.errorMessage = err.statusText);
   }
 
@@ -192,6 +222,24 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalShowPages)
       this.resetPostItems();
       this.closeDialog();
+      this.errorMessage = '';
+    },err => this.errorMessage = err.statusText);
+  }
+
+  PostChannel(){
+    let postItem = {
+      "Name" : this.postChannelName,
+      "EPGID" : this.postChannelEPGID,
+      "Thumbnail" : this.postChannelThumbnail,
+      "Source" : this.postChannelSource
+    }
+    this.liveservice.postLive(postItem).pipe( switchMap ( data => {
+      return this.liveservice.getLive();
+    })).subscribe( data => {
+      this.channels = data;
+      this.resetPostItems();
+      this.closeDialog();
+      this.errorMessage = '';
     },err => this.errorMessage = err.statusText);
   }
 
@@ -250,6 +298,10 @@ export class UploadComponent implements OnInit {
     this.postItemRating = 0;
     this.postItemThumbnail = '';
     this.postItemVideo = '';
+    this.postChannelName = '';
+    this.postChannelEPGID = '';
+    this.postChannelThumbnail = '';
+    this.postChannelSource = '';
     this.isChecked = new Array(this.genres.length).fill(false);
     this.addForm.nativeElement.reset();
   }
@@ -273,6 +325,15 @@ export class UploadComponent implements OnInit {
     this.putItemVideo = item.Video;
     this.setEditChecked();
   }
+
+  setChannelPutItems( channel : any){
+    this.putChannelId = channel.id;
+    this.putChannelName = channel.Name;
+    this.putChannelEPGID = channel.EPGID;
+    this.putChannelThumbnail = channel.Thumbnail;
+    this.putChannelSource = channel.Source;
+  }
+
   getShow(url : string){
     this.tvservice.getShow(`/video?t=s&v=${url}`).pipe( switchMap( data => {
       this.totalSeasons = data[2][0].totalSeasons;
@@ -317,6 +378,7 @@ export class UploadComponent implements OnInit {
   putItem(type : string){
     if(type == 'MOVIE') this.PutMovie();
     else if(type == 'TV SHOW') this.PutShow();
+    else if(type == 'CHANNEL') this.PutChannel();
   }
 
   PutMovie(){
@@ -340,6 +402,7 @@ export class UploadComponent implements OnInit {
       this.totalMovieRecords = data[2][0].totalRecords;
       this.setPages(this.totalMoviePages);
       this.closeDialog();
+      this.errorMessage = '';
     },err => this.errorMessage = err.statusText);
   }
 
@@ -363,19 +426,37 @@ export class UploadComponent implements OnInit {
       this.totalShowRecords = data[2][0].totalRecords;
       this.setPages(this.totalShowPages);
       this.closeDialog();
+      this.errorMessage = '';
     }, err => this.errorMessage = err.statusText);
+  }
+  PutChannel(){
+    let putItem = {
+      "id" : this.putChannelId,
+      "Name" : this.putChannelName,
+      "EPGID" : this.putChannelEPGID,
+      "Thumbnail" : this.putChannelThumbnail,
+      "Source" : this.putChannelSource
+    };
+    this.liveservice.updateLive(putItem).pipe( switchMap ( data => {
+      return this.liveservice.getLive();
+    })).subscribe( data => {
+      this.channels = data;
+      this.closeDialog();
+      this.errorMessage = '';
+    },err => this.errorMessage = err.statusText);
+
   }
 
 
   setDeleteItem(item : any){
     this.deleteItemName = item.Name;
     this.deleteItemId = item.id;
-
   }
 
   deleteItem(type : string){
     if(type == 'MOVIE') this.DeleteMovie();
     else if(type == 'TV SHOW') this.DeleteShow();
+    else if(type == 'CHANNEL') this.DeleteChannel();
   }
 
   DeleteMovie(){
@@ -391,6 +472,7 @@ export class UploadComponent implements OnInit {
       this.totalMovieRecords = data[2][0].totalRecords;
       this.setPages(this.totalMoviePages);
       this.closeDialog();
+      this.errorMessage = '';
     },err => console.log(err.statusText));
 
   }
@@ -408,6 +490,7 @@ export class UploadComponent implements OnInit {
       this.totalShowRecords = data[2][0].totalRecords;
       this.setPages(this.totalShowPages);
       this.closeDialog();
+      this.errorMessage = '';
     },err => console.log(err.statusText));
   }
   
@@ -427,9 +510,25 @@ export class UploadComponent implements OnInit {
 
   }
 
+  DeleteChannel(){
+    this.httpDeleteParams = new HttpParams()
+    .set('id', this.deleteItemId);
+
+    this.liveservice.deleteLive(this.httpDeleteParams).pipe( switchMap( data => {
+      return this.liveservice.getLive();
+    })).subscribe(data => {
+      this.channels = data;
+      this.setPages(this.totalShowPages);
+      this.closeDialog();
+      this.errorMessage = '';
+    },err => console.log(err.statusText));
+  }
+
   closeDialog(){
     this.closeButton.nativeElement.click();
     this.discardButton.nativeElement.click();
+    this.closeButton2.nativeElement.click();
+    this.discardButton2.nativeElement.click();
     this.cancelButton.nativeElement.click();
   }
 

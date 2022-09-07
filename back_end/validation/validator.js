@@ -117,3 +117,28 @@ const DeleteEpisodeSchema = Joi.object({
 });
 
 exports.validateParamsDeleteEpisode = validator(DeleteEpisodeSchema);
+
+const PostChannelSchema = Joi.object({
+    Name : Joi.string().required(),
+    EPGID : Joi.string().required(),
+    Thumbnail : Joi.string().required(),
+    Source : Joi.string().required()
+});
+
+exports.validateParamsPostChannel = validator(PostChannelSchema);
+
+const UpdateChannelSchema = Joi.object({
+    id : Joi.number().min(1).required(),
+    Name : Joi.string().required(),
+    EPGID : Joi.string().required(),
+    Thumbnail : Joi.string().required(),
+    Source : Joi.string().required()
+});
+
+exports.validateParamsUpdateChannel = validator(UpdateChannelSchema);
+
+const DeleteChannelSchema = Joi.object({
+    id : Joi.number().min(1).required()
+});
+
+exports.validateParamsDeleteChannel = validator(DeleteChannelSchema);

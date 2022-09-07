@@ -95,8 +95,8 @@ exports.PostShow = (req,res) => {
         res.statusMessage = "POST SUCCESFUL";
         res.status(200).end();
     });
-
 }
+
 exports.UpdateShow = (req,res) => {
 
     const { error, value } = validateParamsUpdateShow(req.body);

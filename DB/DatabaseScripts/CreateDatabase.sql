@@ -400,6 +400,59 @@ END //
 
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS InsLive;
+
+DELIMITER //
+CREATE PROCEDURE InsLive(
+	IN in_Name VARCHAR(45),
+	IN in_EPGID VARCHAR(30),
+	IN in_Thumbnail VARCHAR(250),
+    IN in_Source VARCHAR(750)
+)
+BEGIN
+INSERT INTO `mediatime-db`.Live(`Name`,`EPGID`,`Thumbnail`,`Source`)
+VALUES(in_Name, in_EPGID, in_Thumbnail, in_Source);
+END //
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS UpdLive;
+
+DELIMITER //
+CREATE PROCEDURE UpdLive(
+	IN in_id INT,
+	IN in_Name VARCHAR(45),
+	IN in_EPGID VARCHAR(30),
+	IN in_Thumbnail VARCHAR(250),
+    IN in_Source VARCHAR(750)
+)
+BEGIN
+UPDATE `mediatime-db`.Live
+SET 
+	`Name` = in_Name,
+    `EPGID` = in_EPGID,
+    `Thumbnail` = in_Thumbnail,
+    `Source` = in_Source
+WHERE 
+	`id` = in_id;
+END //
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS DeleteLive;
+
+DELIMITER //
+CREATE PROCEDURE DeleteLive(
+	IN in_id INT
+)
+BEGIN
+DELETE FROM `mediatime-db`.Live
+WHERE 
+	`id` = in_id;
+END //
+
+DELIMITER ;
+
 
 
 

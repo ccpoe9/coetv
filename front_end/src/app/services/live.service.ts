@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Live } from '../models/live.model';
 import { ConnectionConfig as config } from 'src/config/config';
@@ -29,5 +29,37 @@ export class LiveService {
         return throwError(err);
       })
     );  
+  }
+
+  postLive(channel : any){
+    return this.http.post(config.APIROOT+config.APIURLS.LIVE, channel)
+    .pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
+
+  updateLive(channel : any){
+    return this.http.put(config.APIROOT+config.APIURLS.LIVE, channel)
+    .pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
+
+  deleteLive(httpDeleteParams : HttpParams){
+    return this.http.delete(config.APIROOT+config.APIURLS.LIVE, {
+      params : httpDeleteParams
+    })
+    .pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
   }
 }
