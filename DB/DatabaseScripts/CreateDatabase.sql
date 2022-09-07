@@ -5,8 +5,8 @@ CREATE TABLE `mediatime-db`.`Movies` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(50) NULL,
   `Genre` VARCHAR(100) NULL,
-  `Thumbnail` VARCHAR(100) NULL,
-  `Video` VARCHAR(100) NULL,
+  `Thumbnail` VARCHAR(250) NULL,
+  `Video` VARCHAR(750) NULL,
   `Desc` VARCHAR(250) NULL,
   `Rating` DECIMAL(4,1),
   `URL` VARCHAR(50),
@@ -19,7 +19,7 @@ CREATE TABLE `mediatime-db`.`Shows` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(50) NULL,
   `Genre` VARCHAR(100) NULL,
-  `Thumbnail` VARCHAR(100) NULL,
+  `Thumbnail` VARCHAR(250) NULL,
   `Desc` VARCHAR(250) NULL,
   `Rating` DECIMAL(4,1),
   `URL` VARCHAR(50),
@@ -34,7 +34,7 @@ CREATE TABLE `mediatime-db`.`Episodes` (
   `ShowName` VARCHAR(50) NULL,
   `Season` INT,
   `Episode` INT,
-  `Video` VARCHAR(100) NULL,
+  `Video` VARCHAR(750) NULL,
   `Desc` VARCHAR(250) NULL,
   PRIMARY KEY (`id`));
 
@@ -49,8 +49,8 @@ CREATE TABLE `mediatime-db`.`Genres` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NULL,
   `EPGID` VARCHAR(30) NULL,
-  `Thumbnail` VARCHAR(100) NULL,
-  `Source` VARCHAR(500) NULL,
+  `Thumbnail` VARCHAR(250) NULL,
+  `Source` VARCHAR(750) NULL,
   PRIMARY KEY (`id`));
   
   

@@ -1,13 +1,15 @@
 
 
 <div class="live-header mt-4 d-flex">
-    <div class="player-div w-50 h-50" style="margin-left:5%;">
+    <div class="player-div" style="width:45%; margin-left:5%;">
         <app-videojs [options]="{ fluid : true, aspectRatio : '16:9', autoplay: true, muted: true, controls: true, 
         sources: [{ src: currentChannel.Source, type: 'application/x-mpegURL' }]}" ></app-videojs>
     </div>
-    <div class="player-info" class="text-white" style="margin-left:2.5%;">
+    <div class="player-info" class="text-white" style="width:45%; margin-left:2.5%; margin-right: 5%;">
         <h2 class="fw-bold">{{currentProgramTitle}}</h2>
-        <h6 class="w-75" style="color: rgb(97, 147, 168);"><i>{{currentProgramDesc}}</i></h6>
+        <div>
+          <p style="color: rgb(97, 147, 168);">{{currentProgramDesc}}</p>
+        </div>
     </div>
 </div>
 <div class="live-content mt-4" style="margin-left:5%; width:90%;">
@@ -21,7 +23,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let channel of channels">
+          <tr *ngFor="let channel of channels; let i = index">
             <th scope="row" style="width: 30%;" class="channel-head" [ngStyle]="{'color': (currentChannel==channel) ? 'aqua': ''}" (click)="changeChannel(channel)">
               <div>
                 <img src="{{channel.Thumbnail}}" alt="cc" style="width: 20%;">
@@ -31,9 +33,9 @@
                 </svg>
               </div>
             </th>
-            <td style="width: 20%;" class="channel-guide" [ngStyle]="{'background-color': (currentChannel==channel) ? 'aqua': '', 'color': (currentChannel==channel) ? 'black': ''}">{{getPrograms(channel, GUIDE)[0].title[0]}}</td>
-            <td style="width: 20%;" class="channel-guide">{{getPrograms(channel, GUIDE)[1].title[0]}}</td>
-            <td style="width: 20%;" class="channel-guide">{{getPrograms(channel, GUIDE)[2].title[0]}}</td>
+            <td style="width: 20%;" class="channel-guide" [ngStyle]="{'background-color': (currentChannel==channel) ? 'aqua': '', 'color': (currentChannel==channel) ? 'black': ''}">{{programs[i][0].title}}</td>
+            <td style="width: 20%;" class="channel-guide">{{programs[i][1].title}}</td>
+            <td style="width: 20%;" class="channel-guide">{{programs[i][2].title}}</td>
           </tr>
         </tbody>
       </table>

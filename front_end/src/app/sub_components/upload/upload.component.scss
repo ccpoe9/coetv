@@ -3,8 +3,14 @@
     border: 3px solid white;
     width: 95%;
     margin-left: 2.5%;
+    table-layout: fixed;
+    border-collapse: collapse;
 }
-
+td, th{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 #episodeTable{
     color : black;
     border: 3px solid black;

@@ -37,5 +37,7 @@ exports.GetGuide = (req,res) => {
           });
         }));
     
+    }).on('error', function(err) {
+      console.log('Error while reading', err);
     });
 }

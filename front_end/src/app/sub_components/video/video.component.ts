@@ -23,6 +23,8 @@ export class VideoComponent implements OnInit {
   Desc : string;
   Genre : string;
   source : string;
+  Thumbnail : string;
+
   recommended : any[];
   episodes : Episode[];
   seasons : number[] = [];
@@ -74,6 +76,7 @@ export class VideoComponent implements OnInit {
     this.Desc = this.movie.Desc;
     this.Genre = this.movie.Genre;
     this.source = this.movie.Video;
+    this.Thumbnail = this.movie.Thumbnail;
   }
 
   getShow(){
@@ -96,6 +99,7 @@ export class VideoComponent implements OnInit {
   setShow(){
     this.Name = this.show.Name;
     this.Genre = this.show.Genre;
+    this.Thumbnail = this.show.Thumbnail;
     this.constructParams(this.show.Name,1);
     let genresArr = this.show.Genre.replace(/\s/g, '').split(',');
     this.constructGenreParams(genresArr[0]);

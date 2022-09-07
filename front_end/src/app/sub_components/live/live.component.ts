@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { provideFirebaseApp } from '@angular/fire/app';
 import { switchMap } from 'rxjs';
 import { Live } from 'src/app/models/live.model';
 import { LiveService } from 'src/app/services/live.service';
@@ -18,8 +19,8 @@ export class LiveComponent implements OnInit {
   pipe = new DatePipe('en-US');
   now = new Date();
   formattedDate = this.pipe.transform(this.now, 'short');
-  GUIDE : any[];
-  currentPrograms : any[];
+  guide : any[];
+  programs : any[] = [];
   currentProgramTitle : string;
   currentProgramDesc : string;
 
@@ -29,6 +30,11 @@ export class LiveComponent implements OnInit {
       this.now = new Date();
       this.formattedDate = this.pipe.transform(this.now, 'short');
     }, 1000);
+
+    setInterval(() => {
+      this.getGuide();
+    }, 30000);
+    
   }
 
   getLive(){
@@ -38,26 +44,24 @@ export class LiveComponent implements OnInit {
       return this.liveservice.getGuide();
     }))
     .subscribe( data => {
-      this.GUIDE = data;
-      this.currentPrograms = this.getPrograms(this.currentChannel, this.GUIDE);
-      this.currentProgramTitle = this.currentPrograms[0]['sub-title'][0];
-      this.currentProgramDesc = this.currentPrograms[0].desc[0];
+      this.guide = data;
+      this.currentProgramTitle = this.getPrograms(this.currentChannel, this.guide)[0]['sub-title'][0];
+      this.currentProgramDesc = this.getPrograms(this.currentChannel, this.guide)[0].desc[0];
+      this.setGuide();
     })
   }
 
   changeChannel(channel : Live){
-    this.currentPrograms = this.getPrograms(channel, this.GUIDE);
     this.currentChannel = channel;
-    this.currentProgramTitle = this.currentPrograms[0]['sub-title'][0];
-    this.currentProgramDesc = this.currentPrograms[0].desc[0];
-
+    this.currentProgramTitle = this.getPrograms(this.currentChannel, this.guide)[0]['sub-title'][0];
+    this.currentProgramDesc = this.getPrograms(this.currentChannel, this.guide)[0].desc[0];
   }
 
-  getPrograms(channel : Live, GUIDE : any[]){
+  getPrograms(channel : Live, guide : any[]){
     let count = 0;
     let now = this.pipe.transform(this.now, 'yyyyMMddHHmmss','UTC-0');
     let val = Number(now);
-    return GUIDE.filter(function(item) {
+    return this.guide.filter(function(item) {
       if (count < 3 && item.$.channel == channel.EPGID && Number(item.$.stop.substring(0,14)) > val) {
         count++;
         return true;
@@ -65,14 +69,20 @@ export class LiveComponent implements OnInit {
       return false;
     }, );
   }
-
   getGuide(){
     this.liveservice.getGuide().subscribe( data => {
-      this.GUIDE = data;
-      this.currentPrograms = this.getPrograms(this.currentChannel,this.GUIDE);
-      this.currentProgramTitle = this.currentPrograms[0]['sub-title'][0];
-      this.currentProgramDesc = this.currentPrograms[0].desc[0];
-    });
+      this.guide = data;
+      this.programs = [];
+      this.currentProgramTitle = this.getPrograms(this.currentChannel, this.guide)[0]['sub-title'][0];
+      this.currentProgramDesc = this.getPrograms(this.currentChannel, this.guide)[0].desc[0];
+      this.setGuide();
+    })
+  }
+
+  setGuide(){
+    for(let channel of this.channels){
+      this.programs.push(this.getPrograms(channel, this.guide));
+    }
   }
 
 }
