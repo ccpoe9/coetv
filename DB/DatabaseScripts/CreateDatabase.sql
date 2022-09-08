@@ -86,7 +86,7 @@ BEGIN
 	
     SELECT COUNT(*) INTO totalRecords FROM(
     SELECT * FROM `mediatime-db`.`Movies`
-    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT(in_genre,'%')
+    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT('%',in_genre,'%')
     ) AS rescount;
     SET totalPages = CEIL(totalRecords/size);
     
@@ -209,7 +209,7 @@ BEGIN
 	
     SELECT COUNT(*) INTO totalRecords FROM(
     SELECT * FROM `mediatime-db`.`Shows`
-    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT(in_genre,'%')
+    WHERE `Name` LIKE CONCAT('%',search,'%') AND `Genre` LIKE CONCAT('%',in_genre,'%')
     ) AS rescount;
     SET totalPages = CEIL(totalRecords/size);
     

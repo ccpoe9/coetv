@@ -44,6 +44,7 @@ export class MoviesComponent implements OnInit {
     this.constructParams(this.currentPage, this.size, this.search, this.genre, this.orderBy, this.orderDir);
     this.getAllMovies();
     this.getAllGenres();
+
   }
 
   constructParams(currentPage : number,
