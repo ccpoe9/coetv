@@ -37,6 +37,7 @@ exports.GetMovieByUrl = (req,res) => {
 
     let GetMovie = 
     `CALL GetMovieByUrl('${req.query.v}');`;
+    
     db.query(GetMovie, (err,data,fields) => {
         if(err){
             console.error(err.message);

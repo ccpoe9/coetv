@@ -100,7 +100,7 @@ export class VideoComponent implements OnInit {
     this.Name = this.show.Name;
     this.Genre = this.show.Genre;
     this.Thumbnail = this.show.Thumbnail;
-    this.constructParams(this.show.Name,1);
+    this.constructParams(this.show.Name.replace(/'/g, "''"),1);
     let genresArr = this.show.Genre.replace(/\s/g, '').split(',');
     this.constructGenreParams(genresArr[0]);
     this.setSeasons(this.totalSeasons);
@@ -136,7 +136,7 @@ export class VideoComponent implements OnInit {
 
   changeSeason(season : number){
     this.currentSeason = season;
-    this.constructParams(this.show.Name,season);
+    this.constructParams(this.show.Name.replace(/'/g, "''"),season);
     this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
       this.episodes = data[0];
     });

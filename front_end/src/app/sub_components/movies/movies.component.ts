@@ -3,7 +3,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { Genre } from 'src/app/models/genre.model';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -18,6 +18,7 @@ export class MoviesComponent implements OnInit {
   constructor(private moviesService : MoviesService, private router : Router) { }
 
   movies : Movie[];
+  carouselMovies : Movie[];
 
   currentPage : number = 1;
   size : number = 20;
@@ -44,7 +45,6 @@ export class MoviesComponent implements OnInit {
     this.constructParams(this.currentPage, this.size, this.search, this.genre, this.orderBy, this.orderDir);
     this.getAllMovies();
     this.getAllGenres();
-
   }
 
   constructParams(currentPage : number,
@@ -126,9 +126,29 @@ export class MoviesComponent implements OnInit {
   }
 
   getAllGenres(){
-    this.moviesService.getGenres().subscribe( data => {
+    this.moviesService.getGenres().pipe(switchMap( data => {
       this.genres = data;
+      this.constructParams(1,3,'','','Rating','DESC');
+      return this.moviesService.getAllMovies(this.httpParams);
+    }))
+    .subscribe( data => {
+      this.carouselMovies = data[0];
+      this.setCarousel();
+      
     })
+  }
+  setCarousel(){
+    if(this.carouselMovies.length > 0 && this.carouselMovies.length < 3){
+      let i = 0;
+      let len = this.carouselMovies.length;
+      let caroIndex = 0;
+      while(i < 3){
+        this.carouselMovies[i] = this.carouselMovies[caroIndex];
+        caroIndex++;
+        i++;
+        if(caroIndex == len) caroIndex = 0;
+      }
+    }
   }
 
   changeGenre(genre : string){

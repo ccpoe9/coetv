@@ -1,20 +1,20 @@
 <!--<p>movies works!</p>-->
 <div class="container-bg">
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" *ngIf="totalPages>0">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
           <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/1200px-Big_buck_bunny_poster_big.jpg);">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/1200px-Big_buck_bunny_poster_big.jpg" class="carousel-thumbnail d-block w-100"  alt="...">
+          <div class="carousel-item active" style="background-image: url({{carouselMovies[0].Thumbnail}});">
+            <img src="{{carouselMovies[0].Thumbnail}}" class="carousel-thumbnail d-block w-100"  alt="...">
           </div>
-          <div class="carousel-item" style="background-image: url(https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg);">
-            <img src="https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg" class="carousel-thumbnail d-block w-100"  alt="...">
+          <div class="carousel-item" style="background-image: url({{carouselMovies[1].Thumbnail}});">
+            <img src="{{carouselMovies[1].Thumbnail}}" class="carousel-thumbnail d-block w-100"  alt="...">
           </div>
-          <div class="carousel-item active" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/1200px-Big_buck_bunny_poster_big.jpg);">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/1200px-Big_buck_bunny_poster_big.jpg" class="carousel-thumbnail d-block w-100"  alt="...">
+          <div class="carousel-item active" style="background-image: url({{carouselMovies[2].Thumbnail}});">
+            <img src="{{carouselMovies[2].Thumbnail}}" class="carousel-thumbnail d-block w-100"  alt="...">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">

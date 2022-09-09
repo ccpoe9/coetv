@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { Genre } from 'src/app/models/genre.model';
 import { Tv } from 'src/app/models/tv.model';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -16,6 +16,7 @@ export class TvComponent implements OnInit {
 
   constructor(private tvservice : TvService, private movieService : MoviesService, private router : Router) { }
   shows : Tv[];
+  carouselShows : Tv[];
 
   currentPage : number = 1;
   size : number = 20;
@@ -119,9 +120,29 @@ changeSortBy(sortByUnselected : string){
 }
 
 getAllGenres(){
-  this.movieService.getGenres().subscribe( data => {
+  this.movieService.getGenres().pipe(switchMap( data => {
     this.genres = data;
+    this.constructParams(1,3,'','','Rating','DESC');
+    return this.tvservice.getAllShows(this.httpParams);
+  }))
+  .subscribe( data => {
+    this.carouselShows = data[0];
+    this.setCarousel();
+    
   })
+}
+setCarousel(){
+  if(this.carouselShows.length > 0 && this.carouselShows.length < 3){
+    let i = 0;
+    let len = this.carouselShows.length;
+    let caroIndex = 0;
+    while(i < 3){
+      this.carouselShows[i] = this.carouselShows[caroIndex];
+      caroIndex++;
+      i++;
+      if(caroIndex == len) caroIndex = 0;
+    }
+  }
 }
 
 changeGenre(genre : string){

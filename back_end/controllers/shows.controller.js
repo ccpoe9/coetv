@@ -64,7 +64,6 @@ exports.GetEpisodesByShowSeason = (req,res) => {
     let GetEpisodesByShowSeason =
     `CALL GetEpisodesByShowSeason('${req.query.showName}',${req.query.season}, @totalEpisodes);
      SELECT @totalEpisodes as totalEpisodes;`;
-
     db.query(GetEpisodesByShowSeason, (err,data,fields) =>{
         if(err){
             console.error(err.message);

@@ -339,7 +339,7 @@ export class UploadComponent implements OnInit {
       this.seasons = Array.from({length: this.totalSeasons}, (_, i) => i + 1);
       this.editCurrentSeason = 1;
       this.httpParams = new HttpParams()
-      .set('showName',this.putItemName)
+      .set('showName',this.putItemName.replace(/'/g, "''"))
       .set('season',this.editCurrentSeason);
       return this.tvservice.getShowSeason(this.httpParams);
     })).subscribe( data => {
@@ -350,7 +350,7 @@ export class UploadComponent implements OnInit {
   changeSeason(season : number){
     this.editCurrentSeason = season;
     this.httpParams = new HttpParams()
-      .set('showName',this.putItemName)
+      .set('showName',this.putItemName.replace(/'/g, "''"))
       .set('season',season);
       this.tvservice.getShowSeason(this.httpParams).subscribe( data => {
         this.episodes = data[0];
@@ -499,7 +499,7 @@ export class UploadComponent implements OnInit {
 
     this.tvservice.deleteEpisode(this.httpDeleteParams).pipe( switchMap( data => {
       this.httpParams = new HttpParams()
-      .set('showName',this.putItemName)
+      .set('showName',this.putItemName.replace(/'/g, "''"))
       .set('season',this.editCurrentSeason);
       return this.tvservice.getShowSeason(this.httpParams);
     })).subscribe( data => {
