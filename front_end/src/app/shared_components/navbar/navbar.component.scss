@@ -21,7 +21,7 @@
     transition:.3s;
 }
 
-@media (max-width:980px) {
+@media (max-width:990px) {
     .nav-item{
         margin: 0 auto;
     }
@@ -36,8 +36,7 @@
       .dropdown-menu {
         position: absolute;
         top: 100%; /* Bottom of button */
-        right: 0;
-        margin-right: 30%; /* More to the left */
+        right: 30%;/* More to the left */
       }
 }
 
