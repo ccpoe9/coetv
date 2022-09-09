@@ -2,7 +2,6 @@
     <div class="movie-search mt-3">
         <h3 class="text-white mt-6 fw-bold" style="margin-left: 12.5%;">MOVIES :</h3>
         <div class="row mt-4" style="margin-left: 12.5%;">
-            <div class="card-deck">
                 <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngFor="let movie of movies" (click)="GetMovie(movie)">
                     <div class="card-image">
                       <img class="card-img-top rounded" src="{{movie.Thumbnail}}" alt="...">
@@ -15,7 +14,6 @@
                     <div class="card-body bg">
                         <p class="card-title text-white">{{movie.Name}}</p>
                     </div>
-                </div>
             </div>
         </div>
         <div class="d-flex justify-content-center">
@@ -44,7 +42,6 @@
     <div class="show-search mt-3">
         <h3 class="text-white mt-6 fw-bold" style="margin-left: 12.5%;">SHOWS :</h3>
         <div class="row mt-4" style="margin-left: 12.5%;">
-            <div class="card-deck">
                 <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngFor="let show of shows" (click)="GetShow(show)">
                     <div class="card-image">
                       <img class="card-img-top rounded" src="{{show.Thumbnail}}" alt="...">
@@ -58,7 +55,6 @@
                         <p class="card-title text-white">{{show.Name}}</p>
                     </div>
                 </div>
-            </div>
         </div>
         <div class="d-flex justify-content-center">
             <nav aria-label="Page navigation example">
