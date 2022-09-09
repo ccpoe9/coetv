@@ -129,8 +129,7 @@ export class UploadComponent implements OnInit {
   getAllShows(){
     this.tvservice.getAllShows(this.httpParams).subscribe(data => {
       this.shows = data[0];
-      this.totalShowPages = data[2][0].totalPages
-      console.log(this.totalShowPages);;
+      this.totalShowPages = data[2][0].totalPages;
       this.totalShowRecords = data[2][0].totalRecords;
       this.setPages(this.totalShowPages);
   });
@@ -180,12 +179,12 @@ export class UploadComponent implements OnInit {
   PostMovie(){
     this.setPostGenre();
     let postItem = {
-      "Name" : this.postItemName,
-      "Desc" : this.postItemDesc,
-      "Genre" : this.postItemGenre,
+      "Name" : this.postItemName.replace(/'/g, "''"),
+      "Desc" : this.postItemDesc.replace(/'/g, "''"),
+      "Genre" : this.postItemGenre.replace(/'/g, "''"),
       "Rating" : this.postItemRating,
-      "Thumbnail" : this.postItemThumbnail,
-      "Video" : this.postItemVideo
+      "Thumbnail" : this.postItemThumbnail.replace(/'/g, "''"),
+      "Video" : this.postItemVideo.replace(/'/g, "''")
     }
     this.moviesService.createMovie(postItem).pipe( switchMap( data => {
       this.resetPages();
@@ -205,11 +204,11 @@ export class UploadComponent implements OnInit {
   PostShow(){
     this.setPostGenre();
     let postItem = {
-      "Name" : this.postItemName,
-      "Desc" : this.postItemDesc,
-      "Genre" : this.postItemGenre,
+      "Name" : this.postItemName.replace(/'/g, "''"),
+      "Desc" : this.postItemDesc.replace(/'/g, "''"),
+      "Genre" : this.postItemGenre.replace(/'/g, "''"),
       "Rating" : this.postItemRating,
-      "Thumbnail" : this.postItemThumbnail
+      "Thumbnail" : this.postItemThumbnail.replace(/'/g, "''")
     }
     this.tvservice.createShow(postItem).pipe( switchMap ( data => {
       this.resetPages();
@@ -228,10 +227,10 @@ export class UploadComponent implements OnInit {
 
   PostChannel(){
     let postItem = {
-      "Name" : this.postChannelName,
-      "EPGID" : this.postChannelEPGID,
-      "Thumbnail" : this.postChannelThumbnail,
-      "Source" : this.postChannelSource
+      "Name" : this.postChannelName.replace(/'/g, "''"),
+      "EPGID" : this.postChannelEPGID.replace(/'/g, "''"),
+      "Thumbnail" : this.postChannelThumbnail.replace(/'/g, "''"),
+      "Source" : this.postChannelSource.replace(/'/g, "''")
     }
     this.liveservice.postLive(postItem).pipe( switchMap ( data => {
       return this.liveservice.getLive();
@@ -260,16 +259,16 @@ export class UploadComponent implements OnInit {
   }
   PostEpisode(){
     let postItem = {
-      "Name" : this.postItemEpisodeName,
-      "showName" : this.putItemName,
+      "Name" : this.postItemEpisodeName.replace(/'/g, "''"),
+      "showName" : this.putItemName.replace(/'/g, "''"),
       "season" : this.postItemEpisodeSeason,
-      "Video" : this.postItemEpisodeVideo,
-      "Desc" : this.postItemEpisodeDesc
+      "Video" : this.postItemEpisodeVideo.replace(/'/g, "''"),
+      "Desc" : this.postItemEpisodeDesc.replace(/'/g, "''")
     }
 
     this.tvservice.createEpisode(postItem).pipe( switchMap( data => {
       this.httpParams = new HttpParams()
-      .set('showName',this.putItemName)
+      .set('showName',this.putItemName.replace(/'/g, "''"))
       .set('season',this.editCurrentSeason);
       return this.tvservice.getShowSeason(this.httpParams);
     })).subscribe( data => {
@@ -384,12 +383,12 @@ export class UploadComponent implements OnInit {
   PutMovie(){
     let putItem = {
       "id" : this.putItemId,
-      "Name" : this.putItemName,
-      "Desc" : this.putItemDesc,
-      "Genre" : this.getPutGenre(),
+      "Name" : this.putItemName.replace(/'/g, "''"),
+      "Desc" : this.putItemDesc.replace(/'/g, "''"),
+      "Genre" : this.getPutGenre().replace(/'/g, "''"),
       "Rating" : this.putItemRating,
-      "Thumbnail" : this.putItemThumbnail,
-      "Video" : this.putItemVideo
+      "Thumbnail" : this.putItemThumbnail.replace(/'/g, "''"),
+      "Video" : this.putItemVideo.replace(/'/g, "''")
     }
 
     this.moviesService.updateMovie(putItem).pipe( switchMap( data => {
@@ -409,10 +408,10 @@ export class UploadComponent implements OnInit {
   PutShow(){
     let putItem = {
       "id" : this.putItemId,
-      "Name" : this.putItemName,
-      "Genre" : this.getPutGenre(),
-      "Desc" : this.putItemDesc,
-      "Thumbnail" : this.putItemThumbnail,
+      "Name" : this.putItemName.replace(/'/g, "''"),
+      "Genre" : this.getPutGenre().replace(/'/g, "''"),
+      "Desc" : this.putItemDesc.replace(/'/g, "''"),
+      "Thumbnail" : this.putItemThumbnail.replace(/'/g, "''"),
       "Rating" : this.putItemRating
     }
 
@@ -432,10 +431,10 @@ export class UploadComponent implements OnInit {
   PutChannel(){
     let putItem = {
       "id" : this.putChannelId,
-      "Name" : this.putChannelName,
-      "EPGID" : this.putChannelEPGID,
-      "Thumbnail" : this.putChannelThumbnail,
-      "Source" : this.putChannelSource
+      "Name" : this.putChannelName.replace(/'/g, "''"),
+      "EPGID" : this.putChannelEPGID.replace(/'/g, "''"),
+      "Thumbnail" : this.putChannelThumbnail.replace(/'/g, "''"),
+      "Source" : this.putChannelSource.replace(/'/g, "''")
     };
     this.liveservice.updateLive(putItem).pipe( switchMap ( data => {
       return this.liveservice.getLive();
@@ -544,14 +543,14 @@ export class UploadComponent implements OnInit {
   PutEpisode(){
     let putItem = {
       "id" : this.editEpisode,
-      "Name" : this.putItemEpisodeName,
-      "Desc" : this.putItemEpisodeDesc,
-      "Video" : this.putItemEpisodeVideo
+      "Name" : this.putItemEpisodeName.replace(/'/g, "''"),
+      "Desc" : this.putItemEpisodeDesc.replace(/'/g, "''"),
+      "Video" : this.putItemEpisodeVideo.replace(/'/g, "''")
     }
 
     this.tvservice.updateEpisode(putItem).pipe( switchMap( data => {
       this.httpParams = new HttpParams()
-      .set('showName',this.putItemName)
+      .set('showName',this.putItemName.replace(/'/g, "''"))
       .set('season',this.editCurrentSeason);
       return this.tvservice.getShowSeason(this.httpParams);
     })).subscribe( data => {

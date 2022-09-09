@@ -35,7 +35,7 @@ VALUES('Other');
 
 #SHOWS
 INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('For Bigger What?','Other','https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg','Introducing Chromecast. The easiest way to enjoy online video and music on your TV—for when Batman\'s escapes aren\'t quite big enough. For $35. Learn how to use Chromecast with Google Play Movies and more at google.com/chromecast.', 9.1,'NzM2MTQ=');
+VALUES('For Bigger What?','Other','https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg','Introducing Chromecast. The easiest way to enjoy online video and music on your TV—for when Batman''s escapes aren''t quite big enough. For $35. Learn how to use Chromecast with Google Play Movies and more at google.com/chromecast.', 9.1,'NzM2MTQ=');
 
 
 
