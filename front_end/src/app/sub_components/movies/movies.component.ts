@@ -7,6 +7,7 @@ import { Subscription, switchMap } from 'rxjs';
 import { Genre } from 'src/app/models/genre.model';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
+import { RouterService } from 'src/app/services/router.service';
 
 @Component({
   selector: 'app-movies',
@@ -15,7 +16,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 })
 export class MoviesComponent implements OnInit {
 
-  constructor(private moviesService : MoviesService, private router : Router) { }
+  constructor(private moviesService : MoviesService, private router : Router, private routerservice : RouterService) { }
 
   movies : Movie[];
   carouselMovies : Movie[];
@@ -42,6 +43,11 @@ export class MoviesComponent implements OnInit {
   pageNumbers : number[] = [0,0,0,0,0,0];
 
   ngOnInit(): void {
+    if(this.routerservice.getPreviousUrl().startsWith('/video?')){
+      this.orderBy = 'Rating';
+      this.sortBySelected = 'SORT BY : POPULAR';
+      this.sortByUnselected = 'SORT BY : LATEST';
+    }
     this.constructParams(this.currentPage, this.size, this.search, this.genre, this.orderBy, this.orderDir);
     this.getAllMovies();
     this.getAllGenres();

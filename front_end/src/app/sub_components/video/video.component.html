@@ -15,7 +15,7 @@
       <h3 class="text-white fw-bold">{{Name}}</h3>
       <h5 class="text-white"*ngIf="currentEpisode">{{currentEpisode.Name}}</h5>
       <h6 style="width:65%; color: rgb(97, 147, 168);"><i>{{Desc}}</i></h6>
-      <h6 class="text-white">Genre(s) : {{Genre}}</h6>
+      <h6 class="text-white" (click)="getAllMoviesLikeThis()">Genre(s) : {{Genre}}</h6>
       <button type="button" class="btn mt-4" (click)="playAction()" [ngStyle]="{'pointer-events': isPlayed ? 'none': ''}" *ngIf="type == 'm' || (type == 's' && episodes.length > 0)">{{playText}} 
         <svg *ngIf="!isPlayed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill mb-1 mt-1" viewBox="0 0 16 16">
         <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>

@@ -166,5 +166,9 @@ export class VideoComponent implements OnInit {
     this.playText = 'PLAYED';
   }
 
+  getAllMoviesLikeThis(){
+    this.router.navigate(['movies']);
+  }
+
 
 }
