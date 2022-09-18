@@ -1,7 +1,8 @@
 #MOVIES
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
 VALUES('Big Buck Bunny','Comedy,Animation','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/1200px-Big_buck_bunny_poster_big.jpg','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4','A day in the life of Big Buck Bunny', 6.5,'Mjk1NDE=');
-
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
+VALUES('Tarzan','Animation,Adventure,Comedy','https://m.media-amazon.com/images/M/MV5BY2ZiYWUxN2ItYmQxZi00NDlkLWE2NDAtOTNmYTg1MDI0NDk1XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg','https://d2yy9811v5bnjv.cloudfront.net/Storage/Movies/Tarzan%20(1999)%20720P%20Bluray%20X264/Tarzan.1999.720p.mp4','A man raised by gorillas must decide where he really belongs when he discovers he is a human.', 7.3,'MTIzNDU=');
 
 
 #GENRES 
@@ -12,7 +13,7 @@ VALUES('Animation');
 INSERT INTO `mediatime-db`.Genres(`Name`)
 VALUES('Action');
 INSERT INTO `mediatime-db`.Genres(`Name`)
-VALUES('Adeventure');
+VALUES('Adventure');
 INSERT INTO `mediatime-db`.Genres(`Name`)
 VALUES('Horror');
 INSERT INTO `mediatime-db`.Genres(`Name`)
@@ -34,8 +35,6 @@ VALUES('Other');
 
 
 #SHOWS
-INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES('For Bigger What?','Other','https://flxt.tmsimg.com/assets/p8553063_b_v13_ax.jpg','Introducing Chromecast. The easiest way to enjoy online video and music on your TV—for when Batman''s escapes aren''t quite big enough. For $35. Learn how to use Chromecast with Google Play Movies and more at google.com/chromecast.', 9.1,'NzM2MTQ=');
 
 
 
