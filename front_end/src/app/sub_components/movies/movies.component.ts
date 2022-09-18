@@ -43,10 +43,12 @@ export class MoviesComponent implements OnInit {
   pageNumbers : number[] = [0,0,0,0,0,0];
 
   ngOnInit(): void {
-    if(this.routerservice.getPreviousUrl().startsWith('/video?')){
+    if(this.router.url.startsWith('/movies?g=')){
       this.orderBy = 'Rating';
       this.sortBySelected = 'SORT BY : POPULAR';
       this.sortByUnselected = 'SORT BY : LATEST';
+      this.genre = this.router.url.substring(10,this.router.url.length);
+      this.sortByGenre = this.genre;
     }
     this.constructParams(this.currentPage, this.size, this.search, this.genre, this.orderBy, this.orderDir);
     this.getAllMovies();

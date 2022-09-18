@@ -36,6 +36,7 @@ export class VideoComponent implements OnInit {
   type : string;
   isPlayed : boolean = false;
   playText : string = 'PLAY';
+  genresArr : string[];
   constructor(private router : Router, private routerService : RouterService, private movieService : MoviesService,
               private tvservice : TvService) { 
   
@@ -62,8 +63,8 @@ export class VideoComponent implements OnInit {
       if(data.length == 0) this.router.navigate(['/']);
       this.movie = data[0];
       this.setMovie();
-      let genresArr = this.movie.Genre.replace(/\s/g, '').split(',');
-      this.constructGenreParams(genresArr[0]);
+      this.genresArr = this.movie.Genre.replace(/\s/g, '').split(',');
+      this.constructGenreParams(this.genresArr[0]);
       return this.movieService.getAllMovies(this.httpGenreParams);
     })).subscribe( data => {
       this.recommended = data[0];
@@ -101,8 +102,8 @@ export class VideoComponent implements OnInit {
     this.Genre = this.show.Genre;
     this.Thumbnail = this.show.Thumbnail;
     this.constructParams(this.show.Name.replace(/'/g, "''"),1);
-    let genresArr = this.show.Genre.replace(/\s/g, '').split(',');
-    this.constructGenreParams(genresArr[0]);
+    this.genresArr = this.show.Genre.replace(/\s/g, '').split(',');
+    this.constructGenreParams(this.genresArr[0]);
     this.setSeasons(this.totalSeasons);
   }
   setShowEpisodes(){
@@ -166,8 +167,14 @@ export class VideoComponent implements OnInit {
     this.playText = 'PLAYED';
   }
 
-  getAllMoviesLikeThis(){
-    this.router.navigate(['movies']);
+  getAllLikeThis(genre : string){
+    if(this.router.url.charAt(9) == 'm'){
+      this.router.navigate(['movies'], { queryParams : { g : genre}});
+    }
+    else if(this.router.url.charAt(9) == 's'){
+      this.router.navigate(['tv'], { queryParams : { g : genre}});
+    }
+    
   }
 
 

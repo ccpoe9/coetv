@@ -1,10 +1,12 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Subscription, switchMap } from 'rxjs';
 import { Genre } from 'src/app/models/genre.model';
 import { Tv } from 'src/app/models/tv.model';
 import { MoviesService } from 'src/app/services/movies.service';
+import { RouterService } from 'src/app/services/router.service';
 import { TvService } from 'src/app/services/tv.service';
 
 @Component({
@@ -14,7 +16,7 @@ import { TvService } from 'src/app/services/tv.service';
 })
 export class TvComponent implements OnInit {
 
-  constructor(private tvservice : TvService, private movieService : MoviesService, private router : Router) { }
+  constructor(private tvservice : TvService, private movieService : MoviesService, private router : Router, private routerservice : RouterService) { }
   shows : Tv[];
   carouselShows : Tv[];
 
@@ -38,6 +40,14 @@ export class TvComponent implements OnInit {
   endPage : number = 6;
   pageNumbers : number[] = [0,0,0,0,0,0];
   ngOnInit(): void {
+    if(this.router.url.startsWith('/tv?g=')){
+      this.orderBy = 'Rating';
+      this.sortBySelected = 'SORT BY : POPULAR';
+      this.sortByUnselected = 'SORT BY : LATEST';
+      console.log(this.router.url);
+      this.genre = this.router.url.substring(6,this.router.url.length);
+      this.sortByGenre = this.genre;
+    }
     this.constructParams(this.currentPage, this.size, this.search, this.genre, this.orderBy, this.orderDir);
     this.getAllShows();
     this.getAllGenres();
