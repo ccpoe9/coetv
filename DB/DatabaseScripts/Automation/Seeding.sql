@@ -15,6 +15,8 @@ VALUES('Action');
 INSERT INTO `mediatime-db`.Genres(`Name`)
 VALUES('Adventure');
 INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('Anime');
+INSERT INTO `mediatime-db`.Genres(`Name`)
 VALUES('Horror');
 INSERT INTO `mediatime-db`.Genres(`Name`)
 VALUES('Fantasy');
