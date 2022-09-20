@@ -45,6 +45,21 @@ a:hover, a:visited, a:link, a:active
     border-color: aqua;
 }
 
+.icon-buttons{
+    color:aqua;
+    background-color: black;
+    border-color: aqua;
+    display: inline-block;
+    .bi-check-circle{
+        display: inline-block;
+        vertical-align: text-bottom;
+    }
+    .bi-play-fill{
+        display: inline-block;
+        vertical-align: text-top;
+    }
+}
+
 .btn:active{
     color:aqua;
     background-color: black;

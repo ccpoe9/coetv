@@ -23,6 +23,7 @@
     "bootstrap": "^5.2.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "videojs-plus": "^1.6.9",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

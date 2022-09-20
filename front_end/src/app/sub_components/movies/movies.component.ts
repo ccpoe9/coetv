@@ -22,7 +22,7 @@ export class MoviesComponent implements OnInit {
   carouselMovies : Movie[];
 
   currentPage : number = 1;
-  size : number = 20;
+  size : number = 18;
   search : string = '';
   genre : string = '';
   orderBy : string = 'id';
