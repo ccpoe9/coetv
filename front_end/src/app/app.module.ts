@@ -25,7 +25,8 @@ import { VjsPlayerComponent } from './shared_components/videojs/videojs.componen
 import { UploadComponent } from './sub_components/upload/upload.component';
 import { FooterComponent } from './shared_components/footer/footer.component';
 import { SearchComponent } from './sub_components/search/search.component';
-
+import {YouTubePlayerModule} from '@angular/youtube-player';
+import { YoutubePlayerComponent } from './shared_components/youtube-player/youtube-player.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { SearchComponent } from './sub_components/search/search.component';
     VjsPlayerComponent,
     UploadComponent,
     FooterComponent,
-    SearchComponent
+    SearchComponent,
+    YoutubePlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ import { SearchComponent } from './sub_components/search/search.component';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
+    YouTubePlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

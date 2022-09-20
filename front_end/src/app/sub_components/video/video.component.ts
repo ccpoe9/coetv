@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, DEFAULT_CURRENCY_CODE, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, DEFAULT_CURRENCY_CODE, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { filter, pairwise, switchMap, take } from 'rxjs';
 import { Episode } from 'src/app/models/episode.model';
@@ -9,6 +9,7 @@ import { RouterService } from 'src/app/services/router.service';
 import { TvService } from 'src/app/services/tv.service';
 import { trigger, transition, animate, style } from '@angular/animations';
 import { Tv } from 'src/app/models/tv.model';
+import { flush } from '@angular/core/testing';
 
 @Component({
   selector: 'app-video',
@@ -35,8 +36,13 @@ export class VideoComponent implements OnInit {
   httpGenreParams : HttpParams;
   type : string;
   isPlayed : boolean = false;
+  isTrailer : boolean = false;
   playText : string = 'PLAY';
   genresArr : string[];
+
+  public screenWidth: any;
+  public screenHeight: any;
+
   constructor(private router : Router, private routerService : RouterService, private movieService : MoviesService,
               private tvservice : TvService) { 
   
@@ -44,7 +50,9 @@ export class VideoComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.router.url == '/video') this.router.navigate(['/']);
-
+    this.screenWidth = (window.innerWidth/2);
+    this.screenWidth = Math.max(this.screenWidth, 405);
+    this.screenHeight = (this.screenWidth * 9) / 16;
     if(this.router.url.charAt(9) == 'm'){
       this.type = 'm';
       this.getMovie();
@@ -56,6 +64,13 @@ export class VideoComponent implements OnInit {
     else{
       this.router.navigate(['/']);
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.screenWidth = (window.innerWidth/2);
+    this.screenWidth = Math.max(this.screenWidth, 405);
+    this.screenHeight = (this.screenWidth * 9) / 16;
   }
 
   getMovie(){
@@ -165,7 +180,13 @@ export class VideoComponent implements OnInit {
 
   playAction(){
     this.isPlayed=!this.isPlayed;
+    this.isTrailer = false;
     this.playText = 'PLAYED';
+  }
+  trailerAction(){
+    this.isTrailer = !this.isTrailer;
+    this.isPlayed = false;
+    this.playText = 'PLAY';
   }
 
   hasEnded($event : any){

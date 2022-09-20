@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@angular/youtube-player": "^14.2.2",
     "@videogular/ngx-videogular": "^6.0.0",
     "bootstrap": "^5.2.0",
     "rxjs": "~7.5.0",
