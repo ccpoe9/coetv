@@ -1,6 +1,6 @@
 <div class="player-container d-flex justify-content-center" style="background-color: black;">
   <div class="player-div w-50 h-50" *ngIf="isPlayed">
-    <app-videojs [options]="{ fluid : true, aspectRatio : '16:9', autoplay: true, muted: false, controls: true , sources: [{ src: source, type: 'video/mp4' }]}"></app-videojs>
+    <app-videojs (isEnded)="hasEnded($event)"[options]="{ fluid : true, aspectRatio : '16:9', autoplay: true, muted: false, controls: true , sources: [{ src: source, type: 'video/mp4' }]}"></app-videojs>
   </div>
 </div>
 <div class="player-info d-flex mt-3 mb-3">

@@ -1,6 +1,6 @@
 // videojs.ts component
-import { Component, ElementRef, Input, OnDestroy, 
-  OnInit, SimpleChanges, ViewChild, ViewEncapsulation } from 
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, 
+  OnInit, Output, SimpleChanges, ViewChild, ViewEncapsulation } from 
   '@angular/core';
   import videojs from 'video.js';
   
@@ -26,16 +26,23 @@ import { Component, ElementRef, Input, OnDestroy,
         }[],
     };
     player: videojs.Player;
-  
+
+
+    @Output() isEnded : EventEmitter<boolean> = new EventEmitter<boolean>();
+
     constructor(
       private elementRef: ElementRef,
     ) { }
   
     ngOnInit() {
       // instantiate Video.js
+      var self = this;
       this.player = videojs(this.target.nativeElement, 
       this.options, function onPlayerReady() {
         console.log('onPlayerReady', this);
+        this.on('ended', function() {
+          self.isEnded.emit(true);
+      });
       });
       this.player.controlBar.addChild('QualitySelector');
     }
@@ -47,7 +54,6 @@ import { Component, ElementRef, Input, OnDestroy,
         this.player.play();
       }
     }
-  
     ngOnDestroy() {
       // destroy player
       if (this.player) {

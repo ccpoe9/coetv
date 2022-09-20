@@ -146,6 +146,7 @@ export class VideoComponent implements OnInit {
   changeEpisode(episode : Episode){
     this.currentEpisode = episode;
     this.source = episode.Video;
+    this.Desc = episode.Desc;
   }
 
   setMoviesLikeThis(){
@@ -165,6 +166,15 @@ export class VideoComponent implements OnInit {
   playAction(){
     this.isPlayed=!this.isPlayed;
     this.playText = 'PLAYED';
+  }
+
+  hasEnded($event : any){
+    if($event && this.type == 's'){
+      let nextEpisode = this.episodes.filter( (episode : Episode) => {return episode.Episode == this.currentEpisode.Episode+1});
+      if(nextEpisode.length != 0){
+        this.changeEpisode(nextEpisode[0]);
+      }
+    }
   }
 
   getAllLikeThis(genre : string){
