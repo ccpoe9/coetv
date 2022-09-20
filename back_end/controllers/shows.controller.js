@@ -83,7 +83,7 @@ exports.PostShow = (req,res) => {
         return res.status(400).end();
     }
     let PostShow =
-    `CALL InsShow('${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Desc}', ${req.body.Rating},'${urlGenerator('show')}');`;
+    `CALL InsShow('${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Desc}', ${req.body.Rating},'${urlGenerator('show')}','${req.body.Trailer}');`;
 
     db.query(PostShow, (err,data,fields) => {
         if(err){
@@ -107,7 +107,7 @@ exports.UpdateShow = (req,res) => {
 
     let UpdateShow =
     `SET SQL_SAFE_UPDATES = 0;
-    CALL UpdShow(${req.body.id},'${req.body.Name}','${req.body.Genre}', '${req.body.Thumbnail}','${req.body.Desc}',${req.body.Rating});
+    CALL UpdShow(${req.body.id},'${req.body.Name}','${req.body.Genre}', '${req.body.Thumbnail}','${req.body.Desc}',${req.body.Rating},'${req.body.Trailer}');
     SET SQL_SAFE_UPDATES = 1;`;
 
     db.query(UpdateShow, (err,data,fields) => {

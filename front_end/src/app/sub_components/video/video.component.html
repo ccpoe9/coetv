@@ -3,7 +3,7 @@
     <app-videojs (isEnded)="hasEnded($event)"[options]="{ fluid : true, aspectRatio : '16:9', autoplay: true, muted: false, controls: true , sources: [{ src: source, type: 'video/mp4' }]}"></app-videojs>
   </div>
   <div div="trailer-div" *ngIf="isTrailer">
-    <corp-youtube-player [videoId]="'qj_AZ_FkPtQ'" [playerConfig]="{controls: 1, mute: 0, autoplay: 0}" [width]="screenWidth" [height]="screenHeight"></corp-youtube-player>
+    <corp-youtube-player [videoId]="Trailer" [playerConfig]="{controls: 1, mute: 0, autoplay: 0}" [width]="screenWidth" [height]="screenHeight"></corp-youtube-player>
   </div>
 </div>
 <div class="player-info d-flex mt-3 mb-3">

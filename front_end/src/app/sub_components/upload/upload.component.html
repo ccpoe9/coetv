@@ -60,6 +60,10 @@
               <label for="FormControlInput1" class="form-label">Thumbnail Link</label>
               <input type="url" class="form-control" id="FormControlInput3" name="postItemThumbnail" [(ngModel)]="postItemThumbnail" required>
             </div>
+            <div class="col-12 mb-3">
+              <label for="FormControlInput1" class="form-label">Trailer Link</label>
+              <input type="url" class="form-control" id="FormControlInput3" name="postItemTrailer" [(ngModel)]="postItemTrailer" required>
+            </div>
             <div class="col-12 mb-3" *ngIf="currentContentType=='MOVIE'">
               <label for="FormControlInput1" class="form-label">Video Link</label>
               <input type="url" class="form-control" id="FormControlInput3" name="postItemVideo" [(ngModel)]="postItemVideo" required>
@@ -113,6 +117,10 @@
             <div class="col-12 mb-3">
               <label for="FormControlInput1" class="form-label">Thumbnail Link</label>
               <input type="url" class="form-control" id="FormControlInput3" name="putItemThumbnail" [(ngModel)]="putItemThumbnail" required>
+            </div>
+            <div class="col-12 mb-3">
+              <label for="FormControlInput1" class="form-label">Trailer Link</label>
+              <input type="url" class="form-control" id="FormControlInput3" name="putItemTrailer" [(ngModel)]="putItemTrailer" required>
             </div>
             <div class="col-12 mb-3" *ngIf="currentContentType=='MOVIE'">
               <label for="FormControlInput1" class="form-label">Video Link</label>
@@ -240,6 +248,7 @@
             <th scope="col">GENRE</th>
             <th scope="col">THUMBNAIL</th>
             <th scope="col">VIDEO</th>
+            <th scope="col">TRAILER</th>
             <th scope="col">DESC</th>
             <th scope="col">RATING</th>
             <th scope="col">URL</th>
@@ -254,6 +263,7 @@
             <td>{{movie.Genre}}</td>
             <td>{{movie.Thumbnail}}</td>
             <td>{{movie.Video}}</td>
+            <td>{{movie.Trailer}}</td>
             <td>{{movie.Desc}}</td>
             <td>{{movie.Rating}}</td>
             <td>{{movie.URL}}</td>
@@ -280,6 +290,7 @@
             <th scope="col">NAME</th>
             <th scope="col">GENRE</th>
             <th scope="col">THUMBNAIL</th>
+            <th scope="col">TRAILER</th>
             <th scope="col">DESC</th>
             <th scope="col">RATING</th>
             <th scope="col">URL</th>
@@ -293,6 +304,7 @@
             <td>{{show.Name}}</td>
             <td>{{show.Genre}}</td>
             <td>{{show.Thumbnail}}</td>
+            <td>{{show.Trailer}}</td>
             <td>{{show.Desc}}</td>
             <td>{{show.Rating}}</td>
             <td>{{show.URL}}</td>

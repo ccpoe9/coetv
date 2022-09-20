@@ -73,7 +73,7 @@ exports.PostMovie = (req,res) => {
         return res.status(400).end();
     }
     let PostMovie =
-    `CALL InsMovie('${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Video}','${req.body.Desc}', ${req.body.Rating},'${urlGenerator('movie')}');`;
+    `CALL InsMovie('${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Video}','${req.body.Desc}', ${req.body.Rating},'${urlGenerator('movie')}', '${req.body.Trailer}');`;
 
     db.query(PostMovie, (err,data,fields) => {
         if(err){
@@ -97,7 +97,7 @@ exports.UpdateMovie = (req,res) => {
     }
 
     let UpdateMovie = 
-    `CALL UpdMovie(${req.body.id},'${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Video}','${req.body.Desc}',${req.body.Rating});`;
+    `CALL UpdMovie(${req.body.id},'${req.body.Name}','${req.body.Genre}','${req.body.Thumbnail}','${req.body.Video}','${req.body.Desc}',${req.body.Rating}, '${req.body.Trailer}');`;
 
     db.query(UpdateMovie, (err,data,fields) => {
         if(err){

@@ -8,6 +8,7 @@ export interface IMovie{
     Desc : string;
     Rating : number;
     URL : string;
+    Trailer : string;
 }
 
 export class Movie implements IMovie{
@@ -20,5 +21,6 @@ export class Movie implements IMovie{
     Desc : string;
     Rating : number;
     URL : string;
+    Trailer : string;
     
 }

@@ -53,6 +53,7 @@ export class UploadComponent implements OnInit {
   postItemRating : number = 0;
   postItemThumbnail : string = '';
   postItemVideo : string = '';
+  postItemTrailer : string = '';
 
   putItemId : string;
   putItemName : string;
@@ -61,6 +62,7 @@ export class UploadComponent implements OnInit {
   putItemRating : number;
   putItemThumbnail : string;
   putItemVideo : string;
+  putItemTrailer : string;
 
   postItemEpisodeName : string;
   postItemEpisodeDesc : string;
@@ -184,7 +186,8 @@ export class UploadComponent implements OnInit {
       "Genre" : this.postItemGenre.replace(/'/g, "''"),
       "Rating" : this.postItemRating,
       "Thumbnail" : this.postItemThumbnail.replace(/'/g, "''"),
-      "Video" : this.postItemVideo.replace(/'/g, "''")
+      "Video" : this.postItemVideo.replace(/'/g, "''"),
+      "Trailer" : this.postItemTrailer.replace(/'/g, "''")
     }
     this.moviesService.createMovie(postItem).pipe( switchMap( data => {
       this.resetPages();
@@ -208,7 +211,8 @@ export class UploadComponent implements OnInit {
       "Desc" : this.postItemDesc.replace(/'/g, "''"),
       "Genre" : this.postItemGenre.replace(/'/g, "''"),
       "Rating" : this.postItemRating,
-      "Thumbnail" : this.postItemThumbnail.replace(/'/g, "''")
+      "Thumbnail" : this.postItemThumbnail.replace(/'/g, "''"),
+      "Trailer" : this.postItemTrailer.replace(/'/g, "''")
     }
     this.tvservice.createShow(postItem).pipe( switchMap ( data => {
       this.resetPages();
@@ -297,6 +301,7 @@ export class UploadComponent implements OnInit {
     this.postItemRating = 0;
     this.postItemThumbnail = '';
     this.postItemVideo = '';
+    this.postItemTrailer = '';
     this.postChannelName = '';
     this.postChannelEPGID = '';
     this.postChannelThumbnail = '';
@@ -322,6 +327,7 @@ export class UploadComponent implements OnInit {
     this.putItemRating = item.Rating;
     this.putItemThumbnail = item.Thumbnail;
     this.putItemVideo = item.Video;
+    this.putItemTrailer = item.Trailer;
     this.setEditChecked();
   }
 
@@ -388,7 +394,8 @@ export class UploadComponent implements OnInit {
       "Genre" : this.getPutGenre().replace(/'/g, "''"),
       "Rating" : this.putItemRating,
       "Thumbnail" : this.putItemThumbnail.replace(/'/g, "''"),
-      "Video" : this.putItemVideo.replace(/'/g, "''")
+      "Video" : this.putItemVideo.replace(/'/g, "''"),
+      "Trailer" : this.putItemTrailer.replace(/'/g, "''")
     }
 
     this.moviesService.updateMovie(putItem).pipe( switchMap( data => {
@@ -412,7 +419,8 @@ export class UploadComponent implements OnInit {
       "Genre" : this.getPutGenre().replace(/'/g, "''"),
       "Desc" : this.putItemDesc.replace(/'/g, "''"),
       "Thumbnail" : this.putItemThumbnail.replace(/'/g, "''"),
-      "Rating" : this.putItemRating
+      "Rating" : this.putItemRating,
+      "Trailer" : this.putItemTrailer.replace(/'/g, "''")
     }
 
     this.tvservice.updateShow(putItem).pipe( switchMap( data => {

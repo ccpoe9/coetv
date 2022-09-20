@@ -43,7 +43,8 @@ const PostMovieSchema = Joi.object({
     Genre : Joi.string().required(),
     Rating : Joi.number().min(0).required(),
     Thumbnail : Joi.string().required(),
-    Video : Joi.string().required()
+    Video : Joi.string().required(),
+    Trailer : Joi.string().required()
 });
 
 exports.validateParamsPostMovie = validator(PostMovieSchema);
@@ -53,7 +54,8 @@ const PostShowSchema = Joi.object({
     Desc : Joi.string().required(),
     Genre : Joi.string().required(),
     Rating : Joi.number().min(0).required(),
-    Thumbnail : Joi.string().required()
+    Thumbnail : Joi.string().required(),
+    Trailer : Joi.string().required()
 });
 
 exports.validateParamsPostShow = validator(PostShowSchema);
@@ -65,7 +67,8 @@ const UpdateMovieSchema = Joi.object({
     Genre : Joi.string().required(),
     Rating : Joi.number().min(0).required(),
     Thumbnail : Joi.string().required(),
-    Video : Joi.string().required()
+    Video : Joi.string().required(),
+    Trailer : Joi.string().required()
 });
 
 exports.validateParamsUpdateMovie = validator(UpdateMovieSchema);
@@ -92,7 +95,8 @@ const UpdateShowSchema = Joi.object({
     Desc : Joi.string().required(),
     Genre : Joi.string().required(),
     Rating : Joi.number().min(0).required(),
-    Thumbnail : Joi.string().required()
+    Thumbnail : Joi.string().required(),
+    Trailer : Joi.string().required()
 });
 
 exports.validateParamsUpdateShow = validator(UpdateShowSchema);

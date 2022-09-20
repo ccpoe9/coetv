@@ -24,6 +24,8 @@ export class LiveComponent implements OnInit {
   currentProgramTitle : string;
   currentProgramDesc : string;
 
+
+
   ngOnInit(): void {
     this.getLive();
     setInterval(() => {
@@ -43,45 +45,49 @@ export class LiveComponent implements OnInit {
       this.currentChannel = this.channels[0];
       return this.liveservice.getGuide();
     }))
-    .subscribe( data => {
+    .subscribe( async data => {
       this.guide = data;
-      this.currentProgramTitle = this.getPrograms(this.currentChannel, this.guide)[0]['sub-title'][0];
-      this.currentProgramDesc = this.getPrograms(this.currentChannel, this.guide)[0].desc[0];
       this.setGuide();
+      let channelPrograms = await this.getPrograms(this.currentChannel, this.guide);
+      this.currentProgramTitle = channelPrograms[0]['sub-title'][0];
+      this.currentProgramDesc = channelPrograms[0]['sub-title'][0];
     })
   }
 
-  changeChannel(channel : Live){
+  async changeChannel(channel : Live){
     this.currentChannel = channel;
-    this.currentProgramTitle = this.getPrograms(this.currentChannel, this.guide)[0]['sub-title'][0];
-    this.currentProgramDesc = this.getPrograms(this.currentChannel, this.guide)[0].desc[0];
+    let channelPrograms = await this.getPrograms(channel, this.guide);
+    this.currentProgramTitle = channelPrograms[0]['sub-title'][0];
+    this.currentProgramDesc = channelPrograms[0]['sub-title'][0];
   }
 
   getPrograms(channel : Live, guide : any[]){
     let count = 0;
     let now = this.pipe.transform(this.now, 'yyyyMMddHHmmss','UTC-0');
     let val = Number(now);
-    return this.guide.filter(function(item) {
-      if (count < 3 && item.$.channel == channel.EPGID && Number(item.$.stop.substring(0,14)) > val) {
-        count++;
-        return true;
-      }
-      return false;
-    }, );
+    return new Promise<any[]>( (resolve, reject) =>{
+      resolve(this.guide.filter(function(item) {
+        if (count < 3 && item.$.channel == channel.EPGID && Number(item.$.stop.substring(0,14)) > val) {
+          count++;
+          return true;
+        }
+        return false;
+      }, ));
+    })
   }
   getGuide(){
-    this.liveservice.getGuide().subscribe( data => {
+    this.liveservice.getGuide().subscribe( async data => {
       this.guide = data;
-      this.programs = [];
-      this.currentProgramTitle = this.getPrograms(this.currentChannel, this.guide)[0]['sub-title'][0];
-      this.currentProgramDesc = this.getPrograms(this.currentChannel, this.guide)[0].desc[0];
       this.setGuide();
+      let channelPrograms = await this.getPrograms(this.currentChannel, this.guide);
+      this.currentProgramTitle = channelPrograms[0]['sub-title'][0];
+      this.currentProgramDesc = channelPrograms[0]['sub-title'][0];
     })
   }
 
-  setGuide(){
+  async setGuide(){
     for(let channel of this.channels){
-      this.programs.push(this.getPrograms(channel, this.guide));
+      this.programs.push(await this.getPrograms(channel, this.guide));
     }
   }
 

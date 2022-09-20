@@ -7,6 +7,7 @@ export interface ITv{
     Desc : string;
     Rating : number;
     URL : string;
+    Trailer : string;
 }
 
 export class Tv implements ITv{
@@ -18,5 +19,6 @@ export class Tv implements ITv{
     Desc : string;
     Rating : number;
     URL : string;
+    Trailer : string;
     
 }
