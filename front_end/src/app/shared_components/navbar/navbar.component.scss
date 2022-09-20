@@ -4,12 +4,11 @@
 
 .navbar-brand:hover{
     transform:scale(1.15);
-    svg{
-        fill: aqua
-    }
 }
 .navbar-brand{
     transition:.3s;
+    margin-right: 0.2em;
+    line-height: 0;
 }
 
 .nav-item > a:hover{
