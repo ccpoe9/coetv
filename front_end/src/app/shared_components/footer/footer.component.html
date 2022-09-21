@@ -18,31 +18,16 @@
           <!-- Grid column -->
   
           <!-- Grid column -->
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              Products
-            </h6>
-            <p>
-              <a routerLink="/landing">Gold Time</a>
-            </p>
-            <p>
-              <a routerLink="/landing">Platinum Time</a>
-            </p>
-          </div>
-          <!-- Grid column -->
-  
-          <!-- Grid column -->
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
               Useful links
             </h6>
             <p>
-              <a routerLink="/landing">Pricing</a>
+              <a routerLink="/home">FAQ's</a>
             </p>
             <p>
-              <a routerLink="/settings">Settings</a>
+              <a routerLink="/dmca">DMCA</a>
             </p>
           </div>
           <!-- Grid column -->
@@ -51,13 +36,14 @@
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
-              Contact
+              Contact Us
             </h6>
             <p>
-              <i class="fas fa-envelope me-3"></i>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+              </svg>
               mediatime@gmail.com
             </p>
-            <p><i class="fas fa-phone me-3"></i>ON TELEGRAM</p>
           </div>
           <!-- Grid column -->
         </div>
@@ -68,7 +54,7 @@
   
     <!-- Copyright -->
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      © 2022 Copyright:
+      © {{now.getFullYear()}} Copyright:
       <a class="text-reset fw-bold" routerLink="/landing">MediaTime.com</a>
     </div>
     <!-- Copyright -->

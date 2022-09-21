@@ -8,7 +8,6 @@ import { LandingComponent } from './sub_components/landing/landing.component';
 import { MoviesComponent } from './sub_components/movies/movies.component';
 import { TvComponent } from './sub_components/tv/tv.component';
 import { LiveComponent } from './sub_components/live/live.component';
-import { SettingsComponent } from './sub_components/settings/settings.component';
 import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './sub_components/login/login.component';
@@ -27,6 +26,7 @@ import { FooterComponent } from './shared_components/footer/footer.component';
 import { SearchComponent } from './sub_components/search/search.component';
 import {YouTubePlayerModule} from '@angular/youtube-player';
 import { YoutubePlayerComponent } from './shared_components/youtube-player/youtube-player.component';
+import { DmcaComponent } from './sub_components/dmca/dmca.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +35,6 @@ import { YoutubePlayerComponent } from './shared_components/youtube-player/youtu
     MoviesComponent,
     TvComponent,
     LiveComponent,
-    SettingsComponent,
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
@@ -44,7 +43,8 @@ import { YoutubePlayerComponent } from './shared_components/youtube-player/youtu
     UploadComponent,
     FooterComponent,
     SearchComponent,
-    YoutubePlayerComponent
+    YoutubePlayerComponent,
+    DmcaComponent
   ],
   imports: [
     BrowserModule,

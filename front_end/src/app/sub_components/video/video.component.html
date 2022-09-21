@@ -17,7 +17,7 @@
     <div class="video-info ml-4 w-50">
       <h3 class="text-white fw-bold">{{Name}}</h3>
       <h5 class="text-white"*ngIf="currentEpisode">{{currentEpisode.Name}}</h5>
-      <h6 style="color: white;">{{Desc}}</h6>
+      <h6 class="mb-4 text-white">{{Desc}}</h6>
       <div>
         <button type="button" class="btn genre-btn mb-1 mr-1" *ngFor="let genre of genresArr" (click)="getAllLikeThis(genre)">{{genre}}</button>
       </div>

@@ -16,12 +16,14 @@ export class LiveComponent implements OnInit {
 
   channels : Live[];
   currentChannel : Live;
+  currentProgramIndex : number;
   pipe = new DatePipe('en-US');
   now = new Date();
   formattedDate = this.pipe.transform(this.now, 'short');
   guide : any[];
   programs : any[] = [];
   currentProgramTitle : string;
+  currentProgramSubtitle : string;
   currentProgramDesc : string;
 
 
@@ -43,22 +45,25 @@ export class LiveComponent implements OnInit {
     this.liveservice.getLive().pipe( switchMap ( data => {
       this.channels = data;
       this.currentChannel = this.channels[0];
+      this.currentProgramIndex = 0;
       return this.liveservice.getGuide();
     }))
     .subscribe( async data => {
       this.guide = data;
-      this.setGuide();
-      let channelPrograms = await this.getPrograms(this.currentChannel, this.guide);
-      this.currentProgramTitle = channelPrograms[0]['sub-title'][0];
-      this.currentProgramDesc = channelPrograms[0]['sub-title'][0];
+      await this.setGuide();
     })
   }
 
   async changeChannel(channel : Live){
     this.currentChannel = channel;
-    let channelPrograms = await this.getPrograms(channel, this.guide);
-    this.currentProgramTitle = channelPrograms[0]['sub-title'][0];
-    this.currentProgramDesc = channelPrograms[0]['sub-title'][0];
+    this.currentProgramIndex = this.channels.indexOf(channel);
+    this.currentProgramTitle = this.programs[this.currentProgramIndex][0]['title'][0];
+    if(Object.keys(this.programs[this.currentProgramIndex][0]).indexOf('sub-title') != -1){
+      this.currentProgramSubtitle = this.programs[this.currentProgramIndex][0]['sub-title'][0];
+    }
+    else{
+      this.currentProgramSubtitle = '';
+    }
   }
 
   getPrograms(channel : Live, guide : any[]){
@@ -79,15 +84,24 @@ export class LiveComponent implements OnInit {
     this.liveservice.getGuide().subscribe( async data => {
       this.guide = data;
       this.setGuide();
-      let channelPrograms = await this.getPrograms(this.currentChannel, this.guide);
-      this.currentProgramTitle = channelPrograms[0]['sub-title'][0];
-      this.currentProgramDesc = channelPrograms[0]['sub-title'][0];
     })
   }
 
   async setGuide(){
+    let first = true;
     for(let channel of this.channels){
       this.programs.push(await this.getPrograms(channel, this.guide));
+      if(first){
+        this.currentProgramTitle = this.programs[this.currentProgramIndex][0]['title'][0];
+        if(Object.keys(this.programs[this.currentProgramIndex][0]).indexOf('sub-title') != -1){
+          this.currentProgramSubtitle = this.programs[this.currentProgramIndex][0]['sub-title'][0];
+        }
+        else{
+          this.currentProgramSubtitle = '';
+        }
+        this.currentProgramDesc= this.programs[this.currentProgramIndex][0]['desc'][0];
+        first = false;
+      }
     }
   }
 

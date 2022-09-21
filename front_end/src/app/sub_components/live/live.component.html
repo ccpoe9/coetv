@@ -6,9 +6,10 @@
         sources: [{ src: currentChannel.Source, type: 'application/x-mpegURL' }]}" ></app-videojs>
     </div>
     <div class="player-info" class="text-white" style="width:45%; margin-left:2.5%; margin-right: 5%; max-height: 200px;">
-        <h2 class="fw-bold">{{currentProgramTitle}}</h2>
+        <h4 class="fw-bold">{{currentProgramTitle}}</h4>
+        <h5>{{currentProgramSubtitle}}</h5>
         <div>
-          <p style="color: rgb(97, 147, 168);">{{currentProgramDesc}}</p>
+          <p style="color: white">{{currentProgramDesc}}</p>
         </div>
     </div>
 </div>

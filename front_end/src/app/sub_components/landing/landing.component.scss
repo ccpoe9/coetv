@@ -1,0 +1,18 @@
+
+
+.faq-title{
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid aqua;
+    transition: .3s;
+    color: white;
+}
+
+.faq-title:hover{
+    cursor: pointer;
+    transform:scale(1.05);
+    color: aqua;
+}
+
+a{
+    text-decoration: none;
+}
