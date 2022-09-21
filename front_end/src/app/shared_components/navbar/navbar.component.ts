@@ -5,7 +5,7 @@ import { filter, ReplaySubject, Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { MoviesService } from 'src/app/services/movies.service';
 import { TvService } from 'src/app/services/tv.service';
-
+import { ConnectionConfig as config } from 'src/config/config';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -17,8 +17,9 @@ export class NavbarComponent implements OnInit {
   searchVal : string = '';
   searchSource : Subject<string> = new ReplaySubject<string>();
   search = this.searchSource.asObservable();
-  
+  adminUID : string;
   currentPage : string;
+
   constructor(private authService : AuthService, private readonly fireAuth : AngularFireAuth, 
     private movieService : MoviesService, private router : Router, private tvservice : TvService) { 
 
@@ -33,6 +34,7 @@ export class NavbarComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.adminUID = config.ADMINUID;
   }
 
   signOut(){

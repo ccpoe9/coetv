@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { map, Observable, Subscription, tap } from 'rxjs';
 import { AuthService } from './auth.service';
+import { RouterService } from './router.service';
+import { ConnectionConfig as config } from 'src/config/config';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
 
 
-  constructor(private authService : AuthService, private router : Router, private fireAuth : AngularFireAuth) { }
+  constructor(private authService : AuthService, private router : Router, private fireAuth : AngularFireAuth, private routerService : RouterService) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -19,6 +21,9 @@ export class AuthGuard implements CanActivate {
         tap(user => {
           if (!user) {
             this.router.navigate([ 'login' ]);
+          }
+          if(route.url[0].path == 'upload' && user?.uid != config.ADMINUID){
+            this.router.navigate(['home']);
           }
         }),
         map(user => !!user )

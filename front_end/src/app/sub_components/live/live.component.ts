@@ -64,6 +64,7 @@ export class LiveComponent implements OnInit {
     else{
       this.currentProgramSubtitle = '';
     }
+    this.currentProgramDesc= this.programs[this.currentProgramIndex][0]['desc'][0];
   }
 
   getPrograms(channel : Live, guide : any[]){

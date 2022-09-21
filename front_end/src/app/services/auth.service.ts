@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,12 +9,11 @@ export class AuthService {
 
   constructor(private fireauth : AngularFireAuth, private router : Router) { }
 
-
   //login method
   login(email : string, password : string){
     this.fireauth.signInWithEmailAndPassword(email,password).then(()=>{
       this.fireauth.setPersistence('local');
-      this.router.navigate(['/landing']);
+      this.router.navigate(['/home']);
     }, err=> {
       alert(err.message);
       this.router.navigate(['/login']);
@@ -26,7 +25,7 @@ export class AuthService {
     this.fireauth.createUserWithEmailAndPassword(email,password).then( res =>{
       alert('Registration Successful');
       this.fireauth.setPersistence('local');
-      this.router.navigate(['/landing']);
+      this.router.navigate(['/home']);
       //this.sendEmailForVerification(res.user);
     }, err=> {
       alert(err.message);
@@ -46,7 +45,6 @@ export class AuthService {
 
   logout(){
     this.fireauth.signOut().then(()=>{
-      localStorage.removeItem('user');
         this.router.navigate(['login']);
     }, err =>{
        alert(err.message);

@@ -12,22 +12,36 @@ table, th, td {
     color: aqua;
 }
 
-p{
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+.live-header{
+    display: flex;
 }
 
-h4{
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+.player-div{
+    width:45%; 
+    margin-left:5%; 
+    min-width: 450px;
 }
-h5{
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+.player-info{
+    width:40%; 
+    min-width: 450px; 
+    margin-left:2.5%; 
+    max-height: 200px;
+}
+
+@media (max-width:990px) {
+    .live-header{
+        display: inline;
+    }
+    .player-div{
+        display: inline-block;
+        position: relative;
+        left: 45%; 
+        transform: translateX(-50%);
+    }
+    .player-info{
+        display: inline-block;
+        position: relative;
+        left: 47.5%; 
+        transform: translateX(-50%);
+    }
 }

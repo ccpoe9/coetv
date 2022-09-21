@@ -24,7 +24,7 @@
           <li class="nav-item">
             <a class="nav-link fw-bold" [ngStyle]="{'color': (currentPage=='/DMCA') ? 'aqua': ''}" aria-current="page" href="/dmca">DMCA</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="user.uid==adminUID">
             <a class="nav-link fw-bold" [ngStyle]="{'color': (currentPage=='/upload') ? 'aqua': ''}" aria-current="page" href="/upload">UPLOAD</a>
           </li>
         </ul>

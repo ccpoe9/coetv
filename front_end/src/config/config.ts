@@ -11,4 +11,6 @@ export class ConnectionConfig{
         LIVE : "/live",
         GUIDE : "/live/guide"
     }
+
+    static readonly ADMINUID = 'tcRVyBoc4pPoZ5jS88IPZ2AWxqh2';
 }
