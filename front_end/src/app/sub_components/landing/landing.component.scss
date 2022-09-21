@@ -16,3 +16,15 @@
 a{
     text-decoration: none;
 }
+
+.carousel-caption{
+    opacity: 0;
+    transition: .3s ease-in-out;
+}
+
+.carousel:hover{
+    .carousel-caption{
+        opacity: 1;
+    }
+}
+

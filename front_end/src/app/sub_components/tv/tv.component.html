@@ -6,14 +6,23 @@
           <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active" style="background-image: url({{carouselShows[0].Thumbnail}});">
+          <div class="carousel-item active" style="background-image: url({{carouselShows[0].Thumbnail}});" (click)="GetShow(carouselShows[0])">
             <img src="{{carouselShows[0].Thumbnail}}" class="carousel-thumbnail d-block w-100"  alt="...">
+            <div class="carousel-caption d-md-block">
+              <p class="fw-bold carousel-play-button">WATCH NOW</p>
+            </div>
           </div>
-          <div class="carousel-item" style="background-image: url({{carouselShows[1].Thumbnail}});">
+          <div class="carousel-item" style="background-image: url({{carouselShows[1].Thumbnail}});" (click)="GetShow(carouselShows[1])">
             <img src="{{carouselShows[1].Thumbnail}}" class="carousel-thumbnail d-block w-100"  alt="...">
+            <div class="carousel-caption d-md-block">
+              <p class="fw-bold carousel-play-button">WATCH NOW</p>
+            </div>
           </div>
-          <div class="carousel-item active" style="background-image: url({{carouselShows[2].Thumbnail}});">
+          <div class="carousel-item active" style="background-image: url({{carouselShows[2].Thumbnail}});" (click)="GetShow(carouselShows[2])">
             <img src="{{carouselShows[2].Thumbnail}}" class="carousel-thumbnail d-block w-100"  alt="...">
+            <div class="carousel-caption d-md-block">
+              <p class="fw-bold carousel-play-button">WATCH NOW</p>
+            </div>
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
