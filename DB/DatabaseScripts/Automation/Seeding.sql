@@ -1,8 +1,8 @@
 #MOVIES
-INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('Big Buck Bunny','Comedy,Animation','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/1200px-Big_buck_bunny_poster_big.jpg','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4','A day in the life of Big Buck Bunny', 6.5,'Mjk1NDE=');
-INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES('Tarzan','Animation,Adventure,Comedy','https://m.media-amazon.com/images/M/MV5BY2ZiYWUxN2ItYmQxZi00NDlkLWE2NDAtOTNmYTg1MDI0NDk1XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg','https://d2yy9811v5bnjv.cloudfront.net/Storage/Movies/Tarzan%20(1999)%20720P%20Bluray%20X264/Tarzan.1999.720p.mp4','A man raised by gorillas must decide where he really belongs when he discovers he is a human.', 7.3,'MTIzNDU=');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`, `Trailer`) 
+VALUES('Big Buck Bunny','Comedy,Animation','https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/1200px-Big_buck_bunny_poster_big.jpg','http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4','A day in the life of Big Buck Bunny', 6.5,'Mjk1NDE=','_xQ-t7vFDcY');
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`, `Trailer`) 
+VALUES('Tarzan','Animation,Adventure,Comedy','https://m.media-amazon.com/images/M/MV5BY2ZiYWUxN2ItYmQxZi00NDlkLWE2NDAtOTNmYTg1MDI0NDk1XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg','https://s3.us-east-1.wasabisys.com/coemediatime/Movies/Tarzan (1999)/Tarzan.1999.720p.mp4','A man raised by gorillas must decide where he really belongs when he discovers he is a human.', 7.3,'MTIzNDU=','ie53R2HEZ6g');
 
 
 #GENRES 

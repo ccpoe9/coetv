@@ -10,6 +10,7 @@ CREATE TABLE `mediatime-db`.`Movies` (
   `Desc` VARCHAR(250) NULL,
   `Rating` DECIMAL(4,1),
   `URL` VARCHAR(50),
+  `Trailer` VARCHAR(50),
   PRIMARY KEY (`id`));
 
 ALTER TABLE `mediatime-db`.`Movies` 
@@ -23,6 +24,7 @@ CREATE TABLE `mediatime-db`.`Shows` (
   `Desc` VARCHAR(250) NULL,
   `Rating` DECIMAL(4,1),
   `URL` VARCHAR(50),
+  `Trailer` VARCHAR(50),
   PRIMARY KEY (`id`));
   
 ALTER TABLE `mediatime-db`.`Shows` 
@@ -105,11 +107,12 @@ CREATE PROCEDURE InsMovie(
     IN in_Video VARCHAR(740),
     IN in_Desc VARCHAR(250),
     IN in_Rating DECIMAL(4,1),
-    IN in_Url VARCHAR(50)
+    IN in_Url VARCHAR(50),
+    IN in_Trailer VARCHAR(50)
 )
 BEGIN
-INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`) 
-VALUES(in_Name,in_Genre,in_Thumbnail,in_Video, in_Desc, in_Rating , in_Url);
+INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`,`Trailer`) 
+VALUES(in_Name,in_Genre,in_Thumbnail,in_Video, in_Desc, in_Rating , in_Url, in_Trailer);
 END //
 
 DELIMITER ;
@@ -125,7 +128,8 @@ CREATE PROCEDURE UpdMovie(
     IN in_Thumbnail VARCHAR(250),
     IN in_Video VARCHAR(750),
     IN in_Desc VARCHAR(250),
-    IN in_Rating DECIMAL(4,1)
+    IN in_Rating DECIMAL(4,1),
+    IN in_Trailer VARCHAR(50)
 )
 BEGIN
 UPDATE `mediatime-db`.Movies
@@ -135,7 +139,8 @@ SET
     `Thumbnail` = in_Thumbnail,
     `Video` = in_Video,
     `Desc` = in_Desc,
-    `Rating` = in_Rating
+    `Rating` = in_Rating,
+    `Trailer` = in_Trailer
 WHERE 
 	`id` = in_id;
 END //
@@ -227,11 +232,12 @@ CREATE PROCEDURE InsShow(
     IN in_Thumbnail VARCHAR(250),
     IN in_Desc VARCHAR(250),
     IN in_Rating DECIMAL(4,1),
-    IN in_Url VARCHAR(50)
+    IN in_Url VARCHAR(50),
+    IN in_Trailer VARCHAR(50)
 )
 BEGIN
-INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`) 
-VALUES(in_Name,in_Genre,in_Thumbnail,in_Desc, in_Rating , in_Url);
+INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`,`Trailer`) 
+VALUES(in_Name,in_Genre,in_Thumbnail,in_Desc, in_Rating , in_Url, in_Trailer);
 END //
 
 DELIMITER ; 
@@ -246,7 +252,8 @@ CREATE PROCEDURE UpdShow(
     IN in_Genre VARCHAR(100),
     IN in_Thumbnail VARCHAR(250),
     IN in_Desc VARCHAR(250),
-    IN in_Rating DECIMAL(4,1)
+    IN in_Rating DECIMAL(4,1),
+    IN in_Trailer VARCHAR(50)
 )
 BEGIN
 DECLARE showOldName VARCHAR(50);
@@ -259,7 +266,8 @@ SET
     `Genre` = in_Genre,
     `Thumbnail` = in_Thumbnail,
     `Desc` = in_Desc,
-    `Rating` = in_Rating
+    `Rating` = in_Rating,
+    `Trailer` = in_Trailer
 WHERE 
 	`id` = in_id;
     

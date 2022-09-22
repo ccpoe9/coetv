@@ -25,7 +25,8 @@ const routes: Routes = [
                         {path : 'video', component : VideoComponent, canActivate : [AuthGuard]},
                         {path : 'upload', component : UploadComponent, canActivate : [AuthGuard]},
                         {path : 'search', component : SearchComponent, canActivate : [AuthGuard]},
-                        {path : 'dmca', component : DmcaComponent, canActivate : [AuthGuard]}];
+                        {path : 'dmca', component : DmcaComponent, canActivate : [AuthGuard]},
+                        { path: '**', redirectTo: '/home'}];
 
 
 @NgModule({
