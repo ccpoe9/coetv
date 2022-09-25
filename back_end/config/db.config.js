@@ -2,7 +2,7 @@ var mysql = require('mysql');
 
 let dbconfig = {
     connectionLimit : 4,
-    host : 'localhost',
+    host : 'mysql_db',
     user : 'root',
     password : 'Paulezeh123',
     database : 'mediatime-db',

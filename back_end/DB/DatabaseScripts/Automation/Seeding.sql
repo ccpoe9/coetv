@@ -34,6 +34,8 @@ INSERT INTO `mediatime-db`.Genres(`Name`)
 VALUES('Western');
 INSERT INTO `mediatime-db`.Genres(`Name`)
 VALUES('Other');
+INSERT INTO `mediatime-db`.Genres(`Name`)
+VALUES('TEST');
 
 
 #SHOWS

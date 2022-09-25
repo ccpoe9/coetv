@@ -7,9 +7,10 @@ let router = require('./routers/router');
 
 
 app.use(bodyparser.json());
-app.use(cors({origin: "http://127.0.0.1:4200"}))
+app.use(cors({origin: "http://localhost:4200"}))
 
 app.use('/', router);
+
 
 const port = process.env.PORT || 3000
 app.listen(port, ()=> console.log(`Listening on port ${port}...`));

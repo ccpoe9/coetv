@@ -1,3 +1,6 @@
+ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'Paulezeh123';
+flush privileges;
+
 DROP DATABASE IF EXISTS `mediatime-db`;
 CREATE DATABASE `mediatime-db`;
 
@@ -92,7 +95,7 @@ BEGIN
     ) AS rescount;
     SET totalPages = CEIL(totalRecords/size);
     
-END //
+END; //
 
 DELIMITER ;  
 
@@ -113,7 +116,7 @@ CREATE PROCEDURE InsMovie(
 BEGIN
 INSERT INTO `mediatime-db`.Movies(`Name`,`Genre`,`Thumbnail`,`Video`,`Desc`,`Rating`,`URL`,`Trailer`) 
 VALUES(in_Name,in_Genre,in_Thumbnail,in_Video, in_Desc, in_Rating , in_Url, in_Trailer);
-END //
+END; //
 
 DELIMITER ;
 
@@ -143,7 +146,7 @@ SET
     `Trailer` = in_Trailer
 WHERE 
 	`id` = in_id;
-END //
+END; //
 
 DELIMITER ;
 
@@ -158,7 +161,7 @@ BEGIN
 DELETE FROM `mediatime-db`.Movies
 WHERE 
 	`id` = in_id;
-END //
+END; //
 
 DELIMITER ;
 
@@ -171,15 +174,17 @@ CREATE PROCEDURE GetMovieByUrl(
 BEGIN
 	SELECT * FROM `mediatime-db`.`Movies` m
     WHERE m.`URL` = in_url;
-END //
+END; //
 
 DELIMITER ; 
-  
+
+DROP PROCEDURE IF EXISTS GetAllGenres;
+
 DELIMITER //
 CREATE PROCEDURE GetAllGenres()
 BEGIN
 	SELECT * FROM `mediatime-db`.`Genres` g;
-END //
+END; //
 
 DELIMITER ;
   
@@ -218,7 +223,7 @@ BEGIN
     ) AS rescount;
     SET totalPages = CEIL(totalRecords/size);
     
-END //
+END; //
 
 DELIMITER ; 
 
@@ -238,7 +243,7 @@ CREATE PROCEDURE InsShow(
 BEGIN
 INSERT INTO `mediatime-db`.Shows(`Name`,`Genre`,`Thumbnail`,`Desc`,`Rating`,`URL`,`Trailer`) 
 VALUES(in_Name,in_Genre,in_Thumbnail,in_Desc, in_Rating , in_Url, in_Trailer);
-END //
+END; //
 
 DELIMITER ; 
 
@@ -276,7 +281,7 @@ SET
 	`ShowName`= in_Name
 WHERE
 	`ShowName`= showOldName;
-END //
+END; //
 
 DELIMITER ;
 
@@ -296,7 +301,7 @@ WHERE
 DELETE FROM `mediatime-db`.Shows
 WHERE 
 	`id` = in_id;
-END //
+END; //
 
 DELIMITER ;
 
@@ -311,7 +316,7 @@ BEGIN
 DELETE FROM `mediatime-db`.Episodes
 WHERE 
 	`id` = in_id;
-END //
+END; //
 
 DELIMITER ;
 
@@ -334,7 +339,7 @@ BEGIN
 	WHERE e.`ShowName` = show_name
 	ORDER BY `Season` DESC LIMIT 1;
     
-END //
+END; //
 
 DELIMITER ; 
 
@@ -355,7 +360,7 @@ BEGIN
     WHERE e.`ShowName` = in_showname AND e.`Season` = in_season
     ) AS rescount;
     
-END //
+END; //
 
 DELIMITER ; 
 
@@ -373,7 +378,7 @@ CREATE PROCEDURE InsEpisode(
 BEGIN
 INSERT INTO `mediatime-db`.Episodes(`Name`,`ShowName`,`Season`,`Episode`,`Video`,`Desc`)
 VALUES(in_Name, in_showName, in_season, in_episode, in_Video, in_Desc);
-END //
+END; //
 
 DELIMITER ; 
 
@@ -394,7 +399,7 @@ SET
     `Desc` = in_Desc
 WHERE 
 	`id` = in_id;
-END //
+END; //
 
 DELIMITER ;
 
@@ -404,7 +409,7 @@ DELIMITER //
 CREATE PROCEDURE GetLive()
 BEGIN
 	SELECT * FROM `mediatime-db`.Live;
-END //
+END; //
 
 DELIMITER ;
 
@@ -420,7 +425,7 @@ CREATE PROCEDURE InsLive(
 BEGIN
 INSERT INTO `mediatime-db`.Live(`Name`,`EPGID`,`Thumbnail`,`Source`)
 VALUES(in_Name, in_EPGID, in_Thumbnail, in_Source);
-END //
+END; //
 
 DELIMITER ;
 
@@ -443,7 +448,7 @@ SET
     `Source` = in_Source
 WHERE 
 	`id` = in_id;
-END //
+END; //
 
 DELIMITER ;
 
@@ -457,7 +462,7 @@ BEGIN
 DELETE FROM `mediatime-db`.Live
 WHERE 
 	`id` = in_id;
-END //
+END; //
 
 DELIMITER ;
 
