@@ -4,9 +4,10 @@ let router = express.Router();
 let moviescontroller = require('../controllers/movies.controller');
 let showscontroller = require('../controllers/shows.controller');
 const { GetShowsByPage } = require('../controllers/shows.controller');
+const os = require('os');
 
 router.get('/api', (req,res) =>{
-    res.send("VIDEO WEBSITE API");
+    res.send(`VIDEO WEBSITE API", "${os.hostname()}}`);
 });
 
 router.get('/api/movies',moviescontroller.GetMoviesByPage);
