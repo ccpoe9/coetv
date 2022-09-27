@@ -16,10 +16,6 @@ import { FormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './sub_components/forgot-password/forgot-password.component';
 import { VideoComponent } from './sub_components/video/video.component';
 import { RouterService } from './services/router.service';
-import { VgCoreModule } from '@videogular/ngx-videogular/core';
-import { VgControlsModule } from '@videogular/ngx-videogular/controls';
-import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
-import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { VjsPlayerComponent } from './shared_components/videojs/videojs.component';
 import { UploadComponent } from './sub_components/upload/upload.component';
 import { FooterComponent } from './shared_components/footer/footer.component';
@@ -52,10 +48,6 @@ import { DmcaComponent } from './sub_components/dmca/dmca.component';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
-    VgCoreModule,
-    VgControlsModule,
-    VgOverlayPlayModule,
-    VgBufferingModule,
     YouTubePlayerModule
   ],
   providers: [],
