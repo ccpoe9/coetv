@@ -201,7 +201,14 @@ export class UploadComponent implements OnInit {
       this.resetPostItems();
       this.closeDialog();
       this.errorMessage = '';
-    },err => this.errorMessage = err.statusText);
+    },err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
   }
 
   PostShow(){
@@ -226,7 +233,14 @@ export class UploadComponent implements OnInit {
       this.resetPostItems();
       this.closeDialog();
       this.errorMessage = '';
-    },err => this.errorMessage = err.statusText);
+    },err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
   }
 
   PostChannel(){
@@ -243,7 +257,14 @@ export class UploadComponent implements OnInit {
       this.resetPostItems();
       this.closeDialog();
       this.errorMessage = '';
-    },err => this.errorMessage = err.statusText);
+    },err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
   }
 
   onAddEpisode(){
@@ -280,7 +301,14 @@ export class UploadComponent implements OnInit {
       this.addEpisodeMode = false;
       this.errorMessage = '';
       alert('New Episode Created.');
-    },err => this.errorMessage = err.statusText);
+    },err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
   }
 
   setPostGenre(){
@@ -409,7 +437,14 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalMoviePages);
       this.closeDialog();
       this.errorMessage = '';
-    },err => this.errorMessage = err.status);
+    },err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
   }
 
   PutShow(){
@@ -434,7 +469,14 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalShowPages);
       this.closeDialog();
       this.errorMessage = '';
-    }, err => this.errorMessage = err.statusText);
+    }, err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
   }
   PutChannel(){
     let putItem = {
@@ -450,7 +492,14 @@ export class UploadComponent implements OnInit {
       this.channels = data;
       this.closeDialog();
       this.errorMessage = '';
-    },err => this.errorMessage = err.statusText);
+    },err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
 
   }
 
@@ -480,7 +529,14 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalMoviePages);
       this.closeDialog();
       this.errorMessage = '';
-    },err => this.errorMessage = err.statusText);
+    },err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
 
   }
 
@@ -498,7 +554,14 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalShowPages);
       this.closeDialog();
       this.errorMessage = '';
-    },err => this.errorMessage = err.statusText);
+    },err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
   }
   
   DeleteEpisode(episode : Episode){
@@ -513,7 +576,14 @@ export class UploadComponent implements OnInit {
     })).subscribe( data => {
       this.episodes = data[0];
       this.errorMessage = '';
-    },err => this.errorMessage = err.statusText);
+    },err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
 
   }
 
@@ -528,7 +598,14 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalShowPages);
       this.closeDialog();
       this.errorMessage = '';
-    },err => this.errorMessage = err.statusText);
+    },err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
   }
 
   closeDialog(){
@@ -565,7 +642,14 @@ export class UploadComponent implements OnInit {
       this.episodes = data[0];
       this.editEpisodeMode = false;
       this.errorMessage = '';
-    },err => this.errorMessage = err.statusText);
+    },err => {
+      if(err.status == "400"){
+        this.errorMessage = "Invalid Input Error"
+      }
+      else{
+        this.errorMessage = "Unknown Error"
+      }
+    });
   }
 
   getNextPage(nextPage : number){
