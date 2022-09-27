@@ -76,7 +76,7 @@
     <div class="d-flex justify-content-center">
       <nav aria-label="Page navigation example">
         <ul class="pagination" *ngIf="totalPages!=0">
-          <li class="page-item" [ngClass]="{'disabled': (currentPage-1)<=0 }">
+          <li class="page-item" [ngClass]="{'disabled': (currentPage-1)<=0}">
             <a class="page-link" (click)="getNextPage(currentPage-1)" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
               <span class="sr-only">Previous</span>
