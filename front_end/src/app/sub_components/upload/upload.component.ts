@@ -409,7 +409,7 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalMoviePages);
       this.closeDialog();
       this.errorMessage = '';
-    },err => this.errorMessage = err.statusText);
+    },err => this.errorMessage = err.status);
   }
 
   PutShow(){
@@ -480,7 +480,7 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalMoviePages);
       this.closeDialog();
       this.errorMessage = '';
-    },err => console.log(err.statusText));
+    },err => this.errorMessage = err.statusText);
 
   }
 
@@ -498,7 +498,7 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalShowPages);
       this.closeDialog();
       this.errorMessage = '';
-    },err => console.log(err.statusText));
+    },err => this.errorMessage = err.statusText);
   }
   
   DeleteEpisode(episode : Episode){
@@ -528,7 +528,7 @@ export class UploadComponent implements OnInit {
       this.setPages(this.totalShowPages);
       this.closeDialog();
       this.errorMessage = '';
-    },err => console.log(err.statusText));
+    },err => this.errorMessage = err.statusText);
   }
 
   closeDialog(){
