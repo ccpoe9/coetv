@@ -25,7 +25,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.png",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "_redirects",
+                "input": "src",
+                "output": "/"
+              }
             ],
             "styles": [
               "src/styles.scss",
