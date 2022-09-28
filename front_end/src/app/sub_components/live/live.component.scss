@@ -27,21 +27,3 @@ table, th, td {
     margin-left:2.5%; 
     max-height: 200px;
 }
-
-@media (max-width:990px) {
-    .live-header{
-        display: inline;
-    }
-    .player-div{
-        display: inline-block;
-        position: relative;
-        left: 45%; 
-        transform: translateX(-50%);
-    }
-    .player-info{
-        display: inline-block;
-        position: relative;
-        left: 47.5%; 
-        transform: translateX(-50%);
-    }
-}

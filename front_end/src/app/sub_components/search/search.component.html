@@ -2,9 +2,9 @@
     <div class="movie-search mt-3">
         <h3 class="text-white mt-6 fw-bold" style="margin-left: 12.5%;">MOVIES :</h3>
         <div class="row mt-4" style="margin-left: 12.5%;">
-                <div class="card mb-4" style="min-width: 14rem; max-width: 14rem;" *ngFor="let movie of movies" (click)="GetMovie(movie)">
+                <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngFor="let movie of movies" (click)="GetMovie(movie)">
                     <div class="card-image">
-                      <img class="card-img-top rounded" style="min-height: 18rem; max-height: 18rem;" src="{{movie.Thumbnail}}" alt="...">
+                      <img class="card-img-top rounded" style="min-height: 16rem; max-height: 16rem;" src="{{movie.Thumbnail}}" alt="...">
                       <div class="image-overlay">
                         <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
                           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
@@ -42,9 +42,9 @@
     <div class="show-search mt-3">
         <h3 class="text-white mt-6 fw-bold" style="margin-left: 12.5%;">SHOWS :</h3>
         <div class="row mt-4" style="margin-left: 12.5%;">
-                <div class="card mb-4" style="min-width: 14rem; max-width: 14rem;" *ngFor="let show of shows" (click)="GetShow(show)">
+                <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngFor="let show of shows" (click)="GetShow(show)">
                     <div class="card-image">
-                      <img class="card-img-top rounded" style="min-height: 18rem; max-height: 18rem;" src="{{show.Thumbnail}}" alt="...">
+                      <img class="card-img-top rounded" style="min-height: 16rem; max-height: 16rem;" src="{{show.Thumbnail}}" alt="...">
                       <div class="image-overlay">
                         <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
                           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
