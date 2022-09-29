@@ -80,22 +80,19 @@
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
   }
+.row {
+    width:  72rem;
+    margin: auto;
+}
 .card{
+    width: 12rem;
     transition:.3s;
     border: 0;
     background-color: transparent;
-    float: left;
-}
-@media (max-width:450px) {
-    .row{
-        justify-content: center;
+    .card-img-top{
+        height: 16rem;
     }
 }
-.col-centered {
-    float: none;
-    margin: 0 auto;
-    width: 90%;
-  }
 
 .btn{
     color:aqua;

@@ -17,14 +17,20 @@ a{
     text-decoration: none;
 }
 
-.carousel-caption{
-    opacity: 0;
-    transition: .3s ease-in-out;
-}
 
-.carousel:hover{
+
+
+@media (hover: hover) {
     .carousel-caption{
-        opacity: 1;
+        opacity: 0;
+        transition: .3s ease-in-out;
     }
+    
+    .carousel:hover, .carousel:focus{
+        .carousel-caption{
+            opacity: 1;
+        }
+    }
+    
 }
 
