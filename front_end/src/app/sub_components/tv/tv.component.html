@@ -34,9 +34,9 @@
           <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div class="container mt-3">
-      <div class="header-category">
-        <div class="btn-group">
+    <div class="w-100 mt-3">
+      <div class="header-category" style="margin-left: 5%;">
+        <div class="btn-group mr-3 mb-1">
           <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{sortBySelected}}
           </button>
@@ -44,8 +44,8 @@
             <a class="dropdown-item" (click)="changeSortBy(sortByUnselected)">{{sortByUnselected}}</a>
           </div>
         </div>
-        <div class="btn-group ml-3">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="btn-group mb-1">
+          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" data-bs-display="static" aria-haspopup="true" aria-expanded="false">
             GENRE : {{sortByGenre}}
           </button>
           <div class="dropdown-menu">
@@ -56,12 +56,13 @@
           </div>
         </div>
       </div>
-      <div class="row col-centered mt-5">
-        <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngFor="let show of shows" (click)="GetShow(show)">
+      <div class="content mt-3 d-flex justify-content-conter align-items-center w-100 mx-auto">
+        <div class="row">
+          <div class="card mb-4"*ngFor="let show of shows" (click)="GetShow(show)">
             <div class="card-image">
-              <img class="card-img-top rounded text-white" style="min-height: 16rem; max-height: 16rem;" src="{{show.Thumbnail}}" alt="Image not found..">
+              <img class="card-img-top rounded text-white" src="{{show.Thumbnail}}" alt="Image not found..">
               <div class="image-overlay">
-                <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
                 </svg>
               </div>
@@ -69,7 +70,8 @@
             <div class="card-body bg">
                 <p class="card-title text-white">{{show.Name}}</p>
             </div>
-          </div>
+        </div>
+        </div>
       </div>
     </div>
     <div class="d-flex justify-content-center">

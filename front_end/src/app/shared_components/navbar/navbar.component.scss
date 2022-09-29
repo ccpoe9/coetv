@@ -34,8 +34,15 @@
       
       .dropdown-menu {
         position: absolute;
-        top: 100%; /* Bottom of button */
-        right: 30%;/* More to the left */
+        left:50%; 
+        top:100%;
+        transform: translate(-50%);
+        .dropdown-item{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
       }
 }
 

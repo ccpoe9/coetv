@@ -41,22 +41,10 @@
     transition: .3s ease;
 }
 
-.card{
-    transition:.3s;
-    border: 0;
-    background-color: transparent;
-    float: left;
+.dropdown-menu {
+    width: 100%; 
 }
-@media (max-width:450px) {
-    .row{
-        justify-content: center;
-    }
-}
-.col-centered {
-    float: none;
-    margin: 0 auto;
-    width: 90%;
-}
+  
 
 .card:hover{
     transform:scale(1.05);
@@ -76,22 +64,94 @@
   
 .image-overlay {
     position: absolute;
-    top: 35%;
-    bottom: 0;
-    left: 30%;
-    right: 0;
+    left: 50%;
+    transform: translate(-50%, -200%);
     opacity: 0;
     transition: 0.1s ease;
     color: aqua;
-
     margin : 0 auto;
 }
 
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+
+
+.row {
+    margin: auto;
+    width: 72rem;
+}
 .card{
+    width: 12rem;
     transition:.3s;
     border: 0;
     background-color: transparent;
+    .card-img-top{
+        height: 16rem;
+    }
 }
+@media only screen and (max-width: 1151px) {
+    .row{
+        width: 60rem;
+    }
+}
+
+@media only screen and (max-width: 959px) {
+    .row{
+        width: 48rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .row{
+        width: 36rem;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .row{
+        width: 24rem;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .row{
+        width: 24rem;
+    }
+}
+@media only screen and (max-width: 383px) {
+    .row{
+        width: 20rem;
+    }
+    .card{
+        width: 10rem;
+        .card-img-top{
+            height: 13.3rem;
+        }
+    }
+}
+@media only screen and (max-width: 319px) {
+    .row{
+        width: 16rem;
+    }
+    .card{
+        width: 8rem;
+        .card-img-top{
+            height: 10.6rem;
+        }
+    }
+}
+@media only screen and (max-width: 255px) {
+    .row{
+        width: 8rem;
+    }
+}
+
 
 .btn{
     color:aqua;
