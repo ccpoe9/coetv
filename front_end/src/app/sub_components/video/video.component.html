@@ -7,18 +7,18 @@
   </div>
 </div>
 <div class="player-info d-flex mt-3 mb-3">
-    <div class="video-img" style="margin-left: 12.5%;">
-      <div class="" style="min-width: 10rem; max-width: 10rem;">
+    <div class="video-img">
+      <div class="" style="min-width: 10rem; width: 10rem;">
         <div class="card-image">
           <img class="card-img-top rounded text-white" src="{{Thumbnail}}" alt="Image not found..">
         </div>
     </div>
     </div>
-    <div class="video-info ml-4 w-50">
+    <div class="video-info ml-4">
       <h3 class="text-white fw-bold">{{Name}}</h3>
       <h5 class="text-white"*ngIf="currentEpisode">{{currentEpisode.Name}}</h5>
-      <h6 class="mb-4 text-white">{{Desc}}</h6>
-      <div>
+      <h6 class="mb-4 text-white video-desc">{{Desc}}</h6>
+      <div class="genre-btns">
         <button type="button" class="btn genre-btn mb-1 mr-1" *ngFor="let genre of genresArr" (click)="getAllLikeThis(genre)">{{genre}}</button>
       </div>
       <button type="button" class="btn mt-3 mr-3 icon-buttons" (click)="playAction()" [ngStyle]="{'pointer-events': isPlayed ? 'none': ''}" *ngIf="type == 'm' || (type == 's' && episodes.length > 0)">{{playText}} 
@@ -33,7 +33,7 @@
         </button>
     </div>
 </div>
-<div class="show-info text-white" style="margin-left: 12.5%;" *ngIf="type=='s'">
+<div class="show-info text-white" *ngIf="type=='s'">
   <div class="btn-group">
     <button type="button" class="btn" [ngClass]="{'dropdown-toggle': this.totalSeasons>1 } "data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       SEASON {{currentSeason}}
@@ -44,7 +44,7 @@
       </div>
     </div>
   </div>
-  <div class="row mt-3" style="margin-left: 12.5%; margin-right: 12.5%;">
+  <div class="row mt-3">
     <div class="col-lg-2 col-sm-6 col-xs-12" *ngFor="let episode of episodes">
       <button type="button" class="btn btn-block mb-3" [ngClass]="{'btn-selected': currentEpisode == episode }" (click)="changeEpisode(episode)">EPISODE {{episode.Episode}}</button>
     </div>

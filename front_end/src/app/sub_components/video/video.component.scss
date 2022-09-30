@@ -13,8 +13,23 @@
 
 .card-image {
     position: relative;
-  }
-  
+}
+
+.player-info{
+    width: 75%;
+    margin: 0 auto;
+}
+
+.show-info{
+    width: 75%;
+    margin: 0 auto;
+}
+
+.episode-btns{
+    width: 75%;
+    margin: 0 auto;
+}
+
 .image-overlay {
     position: absolute;
     left: 50%;
@@ -23,6 +38,15 @@
     transition: 0.1s ease;
     color: aqua;
     margin : 0 auto;
+}
+
+.video-desc{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3; 
+    -webkit-box-orient: vertical;
 }
 
 .card{
@@ -77,5 +101,9 @@ a:hover, a:visited, a:link, a:active
 .genre-btn{
     color: white;
     border-radius: 1em;
-    font-size: small;
+    font-size:small
+}
+
+.genre-btns{
+    display: flex;
 }
