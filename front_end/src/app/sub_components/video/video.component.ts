@@ -51,9 +51,7 @@ export class VideoComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.router.url == '/video') this.router.navigate(['/']);
-    this.screenWidth = (window.innerWidth/2);
-    this.screenWidth = Math.max(this.screenWidth, 405);
-    this.screenHeight = (this.screenWidth * 9) / 16;
+    this.setYtPlayerWidth();
     if(this.router.url.charAt(9) == 'm'){
       this.type = 'm';
       this.getMovie();
@@ -69,8 +67,16 @@ export class VideoComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.screenWidth = (window.innerWidth/2);
-    this.screenWidth = Math.max(this.screenWidth, 405);
+    this.setYtPlayerWidth();
+  }
+
+  setYtPlayerWidth(){
+    if(window.innerWidth < 768){
+      this.screenWidth = (.75 * window.innerWidth);
+    }
+    else if(window.innerWidth < 502){
+      this.screenWidth = (window.innerWidth);
+    }
     this.screenHeight = (this.screenWidth * 9) / 16;
   }
 
