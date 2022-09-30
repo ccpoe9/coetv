@@ -1,10 +1,20 @@
 table, th, td {
     color:white;
     border: 1px solid aqua;
+    table-layout: fixed;
+}
+
+th, td{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .channel-head{
     cursor: pointer;
+    svg{
+        width: 1.5rem;
+    }
 }
 
 .channel-head:hover{
@@ -16,13 +26,54 @@ table, th, td {
 }
 
 .player-div{
-    width:45%; 
-    margin-left:5%; 
-    min-width: 450px;
+    width: 45%;
+    min-width: 320px;
+    margin-left: 5%;
 }
 .player-info{
-    width:40%; 
-    min-width: 450px; 
-    margin-left:2.5%; 
-    max-height: 200px;
+    margin-left: 2.5%;
+    width: 42.5%;
+}
+
+p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+}
+.channel-thumbnail{
+    width: 6rem; 
+    height: 3rem;
+}
+
+
+@media only screen and (max-width: 1142px) {
+    .channel-thumbnail{
+        width: 4rem; 
+        height: 2rem;
+    }
+}
+@media only screen and (max-width: 876px) {
+    svg{
+        display: none;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .live-header{
+        display: inline;
+        .player-div{
+            width: 50%;
+            margin:0 auto;
+            margin-bottom: 2.5%;
+        }
+        .player-info{
+            width: 75%;
+            margin:0 auto;
+            h4,h5,p{
+                text-align: center;
+            }
+        }
+    }
 }

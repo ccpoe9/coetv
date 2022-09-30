@@ -21,18 +21,17 @@
         </thead>
         <tbody>
           <tr *ngFor="let channel of channels; let i = index">
-            <th scope="row" style="width: 30%;" class="channel-head" [ngStyle]="{'color': (currentChannel==channel) ? 'aqua': ''}" (click)="changeChannel(channel)">
+            <th scope="row" style="width: 12%;" class="channel-head" [ngStyle]="{'color': (currentChannel==channel) ? 'aqua': ''}" (click)="changeChannel(channel)">
               <div>
-                <img src="{{channel.Thumbnail}}" alt="cc" style="width: 20%;">
-                {{channel.Name}}
-                <svg *ngIf="currentChannel==channel" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                <img src="{{channel.Thumbnail}}" class="channel-thumbnail" alt="cc" [ngStyle]="{'filter': (currentChannel==channel) ? 'opacity(0.5) drop-shadow(0 0 0 aqua) saturate(1000%)': ''}" >
+                <svg *ngIf="currentChannel==channel" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
                   <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                 </svg>
               </div>
             </th>
-            <td style="width: 20%;" class="channel-guide" [ngStyle]="{'background-color': (currentChannel==channel) ? 'aqua': '', 'color': (currentChannel==channel) ? 'black': ''}">{{programs[i][0].title}}</td>
-            <td style="width: 20%;" class="channel-guide">{{programs[i][1].title}}</td>
-            <td style="width: 20%;" class="channel-guide">{{programs[i][2].title}}</td>
+            <td style="width: 26%;" class="channel-guide" [ngStyle]="{'background-color': (currentChannel==channel) ? 'aqua': '', 'color': (currentChannel==channel) ? 'black': ''}">{{programs[i][0].title}}</td>
+            <td style="width: 26%;" class="channel-guide">{{programs[i][1].title}}</td>
+            <td style="width: 26%;" class="channel-guide">{{programs[i][2].title}}</td>
           </tr>
         </tbody>
       </table>

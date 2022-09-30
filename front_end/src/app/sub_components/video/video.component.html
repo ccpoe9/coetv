@@ -21,7 +21,7 @@
       <div>
         <button type="button" class="btn genre-btn mb-1 mr-1" *ngFor="let genre of genresArr" (click)="getAllLikeThis(genre)">{{genre}}</button>
       </div>
-      <button type="button" class="btn mt-3 icon-buttons" (click)="playAction()" [ngStyle]="{'pointer-events': isPlayed ? 'none': ''}" *ngIf="type == 'm' || (type == 's' && episodes.length > 0)">{{playText}} 
+      <button type="button" class="btn mt-3 mr-3 icon-buttons" (click)="playAction()" [ngStyle]="{'pointer-events': isPlayed ? 'none': ''}" *ngIf="type == 'm' || (type == 's' && episodes.length > 0)">{{playText}} 
         <svg *ngIf="!isPlayed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
         <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
         </svg>
@@ -29,7 +29,7 @@
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
         <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
       </svg></button>
-      <button type="button" class="btn mt-3 ml-3 icon-buttons" (click)="trailerAction()"><div class="">TRAILER</div>
+      <button type="button" class="btn mt-3 icon-buttons" (click)="trailerAction()"><div class="">TRAILER</div>
         </button>
     </div>
 </div>
@@ -51,14 +51,14 @@
 </div>
 </div>
 <div class="more-like mt-4">
-  <h2 class="text-white" style="margin-left: 12.5%;"><i>More Like This : </i></h2>
-  <div class="row mt-2" style="margin-left: 12.5%;">
+  <h2 class="text-white mt-3 text-center fw-bold"><i>MORE LIKE THIS :</i></h2>
+  <div class="row mt-3 d-flex justify-content-center">
     <div class="card mb-4" style="min-width: 12rem; max-width: 12rem;" *ngFor="let item of recommended">
       <a href="/video?t={{type}}&v={{item.URL}}">
         <div class="card-image">
           <img class="card-img-top rounded text-white" style="min-height: 16rem; max-height: 16rem;" src="{{item.Thumbnail}}" alt="Image not found..">
           <div class="image-overlay">
-            <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
             </svg>
           </div>
