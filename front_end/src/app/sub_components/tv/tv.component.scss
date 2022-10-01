@@ -65,7 +65,7 @@
 .image-overlay {
     position: absolute;
     left: 50%;
-    transform: translate(-50%, -200%);
+    transform: translate(-50%, -250%);
     opacity: 0;
     transition: 0.1s ease;
     color: aqua;
@@ -193,7 +193,7 @@
 
 .disabled{
     .page-link {
-        color:black;
+        display: none;
     }
    
 }

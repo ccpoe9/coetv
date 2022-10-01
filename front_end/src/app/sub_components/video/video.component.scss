@@ -51,6 +51,7 @@
 .genre-btns{
     max-height: 2.25rem;
     overflow: scroll;
+    width: 100%;
 }
 
 .card{
@@ -122,11 +123,14 @@ a:hover, a:visited, a:link, a:active
     .card-container{
         width: 6rem;
     }
-    .genre-btns{
-        display: none;
-    }
     .player-div{
         width: 100%;
+    }
+    .video-img{
+        display: none;
+    }
+    .video-info{
+        margin: 0 auto;
     }
 }
 

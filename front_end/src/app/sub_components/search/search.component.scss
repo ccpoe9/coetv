@@ -14,16 +14,13 @@
     position: relative;
   }
   
-.image-overlay {
+  .image-overlay {
     position: absolute;
-    top: 35%;
-    bottom: 0;
-    left: 30%;
-    right: 0;
+    left: 50%;
+    transform: translate(-50%, -250%);
     opacity: 0;
     transition: 0.1s ease;
     color: aqua;
-
     margin : 0 auto;
 }
 
@@ -41,6 +38,69 @@
     transition:.3s;
     border: 0;
     background-color: transparent;
+    width: 12rem;
+    .card-img-top{
+        height: 16rem;
+    }
+}
+.row{
+    margin: 0 auto;
+    width: 60rem;
+}
+@media only screen and (max-width: 1151px) {
+    .row{
+        width: 60rem;
+    }
+}
+
+@media only screen and (max-width: 959px) {
+    .row{
+        width: 48rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .row{
+        width: 36rem;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .row{
+        width: 24rem;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .row{
+        width: 24rem;
+    }
+}
+@media only screen and (max-width: 383px) {
+    .row{
+        width: 20rem;
+    }
+    .card{
+        width: 10rem;
+        .card-img-top{
+            height: 13.3rem;
+        }
+    }
+}
+@media only screen and (max-width: 319px) {
+    .row{
+        width: 16rem;
+    }
+    .card{
+        width: 8rem;
+        .card-img-top{
+            height: 10.6rem;
+        }
+    }
+}
+@media only screen and (max-width: 255px) {
+    .row{
+        width: 8rem;
+    }
 }
 .pagination .page-link {
     background: black;
@@ -59,7 +119,7 @@
 
 .disabled{
     .page-link {
-        color:black;
+        display: none;
     }
    
 }

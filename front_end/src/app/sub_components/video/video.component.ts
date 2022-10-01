@@ -77,6 +77,9 @@ export class VideoComponent implements OnInit {
     else if(window.innerWidth < 502){
       this.screenWidth = (window.innerWidth);
     }
+    else{
+      this.screenWidth = (.5 * window.innerWidth);
+    }
     this.screenHeight = (this.screenWidth * 9) / 16;
   }
 
