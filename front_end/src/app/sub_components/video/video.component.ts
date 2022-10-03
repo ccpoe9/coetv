@@ -10,6 +10,7 @@ import { TvService } from 'src/app/services/tv.service';
 import { trigger, transition, animate, style } from '@angular/animations';
 import { Tv } from 'src/app/models/tv.model';
 import { flush } from '@angular/core/testing';
+import { VideoService } from 'src/app/services/video.service';
 
 @Component({
   selector: 'app-video',
@@ -17,6 +18,8 @@ import { flush } from '@angular/core/testing';
   styleUrls: ['./video.component.scss']
 })
 export class VideoComponent implements OnInit {
+
+  video : string;
 
   movie : Movie;
   show : Tv;
@@ -44,8 +47,8 @@ export class VideoComponent implements OnInit {
   public screenWidth: any;
   public screenHeight: any;
 
-  constructor(private router : Router, private routerService : RouterService, private movieService : MoviesService,
-              private tvservice : TvService) { 
+  constructor(private router : Router, private movieService : MoviesService,
+              private tvservice : TvService, private videoservice : VideoService) { 
   
   }
 
@@ -102,6 +105,9 @@ export class VideoComponent implements OnInit {
     this.Desc = this.movie.Desc;
     this.Genre = this.movie.Genre;
     this.source = this.movie.Video;
+    this.videoservice.getSource(new HttpParams().set('source',this.source)).subscribe( data => {
+      this.video = data.url;
+    });
     this.Thumbnail = this.movie.Thumbnail;
     this.Trailer = this.movie.Trailer;
   }
@@ -136,6 +142,9 @@ export class VideoComponent implements OnInit {
   setShowEpisodes(){
     this.Desc = this.episodes[0].Desc;
     this.source = this.episodes[0].Video;
+    this.videoservice.getSource(new HttpParams().set('source',this.source)).subscribe( data => {
+      this.video = data.url;
+    });
     this.currentEpisode = this.episodes[0];
   }
 
@@ -173,6 +182,9 @@ export class VideoComponent implements OnInit {
   changeEpisode(episode : Episode){
     this.currentEpisode = episode;
     this.source = episode.Video;
+    this.videoservice.getSource(new HttpParams().set('source',this.source)).subscribe( data => {
+      this.video = data.url;
+    });
     this.Desc = episode.Desc;
   }
 

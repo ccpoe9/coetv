@@ -3,6 +3,7 @@ let livecontroller = require('../controllers/live.controller');
 let router = express.Router();
 let moviescontroller = require('../controllers/movies.controller');
 let showscontroller = require('../controllers/shows.controller');
+let videocontroller = require('../controllers/video.controller');
 const { GetShowsByPage } = require('../controllers/shows.controller');
 const os = require('os');
 
@@ -30,4 +31,5 @@ router.post('/api/live', livecontroller.PostChannel);
 router.put('/api/live', livecontroller.UpdateChannel);
 router.delete('/api/live', livecontroller.DeleteChannel);
 router.get('/api/live/guide', livecontroller.GetGuide);
+router.get('/api/video', videocontroller.GetMovieSource);
 module.exports = router;

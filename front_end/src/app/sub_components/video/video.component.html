@@ -1,6 +1,6 @@
 <div class="player-container d-flex justify-content-center" style="background-color: black;">
   <div class="player-div" *ngIf="isPlayed">
-    <app-videojs (isEnded)="hasEnded($event)"[options]="{ fluid : true, aspectRatio : '16:9', autoplay: true, muted: false, controls: true , sources: [{ src: source, type: 'video/mp4' }]}"></app-videojs>
+    <app-videojs (isEnded)="hasEnded($event)"[options]="{ fluid : true, aspectRatio : '16:9', autoplay: true, muted: false, controls: true , sources: [{ src: video, type: 'video/mp4' }]}"></app-videojs>
   </div>
   <div div="trailer-div" *ngIf="isTrailer">
     <corp-youtube-player [videoId]="Trailer" [playerConfig]="{controls: 1, mute: 0, autoplay: 0}" [width]="screenWidth" [height]="screenHeight"></corp-youtube-player>

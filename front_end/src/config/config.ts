@@ -9,7 +9,8 @@ export class ConnectionConfig{
         SHOWS : "/shows",
         EPISODES : "/shows/episodes",
         LIVE : "/live",
-        GUIDE : "/live/guide"
+        GUIDE : "/live/guide",
+        VIDEO : "/video"
     }
 
     static readonly ADMINUID = 'tcRVyBoc4pPoZ5jS88IPZ2AWxqh2';
