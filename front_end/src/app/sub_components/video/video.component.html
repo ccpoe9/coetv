@@ -1,5 +1,5 @@
 <div class="player-container d-flex justify-content-center" style="background-color: black;">
-  <div class="player-div" *ngIf="isPlayed">
+  <div class="player-div" *ngIf="isPlayed && isReady">
     <app-videojs (isEnded)="hasEnded($event)"[options]="{ fluid : true, aspectRatio : '16:9', autoplay: true, muted: false, controls: true , sources: [{ src: video, type: 'video/mp4' }]}"></app-videojs>
   </div>
   <div div="trailer-div" *ngIf="isTrailer">

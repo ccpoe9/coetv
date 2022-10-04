@@ -40,6 +40,7 @@ export class VideoComponent implements OnInit {
   httpGenreParams : HttpParams;
   type : string;
   isPlayed : boolean = false;
+  isReady : boolean = false;
   isTrailer : boolean = false;
   playText : string = 'PLAY';
   genresArr : string[];
@@ -107,6 +108,7 @@ export class VideoComponent implements OnInit {
     this.source = this.movie.Video;
     this.videoservice.getSource(new HttpParams().set('source',this.source)).subscribe( data => {
       this.video = data.url;
+      this.isReady = true;
     });
     this.Thumbnail = this.movie.Thumbnail;
     this.Trailer = this.movie.Trailer;
@@ -144,6 +146,7 @@ export class VideoComponent implements OnInit {
     this.source = this.episodes[0].Video;
     this.videoservice.getSource(new HttpParams().set('source',this.source)).subscribe( data => {
       this.video = data.url;
+      this.isReady = true;
     });
     this.currentEpisode = this.episodes[0];
   }
