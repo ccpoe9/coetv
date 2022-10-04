@@ -26,7 +26,7 @@ export class LiveComponent implements OnInit {
   currentProgramSubtitle : string;
   currentProgramDesc : string;
 
-
+  guideReady : boolean = false;
 
   ngOnInit(): void {
     this.getLive();
@@ -50,7 +50,7 @@ export class LiveComponent implements OnInit {
     }))
     .subscribe( async data => {
       this.guide = data;
-      await this.setGuide();
+      await this.setGuide().then(() => this.guideReady = true);
     })
   }
 
