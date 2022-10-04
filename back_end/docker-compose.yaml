@@ -38,6 +38,7 @@ services:
     depends_on:
       - app
     restart: unless-stopped
+
   certbot:
     image: certbot/certbot:latest
     volumes:

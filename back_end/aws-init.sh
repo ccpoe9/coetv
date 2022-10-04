@@ -1,14 +1,4 @@
-#RESET TO REMOTE
-git fetch origin
-git reset --hard origin/main
-
-#BEFORE PUSH
-ssh-agent -s        
-ssh-add ~/.ssh/id_rsa
-
-#
-#
-#FOR CONTAINERS
+#!/bin/bash
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 ./aws/install
