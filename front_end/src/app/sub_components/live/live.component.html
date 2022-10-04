@@ -1,4 +1,4 @@
-<div class="live-header mt-4">
+<div class="live-header mt-4" *ngIf="guideReady">
     <div class="player-div">
         <app-videojs [options]="{ fluid : true, aspectRatio : '16:9', autoplay: true, muted: true, controls: true, 
         sources: [{ src: currentChannel.Source, type: 'application/x-mpegURL' }]}" ></app-videojs>
