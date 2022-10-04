@@ -14,10 +14,6 @@ RUN npm install
 
 # Bundle app source
 COPY . .
-
-RUN chmod 777 aws-init.sh
-
-RUN ./aws-init.sh
  
 EXPOSE 3000
 
