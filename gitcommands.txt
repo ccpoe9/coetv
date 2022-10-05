@@ -19,4 +19,4 @@ aws configure set default.region us-east-1
 
 #backend
 docker-compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -d coeapi.com
-docker exec -it back_end_app_# ./aws-init.sh
+docker exec -it back_end_app_1 ./aws-init.sh && docker exec -it back_end_app_2 ./aws-init.sh && docker exec -it back_end_app_3 ./aws-init.sh && docker exec -it back_end_app_4 ./aws-init.sh
