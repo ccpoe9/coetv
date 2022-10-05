@@ -36,3 +36,8 @@
         </tbody>
       </table>
 </div>
+<div class="d-flex justify-content-center align-items-center" *ngIf="!guideReady">
+  <div class="spinner-border align-items-center" style="width: 3rem; height: 3rem; color:aqua; margin-top: 100px; margin-bottom: 100px;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
