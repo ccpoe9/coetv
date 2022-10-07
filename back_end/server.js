@@ -7,7 +7,7 @@ let router = require('./routers/router');
 
 
 app.use(bodyparser.json());
-app.use(cors({origin: "*"}))
+app.use(cors({origin: ["https://www.coetv.me","http://localhost:4200"]}))
 
 app.use('/', router);
 
