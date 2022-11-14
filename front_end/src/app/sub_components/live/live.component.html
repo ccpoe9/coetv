@@ -23,7 +23,7 @@
           <tr *ngFor="let channel of channels; let i = index">
             <th scope="row" style="width: 12%;" class="channel-head" [ngStyle]="{'color': (currentChannel==channel) ? 'aqua': ''}" (click)="changeChannel(channel)">
               <div>
-                <img src="{{channel.Thumbnail}}" class="channel-thumbnail" alt="cc" [ngStyle]="{'filter': (currentChannel==channel) ? 'opacity(0.5) drop-shadow(0 0 0 aqua) saturate(1000%)': ''}" >
+                <img src="{{channel.Thumbnail}}" class="channel-thumbnail" alt="cc" [ngStyle]="{'filter': (currentChannel==channel) ? 'opacity(0.25) drop-shadow(0 0 0 aqua) saturate(1000%)': ''}" >
                 <svg *ngIf="currentChannel==channel" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
                   <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                 </svg>
