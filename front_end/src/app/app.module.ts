@@ -23,6 +23,7 @@ import { SearchComponent } from './sub_components/search/search.component';
 import {YouTubePlayerModule} from '@angular/youtube-player';
 import { YoutubePlayerComponent } from './shared_components/youtube-player/youtube-player.component';
 import { DmcaComponent } from './sub_components/dmca/dmca.component';
+import { AboutusComponent } from './sub_components/aboutus/aboutus.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { DmcaComponent } from './sub_components/dmca/dmca.component';
     FooterComponent,
     SearchComponent,
     YoutubePlayerComponent,
-    DmcaComponent
+    DmcaComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,

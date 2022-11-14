@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NavigationEnd, NavigationStart, Router, RouterEvent } from '@angular/router';
@@ -18,6 +19,7 @@ export class NavbarComponent implements OnInit {
   searchSource : Subject<string> = new ReplaySubject<string>();
   search = this.searchSource.asObservable();
   adminUID : string;
+  coadminUID : String;
   currentPage : string;
 
   constructor(private authService : AuthService, private readonly fireAuth : AngularFireAuth, 
@@ -35,6 +37,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.adminUID = config.ADMINUID;
+    this.coadminUID = config.COADMINUID;
   }
 
   signOut(){

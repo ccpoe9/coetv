@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
+import { AboutusComponent } from './sub_components/aboutus/aboutus.component';
 import { DmcaComponent } from './sub_components/dmca/dmca.component';
 import { ForgotPasswordComponent } from './sub_components/forgot-password/forgot-password.component';
 import { LandingComponent } from './sub_components/landing/landing.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
                         {path : 'upload', component : UploadComponent, canActivate : [AuthGuard]},
                         {path : 'search', component : SearchComponent, canActivate : [AuthGuard]},
                         {path : 'dmca', component : DmcaComponent, canActivate : [AuthGuard]},
+                        {path : 'aboutus', component : AboutusComponent, canActivate : [AuthGuard]},
                         { path: '**', redirectTo: '/home'}];
 
 

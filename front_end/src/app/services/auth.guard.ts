@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
           if (!user) {
             this.router.navigate([ 'login' ]);
           }
-          if(route.url[0].path == 'upload' && user?.uid != config.ADMINUID){
+          if(route.url[0].path == 'upload' && user?.uid != config.ADMINUID && user?.uid != config.COADMINUID){
             this.router.navigate(['home']);
           }
         }),

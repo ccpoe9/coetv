@@ -14,4 +14,5 @@ export class ConnectionConfig{
     }
 
     static readonly ADMINUID = 'tcRVyBoc4pPoZ5jS88IPZ2AWxqh2';
+    static readonly COADMINUID = 'Q7kCDL7foiQNnnCcOMrMw724lGY2';
 }
