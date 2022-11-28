@@ -24,6 +24,8 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
 import { YoutubePlayerComponent } from './shared_components/youtube-player/youtube-player.component';
 import { DmcaComponent } from './sub_components/dmca/dmca.component';
 import { AboutusComponent } from './sub_components/aboutus/aboutus.component';
+import { ChecklistComponent } from './sub_components/checklist/checklist.component';
+import { SitedescComponent } from './sub_components/sitedesc/sitedesc.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,9 @@ import { AboutusComponent } from './sub_components/aboutus/aboutus.component';
     SearchComponent,
     YoutubePlayerComponent,
     DmcaComponent,
-    AboutusComponent
+    AboutusComponent,
+    ChecklistComponent,
+    SitedescComponent
   ],
   imports: [
     BrowserModule,

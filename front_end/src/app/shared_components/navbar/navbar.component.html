@@ -9,7 +9,7 @@
         </a>
       </div>
       <!--*ngIf="isAuthenticated"-->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="user$ | async as user">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" >
@@ -27,7 +27,13 @@
           <li class="nav-item">
             <a class="nav-link fw-bold" [ngStyle]="{'color': (currentPage=='/aboutus') ? 'aqua': ''}" aria-current="page" href="/aboutus">ABOUT US</a>
           </li>
-          <li class="nav-item" *ngIf="user.uid==adminUID || user.uid==coadminUID">
+          <li class="nav-item">
+            <a class="nav-link fw-bold" [ngStyle]="{'color': (currentPage=='/checklist') ? 'aqua': ''}" aria-current="page" href="/checklist">CHECKLIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-bold" [ngStyle]="{'color': (currentPage=='/sitedesc') ? 'aqua': ''}" aria-current="page" href="/sitedesc">SITE DESCRIPTION</a>
+          </li>
+          <li class="nav-item" *ngIf="user$ | async as user">
             <a class="nav-link fw-bold" [ngStyle]="{'color': (currentPage=='/upload') ? 'aqua': ''}" aria-current="page" href="/upload">UPLOAD</a>
           </li>
         </ul>
@@ -51,9 +57,10 @@
                 </svg>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item">{{user.email}}</a>
+              <a class="dropdown-item" *ngIf="user$ | async as user">{{user.email}}</a>
+              <a class="dropdown-item" *ngIf="(user$ | async) == null" href="login">Login</a>
               <li><hr class="dropdown-divider"></li>
-              <a class="dropdown-item" (click)="signOut()">Sign Out</a>
+              <a class="dropdown-item" *ngIf="user$ | async as user" (click)="signOut()">Sign Out</a>
             </div>
           </li>
         </ul>
