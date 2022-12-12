@@ -15,6 +15,7 @@ import { ConnectionConfig as config } from 'src/config/config';
 export class NavbarComponent implements OnInit {
 
   user$ = this.fireAuth.user;
+  currentUser : any;
   searchVal : string = '';
   searchSource : Subject<string> = new ReplaySubject<string>();
   search = this.searchSource.asObservable();
@@ -38,6 +39,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.adminUID = config.ADMINUID;
     this.coadminUID = config.COADMINUID;
+    this.user$.subscribe( data => {
+        this.currentUser = data;
+    })
   }
 
   signOut(){

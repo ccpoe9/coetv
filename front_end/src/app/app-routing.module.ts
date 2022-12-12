@@ -29,9 +29,6 @@ const routes: Routes = [
                         {path : 'upload', component : UploadComponent, canActivate : [AuthGuard]},
                         {path : 'search', component : SearchComponent},
                         {path : 'dmca', component : DmcaComponent},
-                        {path : 'aboutus', component : AboutusComponent},
-                        {path : 'checklist', component : ChecklistComponent},
-                        {path : 'sitedesc', component : SitedescComponent},
                         { path: '**', redirectTo: '/home'}];
 
 

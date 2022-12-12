@@ -22,6 +22,9 @@ export class AuthGuard implements CanActivate {
           if (!user) {
             this.router.navigate([ 'login' ]);
           }
+          if(route.url[0].path == 'upload' && user?.uid != config.ADMINUID){
+            this.router.navigate(['home']);
+          }
         }),
         map(user => !!user )
       );
