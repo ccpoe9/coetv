@@ -226,6 +226,18 @@
       ],
       "output_token": "NextToken",
       "result_key": "RoutingProfiles"
+    },
+    "ListTrafficDistributionGroups": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TrafficDistributionGroupSummaryList"
+    },
+    "ListRules": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "RuleSummaryList"
     }
   }
 }
