@@ -18,7 +18,7 @@
           <li class="nav-item">
             <a class="nav-link fw-bold" [ngStyle]="{'color': (currentPage=='/tv') ? 'aqua': ''}" aria-current="page" href="/tv">TV SHOWS</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isSafari" >
             <a class="nav-link fw-bold" [ngStyle]="{'color': (currentPage=='/live') ? 'aqua': ''}" aria-current="page" href="/live">LIVE</a>
           </li>
           <li class="nav-item">

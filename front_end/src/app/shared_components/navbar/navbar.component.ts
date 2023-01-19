@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MoviesService } from 'src/app/services/movies.service';
 import { TvService } from 'src/app/services/tv.service';
 import { ConnectionConfig as config } from 'src/config/config';
+import { DeviceDetectorService } from 'ngx-device-detector';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -22,9 +23,10 @@ export class NavbarComponent implements OnInit {
   adminUID : string;
   coadminUID : String;
   currentPage : string;
-
+  isSafari :  boolean = false;
   constructor(private authService : AuthService, private readonly fireAuth : AngularFireAuth, 
-    private movieService : MoviesService, private router : Router, private tvservice : TvService) { 
+    private movieService : MoviesService, private router : Router, private tvservice : TvService,
+    private deviceService: DeviceDetectorService) { 
 
     this.router.events
           .subscribe(
@@ -37,6 +39,9 @@ export class NavbarComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    if(this.deviceService.browser == 'Safari'){
+        this.isSafari = true;
+    }
     this.adminUID = config.ADMINUID;
     this.coadminUID = config.COADMINUID;
     this.user$.subscribe( data => {
