@@ -9,7 +9,7 @@
         <p style="color: white">{{currentProgramDesc}}</p>
     </div>
 </div>
-<div class="live-content mt-4" style="margin-left:5%; width:90%;" *ngIf="guideReady">
+<div class="live-content mt-4" *ngIf="guideReady">
     <table class="table">
         <thead>
           <tr>
@@ -23,15 +23,15 @@
           <tr *ngFor="let channel of channels; let i = index">
             <th scope="row" style="width: 12%;" class="channel-head" [ngStyle]="{'color': (currentChannel==channel) ? 'aqua': ''}" (click)="changeChannel(channel)">
               <div>
-                <img src="{{channel.Thumbnail}}" class="channel-thumbnail" alt="cc" [ngStyle]="{'filter': (currentChannel==channel) ? 'opacity(0.50) drop-shadow(0 0 0 aqua) saturate(100%)': ''}" >
+                <img src="{{channel.Thumbnail}}" class="channel-thumbnail" alt="cc">
                 <svg *ngIf="currentChannel==channel" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
                   <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                 </svg>
               </div>
             </th>
-            <td style="width: 26%;" class="channel-guide" [ngStyle]="{'background-color': (currentChannel==channel) ? 'aqua': '', 'color': (currentChannel==channel) ? 'black': ''}">{{programs[i][0].title}}</td>
-            <td style="width: 26%;" class="channel-guide">{{programs[i][1].title}}</td>
-            <td style="width: 26%;" class="channel-guide">{{programs[i][2].title}}</td>
+            <td style="width: 26%;" class="channel-guide" [ngStyle]="{'background-color': (currentChannel==channel) ? 'aqua': '', 'color': (currentChannel==channel) ? 'black': ''}" (click)="changeChannel(channel)">{{programs[i][0].title}}</td>
+            <td style="width: 26%;" class="channel-guide" (click)="changeChannel(channel)">{{programs[i][1].title}}</td>
+            <td style="width: 26%;" class="channel-guide" (click)="changeChannel(channel)">{{programs[i][2].title}}</td>
           </tr>
         </tbody>
       </table>

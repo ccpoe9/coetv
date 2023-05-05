@@ -106,4 +106,8 @@ export class LiveComponent implements OnInit {
     }
   }
 
+  onKeydown(event: any) {
+    console.log(event);
+  }
+
 }
