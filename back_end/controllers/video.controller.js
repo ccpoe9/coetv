@@ -19,5 +19,5 @@ async function generatePreSignUrl( source ) {
 exports.GetMovieSource = async (req,res) => {
     let url = await generatePreSignUrl(req.query.source);
     res.send({url});
-
+	console.log(url);
 }
