@@ -47,6 +47,5 @@ services:
       - ./certbot/conf/:/etc/letsencrypt/:rw
     depends_on:
       - nginx
-    restart: unless-stopped
 
     
