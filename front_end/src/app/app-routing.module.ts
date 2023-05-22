@@ -17,7 +17,7 @@ import { UploadComponent } from './sub_components/upload/upload.component';
 import { VideoComponent } from './sub_components/video/video.component';
 
 const routes: Routes = [
-                        {path : '', redirectTo:'home', pathMatch:'full'},
+                        {path : '', redirectTo:'movies', pathMatch:'full'},
                         {path : 'login', component : LoginComponent},
                         {path : 'register', component : RegisterComponent},
                         {path : 'forgot-password', component : ForgotPasswordComponent},
